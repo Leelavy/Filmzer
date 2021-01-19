@@ -1,5 +1,5 @@
 {
-  "name": "Filmzer",
+  "name": "filmzer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "server": "cd server && npm server",
     "user": "cd client\\user && npm start",
     "admin": "cd client\\admin && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run user\" \"npm run admin\"" 
+    "dev": "concurrently \"npm run server\" \"npm run user\" \"npm run admin\""
   },
   "repository": {
     "type": "git",
