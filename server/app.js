@@ -1,15 +1,17 @@
 
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors'); 
+const socketIo = require('socket.io');
+const cors = require('cors');
+const movies = require('./routes/movies');
 
 var app=express();
 app.use(cors());  
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use('/movies', movies);
 
 const server=http.createServer(app);
 
