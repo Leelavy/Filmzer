@@ -16,4 +16,12 @@ const io = socketIo(server,
 
 );
 
+//connection check for react client
+io.on('connection', (socket) => {
+    if (socket.handshake.headers.origin === "http://localhost:3000") {
+        console.log("React connected");
+    }
+});
+
+
 server.listen(8080);
