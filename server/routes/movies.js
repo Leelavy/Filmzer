@@ -9,7 +9,9 @@ mongoose.connect(uri, {useNewUrlParser: true});
 
 router.get('/', movieController.get);
 
-// router.get('/:movieTitle', movieController.getByTitle);
+router.get('/title/:movieTitle', movieController.getByTitle);
+
+router.get('/:movieId', movieController.getById)
 
 router.post('/', movieController.create);
 
@@ -17,5 +19,6 @@ router.put('/', movieController.update);
 
 router.delete('/', movieController.remove);
 
+router.get('/:movieId', movieController.getById)
 
 module.exports = router;

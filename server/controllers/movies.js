@@ -41,10 +41,17 @@ const create = (req, res) => {
 };
 
 const getByTitle = (req, res) =>
-{Movies.findOne(
-    {'title':
-            {$regex: `.*${req.params.movieTitle}.*`}}
-).then(movies => {res.json(movies);})};
+    {Movies.findOne(
+        {'title':
+                {$regex: `.*${req.params.movieTitle}.*`}}
+                ).then(movies => {res.json(movies);})};
+
+
+const getById = (req, res) => {
+    Movies.findById(req.params.movieId
+            ).then(movies =>
+                        {res.json(movies);})};
+
 
 const update = (req, res) => {
     res.json(movies);
@@ -54,4 +61,4 @@ const remove = (req, res) => {
     res.json(movies);
 };
 
-module.exports = {get, create, getByTitle, update, remove}
+module.exports = {get, create, getByTitle, update, remove, getById}
