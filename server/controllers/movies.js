@@ -1,5 +1,5 @@
 const Movies = require('../models/movies');
-
+const unirest = require("unirest");
 
 const get = (req, res)=>{
     Movies.find().then(result => {
@@ -52,6 +52,38 @@ const getById = (req, res) => {
             ).then(movies =>
                         {res.json(movies);})};
 
+const getByImdbTitleId = (req, res) =>
+    {Movies.find(
+        {'imdb_title_id':
+                req.params.imdbTitleId}
+        ).then(movies => {res.json(movies);})};
+
+
+const getImageByTitleId = (req, res) => {
+
+    var reqApi = unirest("GET", "https://imdb8.p.rapidapi.com/title/get-images");
+
+    reqApi.query({
+        "tconst": req.params.imdbTitleId.toString(),
+        "limit": "25"
+    });
+
+    reqApi.headers({
+        "x-rapidapi-key": "c70cdcce54mshf2099e49559503cp11be87jsna6dcf3ca1c09",
+        "x-rapidapi-host": "imdb8.p.rapidapi.com",
+        "useQueryString": true
+    });
+
+    reqApi.end(function (resApi) {
+        if (resApi.error) throw new Error(resApi.error);
+
+        var resString = JSON.stringify(resApi.body);
+        var resObject = JSON.parse(resString);
+        var url = resObject.images[0]['url'];
+        return res.json({'url': url});
+    });
+
+};
 
 const update = (req, res) => {
     res.json(movies);
@@ -61,4 +93,4 @@ const remove = (req, res) => {
     res.json(movies);
 };
 
-module.exports = {get, create, getByTitle, update, remove, getById}
+module.exports = {get, create, getByTitle, update, remove, getById, getByImdbTitleId, getImageByTitleId}

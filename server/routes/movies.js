@@ -13,12 +13,14 @@ router.get('/title/:movieTitle', movieController.getByTitle);
 
 router.get('/:movieId', movieController.getById)
 
+router.get('/titleId/:imdbTitleId', movieController.getByImdbTitleId)
+
+router.get('/image/:imdbTitleId', movieController.getImageByTitleId)
+
 router.post('/', movieController.create);
 
 router.put('/', movieController.update);
 
 router.delete('/', movieController.remove);
-
-router.get('/:movieId', movieController.getById)
 
 module.exports = router;
