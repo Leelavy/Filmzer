@@ -41,7 +41,7 @@ const create = (req, res) => {
 };
 
 const getByTitle = (req, res) =>
-    {Movies.findOne(
+    {Movies.find(
         {'title':
                 {$regex: `.*${req.params.movieTitle}.*`}}
                 ).then(movies => {res.json(movies);})};
