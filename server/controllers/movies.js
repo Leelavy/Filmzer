@@ -1,63 +1,51 @@
+
 const unirest = require("unirest");
-const Movies = require('../models/movies');
+const moviesService = require('../services/movies');
 
-const get = (req, res)=>{
-    Movies.find().cache(0, 'GALLERY-CACHE-KEY').then(result => {
-        res.json(result.slice(0, 5));
-    });
+
+const createMovie = async (req, res) => {
+    const newMovie = await moviesService.createMovie(req.body);
+    res.json(newMovie);
 };
 
-const create = (req, res) => {
 
-    const movies =  new Movies({
-        imdb_title_id: req.body.imdb_title_id,
-        title: req.body.title,
-        original_title: req.body.original_title,
-        year: parseInt(req.body.year),
-        date_published: req.body.date,
-        genre: req.body.genre,
-        duration: parseInt(req.body.duration),
-        country: req.body.country,
-        language: req.body.language,
-        director: req.body.director,
-        writer: req.body.writer,
-        production_company: req.body.production_company,
-        actors: req.body.actors,
-        description: req.body.description,
-        avg_vote: parseFloat(req.body.avg_vote),
-        votes: parseInt(req.body.votes),
-        budget: req.body.budget,
-        usa_gross_income: req.body.usa_gross_income,
-        worlwide_gross_income: req.body.worlwide_gross_income,
-        metascore: parseFloat(req.body.metascore),
-        reviews_from_users: parseFloat(req.body.reviews_from_users),
-        reviews_from_critics: parseFloat(req.body.reviews_from_critics)
-    });
-    movies.save().then(()=>{
-        cachegoose.clearCache('GALLERY-CACHE-KEY');
-        res.redirect('/movies')
-    }).catch(error => {
-        res.send(error)
-    });
+const getMovies = async (req, res) => {
+    const movies = await moviesService.getMovies();
+    res.json(movies.slice(0, 5));
 };
 
-const getByTitle = (req, res) =>
-    {Movies.find(
-        {'title':
-                {$regex: `.*${req.params.movieTitle}.*`}}
-                ).then(movies => {res.json(movies);})};
+
+const getMovieByTitle = async (req, res) => {
+    const movie = await moviesService.getByTitle(req.params.movieTitle);
+
+    if (!movie) {
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
 
 
-const getById = (req, res) => {
-    Movies.findById(req.params.movieId
-            ).then(movies =>
-                        {res.json(movies);})};
+const getMovieById = async (req, res) => {
+    const movie = await moviesService.getMovieById(req.params.movieId);
 
-const getByImdbTitleId = (req, res) =>
-    {Movies.find(
-        {'imdb_title_id':
-                req.params.imdbTitleId}
-        ).then(movies => {res.json(movies);})};
+    if (!movie){
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
+
+
+const getMovieByImdbTitleId = async (req, res) => {
+    const movie = await moviesService.getMovieById(req.params.imdbTitleId);
+
+    if (!movie){
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
 
 
 const getImageByTitleId = (req, res) => {
@@ -82,12 +70,39 @@ const getImageByTitleId = (req, res) => {
 
 };
 
-const update = (req, res) => {
+const updateMovies = async (req, res) => {
+    if (!req.body) {
+        res.status(400).json({
+            message: "movies param are required",
+        });
+    }
+
+    const movies = await moviesService.updateMovie(req.params.id, req.body);
+    if (!movies) {
+        return res.status(404).json({ errors: ['movies not found'] });
+    }
+
     res.json(movies);
 };
 
-const remove = (req, res) => {
-    res.json(movies);
+
+const deleteMovie = async (req, res) => {
+    const movie = await moviesService.deleteMovie(req.params.id);
+    if (!movie) {
+        return res.status(404).json({ errors: ['movie not found'] });
+    }
+
+    res.send();
 };
 
-module.exports = {get, create, getByTitle, update, remove, getById, getByImdbTitleId, getImageByTitleId}
+
+module.exports = {
+    createMovie,
+    getMovies,
+    getMovieByTitle,
+    getMovieById,
+    getMovieByImdbTitleId,
+    getImageByTitleId,
+    updateMovies,
+    deleteMovie
+}

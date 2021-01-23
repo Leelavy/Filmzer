@@ -2,20 +2,29 @@ const express = require('express');
 const movieController = require('../controllers/movies');
 var router = express.Router();
 
-router.get('/', movieController.get);
+// TODO checks update/craete/delete function
 
-router.get('/title/:movieTitle', movieController.getByTitle);
+router.route('/')
+    .post(movieController.createMovie)
+    .get(movieController.getMovies);
 
-router.get('/:movieId', movieController.getById)
 
-router.get('/titleId/:imdbTitleId', movieController.getByImdbTitleId)
+router.route('/title/:movieTitle')
+    .get(movieController.getMovieByTitle);
 
-router.get('/image/:imdbTitleId', movieController.getImageByTitleId)
 
-router.post('/', movieController.create);
+router.route('/:movieId')
+    .get(movieController.getMovieById)
+    .patch(movieController.updateMovies)
+    .delete(movieController.deleteMovie);
 
-router.put('/', movieController.update);
 
-router.delete('/', movieController.remove);
+router.route('/titleId/:imdbTitleId')
+    .get(movieController.getMovieByImdbTitleId);
+
+
+router.route('/image/:imdbTitleId')
+    .get(movieController.getImageByTitleId)
+
 
 module.exports = router;
