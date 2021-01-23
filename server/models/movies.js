@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+const cachegoose = require('cachegoose');
+cachegoose(mongoose);
 const Schema = mongoose.Schema;
+
 
 const Movies = new Schema({
     imdb_title_id: {type:String, unique: true},

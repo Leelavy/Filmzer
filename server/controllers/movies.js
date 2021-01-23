@@ -1,9 +1,9 @@
-const Movies = require('../models/movies');
 const unirest = require("unirest");
+const Movies = require('../models/movies');
 
 const get = (req, res)=>{
-    Movies.find().then(result => {
-        res.json(result);
+    Movies.find().cache(0, 'GALLERY-CACHE-KEY').then(result => {
+        res.json(result.slice(0, 5));
     });
 };
 
@@ -34,6 +34,7 @@ const create = (req, res) => {
         reviews_from_critics: parseFloat(req.body.reviews_from_critics)
     });
     movies.save().then(()=>{
+        cachegoose.clearCache('GALLERY-CACHE-KEY');
         res.redirect('/movies')
     }).catch(error => {
         res.send(error)

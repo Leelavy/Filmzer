@@ -1,11 +1,6 @@
-const express = require('express')
-const mongoose = require('mongoose');
+const express = require('express');
 const movieController = require('../controllers/movies');
 var router = express.Router();
-
-const uri = "mongodb+srv://daniel:daniel11@cluster0.hyprf.mongodb.net/Filmzer?retryWrites=true&w=majority";
-
-mongoose.connect(uri, {useNewUrlParser: true});
 
 router.get('/', movieController.get);
 
