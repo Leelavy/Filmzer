@@ -61,11 +61,10 @@ const getByImdbTitleId = (req, res) =>
 
 const getImageByTitleId = (req, res) => {
 
-    var reqApi = unirest("GET", "https://imdb8.p.rapidapi.com/title/get-images");
+    var reqApi = unirest("GET", "https://imdb8.p.rapidapi.com/title/get-meta-data");
 
     reqApi.query({
-        "tconst": req.params.imdbTitleId.toString(),
-        "limit": "25"
+        "ids": req.params.imdbTitleId
     });
 
     reqApi.headers({
@@ -77,10 +76,7 @@ const getImageByTitleId = (req, res) => {
     reqApi.end(function (resApi) {
         if (resApi.error) throw new Error(resApi.error);
 
-        var resString = JSON.stringify(resApi.body);
-        var resObject = JSON.parse(resString);
-        var url = resObject.images[0]['url'];
-        return res.json({'url': url});
+        return res.json(resApi.body[req.params.imdbTitleId]['title']['image']['url'])
     });
 
 };
