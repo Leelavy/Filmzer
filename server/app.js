@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const movies = require('./routes/movies');
-// const users = require('./routes/users');
+const users = require('./routes/users');
 
 const connectionString = "mongodb+srv://daniel:daniel11@cluster0.hyprf.mongodb.net/Filmzer?retryWrites=true&w=majority";
 mongoose.connect(connectionString, {useNewUrlParser: true});
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/movies', movies);
-// app.use('/users', users);
+app.use('/users', users);
 
 const server=http.createServer(app);
 const io = socketIo(server, {
