@@ -18,8 +18,8 @@ router.route('/:id')
     .delete(userController.deleteUser)
 
 
-router.route('/:id/:password')
-    .patch(userController.updatePassword)
+// router.route('/:id/:password')
+//     .patch(userController.updatePassword)
 
 
 module.exports = router;
