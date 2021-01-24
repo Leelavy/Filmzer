@@ -11,7 +11,7 @@ const createMovie = async (req, res) => {
 
 const getMovies = async (req, res) => {
     const movies = await moviesService.getMovies();
-    res.json(movies.slice(0, 5));
+    res.json(movies);
 };
 
 
