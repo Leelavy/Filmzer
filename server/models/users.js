@@ -7,19 +7,10 @@ const Users = new Schema({
         index: { unique: true }
     },
     password: String,
-    name: String,
-    watchlists: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Watchlists'
-        }
-    ],
-    ratings: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Ratings'
-        }
-    ],
+    admin: Boolean,
+    firstName: String,
+    lastName: String,
+    email: String,
     reviews: [
         {
             type: mongoose.Schema.Types.ObjectId,
