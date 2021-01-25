@@ -5,10 +5,10 @@ const createUser = async (body) => {
     const user = new Users({
         username: body.username,
         password: body.password,
-        admin: Boolean,
-        firstName: String,
-        lastName: String,
-        email: String
+        admin: body.admin,
+        firstName: body.firstName,
+        lastName: body.lastName,
+        email: body.email
     });
 
     return await user.save();
