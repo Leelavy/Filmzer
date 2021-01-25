@@ -64,8 +64,9 @@ const updateReviewOfUser = async (id) => {
         return null
 
     for (i = 0; i < review.length; i++) {
-        console.log(review[i]._id)
-        user.reviews = [review[i]._id];
+        if(user.reviews.indexOf(review[i]._id) === -1){
+            user.reviews.push(review[i]._id);
+        }
         await user.save();
     }
     return user;

@@ -13,6 +13,7 @@ const getReviews = async (req, res) => {
 
 
 const getReviewById = async (req, res) => {
+
     const review = await reviewsService.getReviewById(req.params.id);
 
     if (!review){

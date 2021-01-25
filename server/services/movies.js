@@ -62,8 +62,9 @@ const updateReviewOfMovie = async (id) => {
         return null
 
     for (i = 0; i < review.length; i++) {
-        console.log(review[i]._id)
-        movie.reviews = [review[i]._id];
+        if(movie.reviews.indexOf(review[i]._id) === -1){
+            movie.reviews.push(review[i]._id);
+        }
         await movie.save();
     }
     return movie;

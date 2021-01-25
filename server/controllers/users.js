@@ -71,13 +71,13 @@ const updateReviewOfUser = async (req, res) => {
 
     if (!req.body) {
         res.status(400).json({
-            message: "movies param are required",
+            message: "users param are required",
         });
     }
 
     const user = await usersService.updateReviewOfUser(req.params.id);
     if (!user) {
-        return res.status(404).json({ errors: ['movies not found'] });
+        return res.status(404).json({ errors: ['user not found'] });
     }
 
     res.json(user);

@@ -1,13 +1,17 @@
 const Reviews = require('../models/reviews');
 
 const createReview = async (body) => {
+
     const review = new Reviews({
         reviewTitle: body.reviewTitle,
         reviewContent: body.reviewContent,
-        rating: body.rating
+        rating: body.rating,
+        movies: body.movies,
+        users: body.users
     });
-        if (body.lastUpdated)
-            review.lastUpdated = body.lastUpdated;
+
+    if (body.lastUpdated)
+        review.lastUpdated = body.lastUpdated;
 
     return await review.save();
 };
@@ -62,5 +66,6 @@ module.exports = {
     updateReview,
     deleteReview,
     getReviewByMovieId,
-    getReviewByUserId
+    getReviewByUserId,
+    getReviewById
 }
