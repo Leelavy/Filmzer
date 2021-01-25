@@ -16,6 +16,10 @@ const getReviews = async () => {
     return await Reviews.find({});
 };
 
+const getReviewByMovieId = async (id) => {
+    return await Reviews.find({'movies': [id]});
+};
+
 
 const getReviewById = async (id) => {
     return await Reviews.findById(id);
@@ -51,5 +55,6 @@ module.exports = {
     createReview,
     getReviews,
     updateReview,
-    deleteReview
+    deleteReview,
+    getReviewByMovieId
 }

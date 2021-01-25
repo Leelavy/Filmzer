@@ -1,4 +1,5 @@
 const Movies = require('../models/movies');
+const Review = require('../services/reviews')
 
 const createMovie = async (body) => {
     const movie = new Movies({
@@ -50,6 +51,25 @@ const updateMovie = async (id, body) => {
     return movie;
 };
 
+const updateReviewOfMovie = async (id) => {
+
+    const review = await Review.getReviewByMovieId(id)
+    const movie = await getMovieById(id);
+    if (!movie)
+        return null;
+
+    if(!review)
+        return null
+
+    for (i = 0; i < review.length; i++) {
+        console.log(review[i]._id)
+        movie.reviews = [review[i]._id];
+        await movie.save();
+    }
+    return movie;
+};
+
+
 
 const deleteMovie = async (id) => {
     const movie = await getMovieById(id);
@@ -68,5 +88,6 @@ module.exports = {
     getMovieById,
     getMovieByImdbTitleId,
     updateMovie,
+    updateReviewOfMovie,
     deleteMovie
     }

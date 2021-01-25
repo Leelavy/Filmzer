@@ -77,7 +77,24 @@ const updateMovies = async (req, res) => {
         });
     }
 
-    const movies = await moviesService.updateMovie(req.params.id, req.body);
+    const movies = await moviesService.updateMovie(req.params.movieId, req.body);
+    if (!movies) {
+        return res.status(404).json({ errors: ['movies not found'] });
+    }
+
+    res.json(movies);
+};
+
+
+const updateReviewOfMovie = async (req, res) => {
+
+    if (!req.body) {
+        res.status(400).json({
+            message: "movies param are required",
+        });
+    }
+
+    const movies = await moviesService.updateReviewOfMovie(req.params.movieId);
     if (!movies) {
         return res.status(404).json({ errors: ['movies not found'] });
     }
@@ -104,5 +121,6 @@ module.exports = {
     getMovieByImdbTitleId,
     getImageByTitleId,
     updateMovies,
+    updateReviewOfMovie,
     deleteMovie
 }

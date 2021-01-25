@@ -4,6 +4,11 @@ var router = express.Router();
 
 // TODO checks update/craete/delete function
 
+
+router.route('/updateReview/:movieId')
+    .patch(movieController.updateReviewOfMovie);
+
+
 router.route('/')
     .post(movieController.createMovie)
     .get(movieController.getMovies);
