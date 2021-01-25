@@ -21,6 +21,11 @@ const getReviewByMovieId = async (id) => {
 };
 
 
+const getReviewByUserId = async (id) => {
+    return await Reviews.find({'users': [id]});
+};
+
+
 const getReviewById = async (id) => {
     return await Reviews.findById(id);
 };
@@ -56,5 +61,6 @@ module.exports = {
     getReviews,
     updateReview,
     deleteReview,
-    getReviewByMovieId
+    getReviewByMovieId,
+    getReviewByUserId
 }

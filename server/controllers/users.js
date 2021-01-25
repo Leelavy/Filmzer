@@ -67,6 +67,23 @@ const updatePassword = async (req, res) => {
 };
 
 
+const updateReviewOfUser = async (req, res) => {
+
+    if (!req.body) {
+        res.status(400).json({
+            message: "movies param are required",
+        });
+    }
+
+    const user = await usersService.updateReviewOfUser(req.params.id);
+    if (!user) {
+        return res.status(404).json({ errors: ['movies not found'] });
+    }
+
+    res.json(user);
+};
+
+
 const deleteUser = async (req, res) => {
     const user = await usersService.deleteUser(req.params.id);
     if (!user) {
@@ -84,5 +101,6 @@ module.exports = {
     getUserById,
     updateUsername,
     updatePassword,
+    updateReviewOfUser,
     deleteUser
 }

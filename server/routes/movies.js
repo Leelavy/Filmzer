@@ -5,7 +5,7 @@ var router = express.Router();
 // TODO checks update/craete/delete function
 
 
-router.route('/updateReview/:movieId')
+router.route('/updateReviewOfMovie/:movieId')
     .patch(movieController.updateReviewOfMovie);
 
 

@@ -1,5 +1,5 @@
 const Movies = require('../models/movies');
-const Review = require('../services/reviews')
+const serviceReview = require('../services/reviews')
 
 const createMovie = async (body) => {
     const movie = new Movies({
@@ -53,7 +53,7 @@ const updateMovie = async (id, body) => {
 
 const updateReviewOfMovie = async (id) => {
 
-    const review = await Review.getReviewByMovieId(id)
+    const review = await serviceReview.getReviewByMovieId(id)
     const movie = await getMovieById(id);
     if (!movie)
         return null;

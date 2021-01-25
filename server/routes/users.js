@@ -3,6 +3,10 @@ const userController = require('../controllers/users');
 var router = express.Router();
 
 
+router.route('/updateReviewOfUser/:id')
+    .patch(userController.updateReviewOfUser);
+
+
 router.route('/')
     .post(userController.createUser)
     .get(userController.getUsers);
