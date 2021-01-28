@@ -1,5 +1,4 @@
 const Movies = require('../models/movies');
-const serviceReview = require('../services/reviews')
 
 const createMovie = async (body) => {
     const movie = new Movies({
@@ -11,12 +10,11 @@ const createMovie = async (body) => {
         imageURL: body.imageURL,
         trailerVideo: body.trailerVideo
     });
-    cachegoose.clearCache('GALLERY-CACHE-KEY');
     return await movie.save();
 };
 
 const getMovies = async () => {
-    return await Movies.find({}).cache(0, 'GALLERY-CACHE-KEY');
+    return await Movies.find({})
 };
 
 
@@ -51,9 +49,8 @@ const updateMovie = async (id, body) => {
     return movie;
 };
 
-const updateReviewOfMovie = async (id) => {
+const updateReviewOfMovie = async (id, review) => {
 
-    const review = await serviceReview.getReviewByMovieId(id)
     const movie = await getMovieById(id);
     if (!movie)
         return null;
@@ -61,12 +58,11 @@ const updateReviewOfMovie = async (id) => {
     if(!review)
         return null
 
-    for (i = 0; i < review.length; i++) {
-        if(movie.reviews.indexOf(review[i]._id) === -1){
-            movie.reviews.push(review[i]._id);
-        }
-        await movie.save();
+    if(movie.reviews.indexOf(review._id) === -1){
+        movie.reviews.push(review._id);
     }
+    await movie.save();
+
     return movie;
 };
 

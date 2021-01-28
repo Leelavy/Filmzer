@@ -1,4 +1,7 @@
 const Reviews = require('../models/reviews');
+const serviceUser = require('../services/users');
+const moviesService = require('../services/movies');
+
 
 const createReview = async (body) => {
 
@@ -9,6 +12,9 @@ const createReview = async (body) => {
         movies: body.movies,
         users: body.users
     });
+
+    await serviceUser.updateReviewOfUser(body.users, review);
+    await moviesService.updateReviewOfMovie(body.movies, review);
 
     if (body.lastUpdated)
         review.lastUpdated = body.lastUpdated;

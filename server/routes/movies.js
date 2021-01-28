@@ -2,12 +2,6 @@ const express = require('express');
 const movieController = require('../controllers/movies');
 var router = express.Router();
 
-// TODO checks update/craete/delete function
-
-
-router.route('/updateReviewOfMovie/:movieId')
-    .patch(movieController.updateReviewOfMovie);
-
 
 router.route('/')
     .post(movieController.createMovie)
