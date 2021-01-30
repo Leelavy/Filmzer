@@ -9,6 +9,11 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { UsersComponent } from './components/users/users.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CategoryComponent } from './components/category/category.component';
+import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
+import { AddCategoryComponent } from './components/category/add-category/add-category.component';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -17,7 +22,12 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MoviesComponent,
     ReviewsComponent,
     UsersComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LoginComponent,
+    DashboardComponent,
+    CategoryComponent,
+    AddMovieComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
