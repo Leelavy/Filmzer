@@ -1,5 +1,4 @@
 const Users = require('../models/users');
-const serviceReview = require('../services/reviews')
 
 const createUser = async (body) => {
     const user = new Users({
@@ -52,9 +51,8 @@ const updatePassword = async (id, password) => {
 };
 
 
-const updateReviewOfUser = async (id) => {
+const updateReviewOfUser = async (id, review) => {
 
-    const review = await serviceReview.getReviewByUserId(id)
     const user = await getUserById(id);
 
     if (!user)
@@ -63,12 +61,11 @@ const updateReviewOfUser = async (id) => {
     if(!review)
         return null
 
-    for (i = 0; i < review.length; i++) {
-        if(user.reviews.indexOf(review[i]._id) === -1){
-            user.reviews.push(review[i]._id);
-        }
-        await user.save();
+    if(user.reviews.indexOf(review._id) === -1){
+        user.reviews.push(review._id);
     }
+    await user.save();
+
     return user;
 };
 
@@ -91,5 +88,5 @@ module.exports = {
     updateUsername,
     updatePassword,
     updateReviewOfUser,
-    deleteUser
+    deleteUser,
 }

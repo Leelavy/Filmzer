@@ -1,4 +1,7 @@
 const Reviews = require('../models/reviews');
+const serviceUser = require('../services/users');
+const moviesService = require('../services/movies');
+
 
 const createReview = async (body) => {
 
@@ -9,6 +12,9 @@ const createReview = async (body) => {
         movies: body.movies,
         users: body.users
     });
+
+    await serviceUser.updateReviewOfUser(body.users, review);
+    await moviesService.updateReviewOfMovie(body.movies, review);
 
     if (body.lastUpdated)
         review.lastUpdated = body.lastUpdated;
@@ -27,6 +33,13 @@ const getReviewByMovieId = async (id) => {
 
 const getReviewByUserId = async (id) => {
     return await Reviews.find({'users': [id]});
+};
+
+
+const getReviewsByTitleRatingUsername = async (rating, title, username) => {
+    return await Reviews.find({'rating': rating}).
+        populate({path:'movies', match:{'title': {$regex: `.*${title}.*`}}}).
+        populate({path:'users', match:{'username': username}}).exec();
 };
 
 
@@ -67,5 +80,6 @@ module.exports = {
     deleteReview,
     getReviewByMovieId,
     getReviewByUserId,
-    getReviewById
+    getReviewById,
+    getReviewsByTitleRatingUsername
 }

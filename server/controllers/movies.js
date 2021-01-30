@@ -16,7 +16,7 @@ const getMovies = async (req, res) => {
 
 
 const getMovieByTitle = async (req, res) => {
-    const movie = await moviesService.getByTitle(req.params.movieTitle);
+    const movie = await moviesService.getMovieByTitle(req.params.movieTitle);
 
     if (!movie) {
         return res.status(404).json({errors: ['Movie not found']});
@@ -30,6 +30,19 @@ const getMovieById = async (req, res) => {
     const movie = await moviesService.getMovieById(req.params.movieId);
 
     if (!movie){
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
+
+
+const getMovieByTitleGenreRatingYear = async (req, res) => {
+
+    const movie = await moviesService.getMovieByTitleGenreRatingYear(
+        req.params.movieTitle, req.params.movieGenre, req.params.reviewRating, req.params.movieYear
+    );
+    if (!movie) {
         return res.status(404).json({errors: ['Movie not found']});
     }
 
@@ -86,22 +99,6 @@ const updateMovies = async (req, res) => {
 };
 
 
-const updateReviewOfMovie = async (req, res) => {
-
-    if (!req.body) {
-        res.status(400).json({
-            message: "movies param are required",
-        });
-    }
-
-    const movies = await moviesService.updateReviewOfMovie(req.params.movieId);
-    if (!movies) {
-        return res.status(404).json({ errors: ['movies not found'] });
-    }
-
-    res.json(movies);
-};
-
 
 const deleteMovie = async (req, res) => {
     const movie = await moviesService.deleteMovie(req.params.id);
@@ -121,6 +118,6 @@ module.exports = {
     getMovieByImdbTitleId,
     getImageByTitleId,
     updateMovies,
-    updateReviewOfMovie,
-    deleteMovie
+    deleteMovie,
+    getMovieByTitleGenreRatingYear
 }

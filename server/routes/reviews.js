@@ -3,6 +3,10 @@ const reviewController = require('../controllers/reviews');
 var router = express.Router();
 
 
+router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
+    .get(reviewController.getReviewsByTitleRatingUsername)
+
+
 router.route('/')
     .post(reviewController.createReview)
     .get(reviewController.getReviews);

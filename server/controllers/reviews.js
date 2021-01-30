@@ -1,4 +1,5 @@
 const reviewsService = require('../services/reviews');
+const movieService = require('../controllers/movies');
 
 const createReview = async (req, res) => {
     const newReview = await reviewsService.createReview(req.body);
@@ -21,6 +22,26 @@ const getReviewById = async (req, res) => {
     }
 
     res.json(review);
+};
+
+
+const getReviewsByTitleRatingUsername = async (req, res) => {
+
+    const review = await reviewsService.getReviewsByTitleRatingUsername(
+        req.params.reviewRating, req.params.movieTitle, req.params.userName
+    );
+
+    var reviewResult = [];
+    review.forEach(function (arrayItem) {
+        if(arrayItem.movies.length !== 0)
+            reviewResult.push(arrayItem);
+    });
+
+    if (!reviewRating){
+        return res.status(404).json({errors: ['reviews not found']});
+    }
+
+    res.json(reviewRating);
 };
 
 
@@ -53,5 +74,6 @@ module.exports = {
     getReviews,
     getReviewById,
     updateReview,
-    deleteReview
+    deleteReview,
+    getReviewsByTitleRatingUsername
 }
