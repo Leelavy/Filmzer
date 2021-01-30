@@ -36,6 +36,13 @@ const getReviewByUserId = async (id) => {
 };
 
 
+const getReviewsByTitleRatingUsername = async (rating, title, username) => {
+    return await Reviews.find({'rating': rating}).
+        populate({path:'movies', match:{'title': {$regex: `.*${title}.*`}}}).
+        populate({path:'users', match:{'username': username}}).exec();
+};
+
+
 const getReviewById = async (id) => {
     return await Reviews.findById(id);
 };
@@ -73,5 +80,6 @@ module.exports = {
     deleteReview,
     getReviewByMovieId,
     getReviewByUserId,
-    getReviewById
+    getReviewById,
+    getReviewsByTitleRatingUsername
 }
