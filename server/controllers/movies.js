@@ -16,7 +16,7 @@ const getMovies = async (req, res) => {
 
 
 const getMovieByTitle = async (req, res) => {
-    const movie = await moviesService.getByTitle(req.params.movieTitle);
+    const movie = await moviesService.getMovieByTitle(req.params.movieTitle);
 
     if (!movie) {
         return res.status(404).json({errors: ['Movie not found']});
@@ -30,6 +30,19 @@ const getMovieById = async (req, res) => {
     const movie = await moviesService.getMovieById(req.params.movieId);
 
     if (!movie){
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
+
+
+const getMovieByTitleGenreRatingYear = async (req, res) => {
+
+    const movie = await moviesService.getMovieByTitleGenreRatingYear(
+        req.params.movieTitle, req.params.movieGenre, req.params.reviewRating, req.params.movieYear
+    );
+    if (!movie) {
         return res.status(404).json({errors: ['Movie not found']});
     }
 
@@ -105,5 +118,6 @@ module.exports = {
     getMovieByImdbTitleId,
     getImageByTitleId,
     updateMovies,
-    deleteMovie
+    deleteMovie,
+    getMovieByTitleGenreRatingYear
 }

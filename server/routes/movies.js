@@ -3,6 +3,10 @@ const movieController = require('../controllers/movies');
 var router = express.Router();
 
 
+router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear')
+    .get(movieController.getMovieByTitleGenreRatingYear);
+
+
 router.route('/')
     .post(movieController.createMovie)
     .get(movieController.getMovies);

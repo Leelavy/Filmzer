@@ -33,6 +33,11 @@ const getMovieByImdbTitleId = async (title_id) => {
 };
 
 
+const getMovieByTitleGenreRatingYear = async (title, genre, rating, year) => {
+    return await Movies.find({'title':{$regex: `.*${title}.*`}, 'genre':{$regex: `.*${genre}.*`}, 'year':year})
+        .populate({path:'reviews', match:{'rating':rating}}).exec()};
+
+
 const updateMovie = async (id, body) => {
     const movie = await getMovieById(id);
     if (!movie)
@@ -86,5 +91,6 @@ module.exports = {
     getMovieByImdbTitleId,
     updateMovie,
     updateReviewOfMovie,
-    deleteMovie
+    deleteMovie,
+    getMovieByTitleGenreRatingYear
     }
