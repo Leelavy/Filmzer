@@ -67,14 +67,17 @@
           <div class="wrapper-menu">
             <div class="main-circle"><i class="las la-bars"></i></div>
           </div>
-          <div class="iq-navbar-logo d-flex justify-content-between">
-            <a href="index.html" class="header-logo">
-              <img src="./assets/images/logo.png" class="img-fluid rounded-normal" alt="">
-              <div class="logo-title">
-                <span class="text-primary text-uppercase">Streamit</span>
-              </div>
-            </a>
-          </div>
+          <nav>
+            <div class="iq-navbar-logo d-flex justify-content-between">
+              <a routerLink="/dashboard" class="header-logo">
+                <img src="./assets/images/logo.png" class="img-fluid rounded-normal" alt="">
+                <div class="logo-title">
+                  <span class="text-primary text-uppercase">Streamit</span>
+                </div>
+              </a>
+            </div>
+          </nav>
+
         </div>
         <div class="iq-search-bar ml-auto">
           <form action="#" class="searchbox">
@@ -109,7 +112,7 @@
                       <h5 class="mb-0 text-white line-height">Hello Barry Tech</h5>
                       <span class="text-white font-size-12">Available</span>
                     </div>
-                    
+
                     <nav>
                       <a routerLink="/editProfile" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
@@ -123,7 +126,7 @@
                         </div>
                       </a>
                     </nav>
-                   
+
                     <nav>
                       <a routerLink="/accountSetting" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
@@ -137,7 +140,7 @@
                         </div>
                       </a>
                     </nav>
-                   
+
 
                     <div class="d-inline-block w-100 text-center p-3">
                       <nav>
@@ -631,9 +634,10 @@
 <footer class="iq-footer">
   <div class="container-fluid">
     <div class="row">
-
       <div class="col-lg-6 text-right">
-        Copyright 2020 <a href="#">Streamit</a> All Rights Reserved.
+        <nav>
+          Copyright 2020 <a routerLink="/dashboard">Streamit</a> All Rights Reserved.
+        </nav>
       </div>
     </div>
   </div>
