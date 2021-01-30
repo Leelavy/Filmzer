@@ -1,5 +1,4 @@
 const reviewsService = require('../services/reviews');
-const movieService = require('../controllers/movies');
 
 const createReview = async (req, res) => {
     const newReview = await reviewsService.createReview(req.body);
