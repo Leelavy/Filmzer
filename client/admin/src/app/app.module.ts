@@ -14,6 +14,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
 import { AddCategoryComponent } from './components/category/add-category/add-category.component';
+import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
+import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
@@ -27,7 +29,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     DashboardComponent,
     CategoryComponent,
     AddMovieComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AccountSettingComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
