@@ -16,15 +16,21 @@ import{ EditProfileComponent} from './components/dashboard/profile/edit-profile/
 
 
 const routes: Routes = [
-{ path: 'movies' , component: MoviesComponent},
+
+{ path: 'movies' , component: MoviesComponent , 
+children:[
+  {path:"addMovie",component: AddMovieComponent }
+]},
+{ path: 'category' , component: CategoryComponent,
+children:[
+  {path:"addCategory",component: AddCategoryComponent }
+]},
+
 { path: 'reviews' , component: ReviewsComponent},
 { path: 'statistics' , component: StatisticsComponent},
 { path: 'users' , component: UsersComponent},
 { path: 'dashboard' , component: DashboardComponent},
 { path: 'login' , component: LoginComponent},
-{ path: 'addMovie' , component: AddMovieComponent},
-{ path: 'category' , component: CategoryComponent},
-{ path: 'addCategory' , component: AddCategoryComponent},
 { path: 'accountSetting' , component: AccountSettingComponent},
 { path: 'editProfile' , component: EditProfileComponent}
 ];
