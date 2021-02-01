@@ -8,6 +8,11 @@ router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
     .get(reviewController.getReviewsByTitleRatingUsername)
 
 
+//http://localhost:8080/reviews/countReviews
+router.route('/countReviews')
+    .get(reviewController.countReviews);
+
+
 //http://localhost:8080/reviews
 router.route('/')
     .post(reviewController.createReview)

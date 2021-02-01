@@ -12,6 +12,12 @@ const getReviews = async (req, res) => {
 };
 
 
+const countReviews = async (req, res) => {
+    const review = await reviewsService.countReviews();
+    res.json(review);
+};
+
+
 const getReviewById = async (req, res) => {
 
     const review = await reviewsService.getReviewById(req.params.id);
@@ -74,5 +80,6 @@ module.exports = {
     getReviewById,
     updateReview,
     deleteReview,
-    getReviewsByTitleRatingUsername
+    getReviewsByTitleRatingUsername,
+    countReviews
 }

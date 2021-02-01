@@ -8,6 +8,11 @@ router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear
     .get(movieController.getMovieByTitleGenreRatingYear);
 
 
+//http://localhost:8080/movies/countMovies
+router.route('/countMovies')
+    .get(movieController.countMovies);
+
+
 //http://localhost:8080/movies
 router.route('/')
     .post(movieController.createMovie)

@@ -17,6 +17,11 @@ const getMovies = async () => {
 };
 
 
+const countMovies = async () => {
+    return await Movies.countDocuments({})
+};
+
+
 const getMovieByTitle = async (title) => {
     return await Movies.find({'title': {$regex: `.*${title}.*`}});
 };
@@ -90,5 +95,6 @@ module.exports = {
     updateMovie,
     updateReviewOfMovie,
     deleteMovie,
-    getMovieByTitleGenreRatingYear
+    getMovieByTitleGenreRatingYear,
+    countMovies
     }

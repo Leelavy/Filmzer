@@ -19,6 +19,11 @@ const getUsers = async () => {
 };
 
 
+const countUsers = async () => {
+    return await Users.countDocuments({});
+};
+
+
 const getByUsername = async (username) => {
     return await Users.find({'username': username});
 };
@@ -95,4 +100,5 @@ module.exports = {
     updatePassword,
     updateReviewOfUser,
     deleteUser,
+    countUsers
 }

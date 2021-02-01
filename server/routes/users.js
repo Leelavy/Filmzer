@@ -14,6 +14,11 @@ router.route('/')
     .get(userController.getUsers);
 
 
+//http://localhost:8080/users/countUsers
+router.route('/countUsers')
+    .get(userController.countUsers);
+
+
 //http://localhost:8080/users/:username
 router.route('/:username')
     .get(userController.getByUsername)

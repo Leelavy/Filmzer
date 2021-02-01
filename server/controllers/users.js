@@ -13,6 +13,12 @@ const getUsers = async (req, res) => {
 };
 
 
+const countUsers = async (req, res) => {
+    const users = await usersService.countUsers();
+    res.json(users);
+};
+
+
 const getByUsername = async (req, res) => {
     const user = await usersService.getByUsername(req.params.username);
 
@@ -102,5 +108,6 @@ module.exports = {
     updateUser,
     updatePassword,
     updateReviewOfUser,
-    deleteUser
+    deleteUser,
+    countUsers
 }

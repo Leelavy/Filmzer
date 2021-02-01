@@ -15,6 +15,12 @@ const getMovies = async (req, res) => {
 };
 
 
+const countMovies = async (req, res) => {
+    const movies = await moviesService.countMovies();
+    res.json(movies);
+};
+
+
 const getMovieByTitle = async (req, res) => {
     const movie = await moviesService.getMovieByTitle(req.params.movieTitle);
 
@@ -119,5 +125,6 @@ module.exports = {
     getImageByTitleId,
     updateMovies,
     deleteMovie,
-    getMovieByTitleGenreRatingYear
+    getMovieByTitleGenreRatingYear,
+    countMovies
 }
