@@ -22,6 +22,53 @@ const countMovies = async () => {
 };
 
 
+const topMoviesByRating = async (topNumber) => {
+    return Movies.aggregate([
+        { $lookup:
+                {
+                    from:"reviews",
+                    localField:"reviews",
+                    foreignField: "_id",
+                    as: "rating_review"
+                }
+        },
+        {
+            $project:
+                {
+                    "_id": 0,
+                    "title": 1,
+                    "year": 2,
+                    "genre": 3,
+                    "description": 4,
+                    "rating_review.rating": {$avg: "$rating_review.rating"},
+                }
+        },
+        {
+            $project:
+                {
+                    "_id": 0,
+                    "title": 1,
+                    "year": 2,
+                    "genre": 3,
+                    "description": 4,
+                    "rating_review": { $slice: [ "$rating_review", 1 ] }
+
+                }
+        },
+        {
+            $sort:
+                {
+                    "rating_review.rating":-1
+                }
+
+        },
+        {
+            $limit:parseInt(topNumber)
+        }
+    ]);
+};
+
+
 const getMovieByTitle = async (title) => {
     return await Movies.find({'title': {$regex: `.*${title}.*`}});
 };
@@ -96,5 +143,6 @@ module.exports = {
     updateReviewOfMovie,
     deleteMovie,
     getMovieByTitleGenreRatingYear,
-    countMovies
+    countMovies,
+    topMoviesByRating
     }

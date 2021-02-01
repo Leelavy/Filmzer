@@ -19,6 +19,11 @@ router.route('/')
     .get(movieController.getMovies);
 
 
+//http://localhost:8080/movies/topMovies/:topNumber
+router.route('/topMovies/:topNumber')
+    .get(movieController.topMoviesByRating)
+
+
 //http://localhost:8080/movies/title/:movieTitle
 router.route('/title/:movieTitle')
     .get(movieController.getMovieByTitle);
