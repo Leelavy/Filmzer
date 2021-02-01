@@ -2,10 +2,9 @@ const Movies = require('../models/movies');
 
 const createMovie = async (body) => {
     const movie = new Movies({
-        imdb_title_id: body.imdb_title_id,
         title: body.title,
         year: body.year,
-        genre: body.genre,
+        genre: body.genre,  // delimiter ','
         description: body.description,
         imageURL: body.imageURL,
         trailerVideo: body.trailerVideo
@@ -43,7 +42,6 @@ const updateMovie = async (id, body) => {
     if (!movie)
         return null;
 
-    movie.imdb_title_id = body.imdb_title_id;
     movie.title = body.title;
     movie.year = body.year;
     movie.genre = body.genre;

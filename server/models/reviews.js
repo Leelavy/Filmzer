@@ -9,18 +9,18 @@ const Reviews = new Schema({
         type: Date,
         default: Date.now
     },
-    movies: [
+    movies:
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Movies'
         }
-    ],
-    users: [
+    ,
+    users:
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Users'
         }
-    ]
+
 });
 
 module.exports = mongoose.model('Reviews', Reviews);
