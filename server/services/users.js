@@ -29,12 +29,18 @@ const getUserById = async (id) => {
 };
 
 
-const updateUsername = async (id, username) => {
+const updateUser = async (id, body) => {
     const user = await getUserById(id);
     if (!user)
         return null;
 
-    user.username = username
+    user.username = body.username;
+    user.password =  body.password;
+    user.admin = body.admin;
+    user.firstName = body.firstName;
+    user.lastName = body.lastName;
+    user.email = body.email;
+
     await user.save();
     return user;
 };
@@ -85,7 +91,7 @@ module.exports = {
     getUsers,
     getByUsername,
     getUserById,
-    updateUsername,
+    updateUser,
     updatePassword,
     updateReviewOfUser,
     deleteUser,

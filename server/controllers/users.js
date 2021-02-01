@@ -35,14 +35,14 @@ const getUserById = async (req, res) => {
 };
 
 
-const updateUsername = async (req, res) => {
-    if (!req.body.username) {
+const updateUser = async (req, res) => {
+    if (!req.body) {
         res.status(400).json({
-            message: "username is required",
+            message: "user param is required",
         });
     }
 
-    const user = await usersService.updateUsername(req.params.id, req.body.username);
+    const user = await usersService.updateUser(req.params.id, req.body);
     if (!user) {
         return res.status(404).json({ errors: ['username not found'] });
     }
@@ -99,7 +99,7 @@ module.exports = {
     getUsers,
     getByUsername,
     getUserById,
-    updateUsername,
+    updateUser,
     updatePassword,
     updateReviewOfUser,
     deleteUser
