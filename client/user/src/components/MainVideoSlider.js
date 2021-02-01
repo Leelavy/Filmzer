@@ -1,6 +1,9 @@
 import React from 'react';
 //Components
 import MainVideoSliderItem from '../components/MainVideoSliderItem';
+//Carousel
+import Carousel from 'react-bootstrap/Carousel'
+
 
 const MainVideoSlider = () => {
 
