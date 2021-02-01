@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule  } from '@angular/common/http';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { MoviesComponent } from './components/movies/movies.component';
@@ -16,7 +18,12 @@ import { AddMovieComponent } from './components/movies/add-movie/add-movie.compo
 import { AddCategoryComponent } from './components/category/add-category/add-category.component';
 import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
-const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+
+import { SearchPipe } from './search.pipe';
+import { FormsModule} from '@angular/forms';
+import { environment } from '../environments/environment.prod';
+
+const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -31,10 +38,13 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     AddMovieComponent,
     AddCategoryComponent,
     AccountSettingComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config)
   ],
