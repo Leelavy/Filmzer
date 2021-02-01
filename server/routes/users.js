@@ -17,13 +17,13 @@ router.route('/')
 //http://localhost:8080/users/:username
 router.route('/:username')
     .get(userController.getByUsername)
-    .patch(userController.updateUsername);
 
 
 //http://localhost:8080/users/:id
 router.route('/:id')
     .get(userController.getUserById)
     .delete(userController.deleteUser)
+    .patch(userController.updateUser);
 
 
 // router.route('/:id/:password')
