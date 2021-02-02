@@ -7,8 +7,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { CategoryComponent } from './components/category/category.component';
-import { AddCategoryComponent } from './components/category/add-category/add-category.component';
 import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
@@ -23,12 +21,7 @@ const routes: Routes = [
       { path: "addMovie", component: AddMovieComponent }
     ]
   },
-  {
-    path: 'category', component: CategoryComponent,
-    children: [
-      { path: "addCategory", component: AddCategoryComponent }
-    ]
-  },
+
 
   { path: 'reviews', component: ReviewsComponent },
   { path: 'statistics', component: StatisticsComponent },

@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Movies } from '../models/movies';
+import { Reviews } from '../models/reviews';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-export class MoviesService {
+export class ReviewsService {
 
-  
-
-  private moviesUrl = environment.moviesUrl;
+  private reviewsUrl = environment.reviewsUrl;
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.moviesUrl);
-
+  getReviews(): Observable<Reviews[]> {
+    return this.http.get<Reviews[]>(this.reviewsUrl);
   }
 
-}
 
+}
