@@ -40,6 +40,8 @@ const topMoviesByRating = async (topNumber) => {
                     "year": 2,
                     "genre": 3,
                     "description": 4,
+                    "image_url":5,
+                    "trailer_video":6,
                     "rating_review.rating": {$avg: "$rating_review.rating"},
                 }
         },
@@ -51,6 +53,8 @@ const topMoviesByRating = async (topNumber) => {
                     "year": 2,
                     "genre": 3,
                     "description": 4,
+                    "image_url":5,
+                    "trailer_video":6,
                     "rating_review": { $slice: [ "$rating_review", 1 ] }
 
                 }
@@ -76,6 +80,11 @@ const getMovieByTitle = async (title) => {
 
 const getMovieById = async (id) => {
     return await Movies.findById(id);
+};
+
+
+const getReviewsByMovieId = async (id) => {
+    return await Movies.findById(id,{'_id':0, 'reviews':1});
 };
 
 
@@ -144,5 +153,6 @@ module.exports = {
     deleteMovie,
     getMovieByTitleGenreRatingYear,
     countMovies,
-    topMoviesByRating
+    topMoviesByRating,
+    getReviewsByMovieId
     }

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule  } from '@angular/common/http';
 
+
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { MoviesComponent } from './components/movies/movies.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
@@ -14,7 +15,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
 import { SearchPipe } from './search.pipe';
@@ -33,7 +33,6 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     LoginComponent,
     DashboardComponent,
     AddMovieComponent,
-    AccountSettingComponent,
     EditProfileComponent,
     SearchPipe
   ],

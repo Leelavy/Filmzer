@@ -10,7 +10,15 @@ const createMovie = async (req, res) => {
 
 
 const topMoviesByRating = async (req, res) => {
-    const movies = await moviesService.topMoviesByRating(req.params.topNumber);
+
+    if (!req.params.topNumber){
+        var topNumber = await moviesService.countMovies();
+    }
+    else{
+        var topNumber = req.params.topNumber;
+    }
+
+    const movies = await moviesService.topMoviesByRating(topNumber);
     res.json(movies);
 };
 
