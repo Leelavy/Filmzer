@@ -7,7 +7,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
 
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'accountSetting', component: AccountSettingComponent },
   { path: 'editProfile', component: EditProfileComponent },
   { path: '', redirectTo: "/dashboard", pathMatch: 'full' }
 ];
