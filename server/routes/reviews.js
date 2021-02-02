@@ -8,38 +8,62 @@ router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
     .get(reviewController.getReviewsByTitleRatingUsername)
 
 
-//http://localhost:8080/reviews/countReviews
+/**
+ * Counter of all the reviews
+ * http://localhost:8080/reviews/countReviews
+ */
 router.route('/countReviews')
     .get(reviewController.countReviews);
 
 
-//http://localhost:8080/reviews/topReviews
+/**
+ * Get all reviews sort by desc date
+ * http://localhost:8080/reviews/topReviews
+ */
 router.route('/topReviews')
     .get(reviewController.topReviewsByDate);
 
 
-//http://localhost:8080/reviews/getReviewsByMovieId/:movieId
-router.route('/getReviewsByMovieId/:movieId')
-    .get(reviewController.getReviewsByMovieId)
-
-
-//http://localhost:8080/reviews/getReviewsMoviesUsers
-router.route('/getReviewsMoviesUsers')
-    .get(reviewController.getReviewsMoviesUsers)
-
-
-//http://localhost:8080/reviews/topReviews/:topNumber
+/**
+ * Get top number of input the reviews sort by desc date
+ * http://localhost:8080/reviews/topReviews/:topNumber
+ */
 router.route('/topReviews/:topNumber')
     .get(reviewController.topReviewsByDate);
 
 
-//http://localhost:8080/reviews
+/**
+ * Get reviews by movie id input
+ * http://localhost:8080/reviews/getReviewsByMovieId/:movieId
+ */
+router.route('/getReviewsByMovieId/:movieId')
+    .get(reviewController.getReviewsByMovieId)
+
+
+/**
+ * Get all reviews with her movies and the users
+ * http://localhost:8080/reviews/getReviewsMoviesUsers
+ */
+router.route('/getReviewsMoviesUsers')
+    .get(reviewController.getReviewsMoviesUsers)
+
+
+/**
+ * post - Create a review
+ * get - Gets all reviews
+ * http://localhost:8080/reviews
+ */
 router.route('/')
     .post(reviewController.createReview)
     .get(reviewController.getReviews);
 
 
-//http://localhost:8080/reviews/:id
+/**
+ * get - Get review by id
+ * delete - Delete review by id
+ * patch - Update review by id
+ * http://localhost:8080/reviews/:id
+ */
 router.route('/:id')
     .get(reviewController.getReviewById)
     .delete(reviewController.deleteReview)
