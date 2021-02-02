@@ -13,9 +13,7 @@ import { UsersComponent } from './components/users/users.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CategoryComponent } from './components/category/category.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { AddCategoryComponent } from './components/category/add-category/add-category.component';
 import { AccountSettingComponent } from './components/dashboard/profile/account-setting/account-setting.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
@@ -34,9 +32,7 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     StatisticsComponent,
     LoginComponent,
     DashboardComponent,
-    CategoryComponent,
     AddMovieComponent,
-    AddCategoryComponent,
     AccountSettingComponent,
     EditProfileComponent,
     SearchPipe
