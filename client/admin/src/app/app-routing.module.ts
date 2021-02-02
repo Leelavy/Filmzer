@@ -20,8 +20,8 @@ const routes: Routes = [
       { path: "addMovie", component: AddMovieComponent }
     ]
   },
-
-
+  
+  { path: 'statistics', component: StatisticsComponent },
   { path: 'reviews', component: ReviewsComponent },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'users', component: UsersComponent },
