@@ -46,6 +46,17 @@ const getMovieByTitle = async (req, res) => {
 };
 
 
+const getMoviesByGenre = async (req, res) => {
+    const movie = await moviesService.getMoviesByGenre(req.params.genre);
+
+    if (!movie) {
+        return res.status(404).json({errors: ['Movie not found']});
+    }
+
+    res.json(movie);
+};
+
+
 const getMovieById = async (req, res) => {
     const movie = await moviesService.getMovieById(req.params.movieId);
 
@@ -141,5 +152,6 @@ module.exports = {
     deleteMovie,
     getMovieByTitleGenreRatingYear,
     countMovies,
-    topMoviesByRating
+    topMoviesByRating,
+    getMoviesByGenre
 }

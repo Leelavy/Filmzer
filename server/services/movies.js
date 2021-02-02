@@ -78,6 +78,11 @@ const getMovieByTitle = async (title) => {
 };
 
 
+const getMoviesByGenre = async (genre) => {
+    return await Movies.find({'genre': {$regex: `.*${genre}.*`}});
+};
+
+
 const getMovieById = async (id) => {
     return await Movies.findById(id);
 };
@@ -154,5 +159,6 @@ module.exports = {
     getMovieByTitleGenreRatingYear,
     countMovies,
     topMoviesByRating,
-    getReviewsByMovieId
+    getReviewsByMovieId,
+    getMoviesByGenre
     }

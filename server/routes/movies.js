@@ -9,6 +9,14 @@ router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear
 
 
 /**
+ * Get movies by genre
+ * http://localhost:8080/movies/getMoviesByGenre/:genre
+ */
+router.route('/getMoviesByGenre/:genre')
+    .get(movieController.getMoviesByGenre)
+
+
+/**
  * Counter of all the movies
  * http://localhost:8080/movies/countMovies
  */

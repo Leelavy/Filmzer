@@ -90,7 +90,6 @@ module.exports = {
     getByUsername,
     getUserById,
     updateUser,
-    updatePassword,
     updateReviewOfUser,
     deleteUser,
     countUsers
