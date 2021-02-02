@@ -27,6 +27,54 @@ const getReviews = async () => {
 };
 
 
+const getReviewsMoviesUsers = async () =>
+    await Reviews.aggregate([
+        {
+            $lookup:
+                {
+                    from: "movies",
+                    localField: "movies",
+                    foreignField: "_id",
+                    as: "movie"
+                }
+        },
+        {
+            $unwind:"$movie"
+        },
+        {
+            $lookup:
+                {
+                    from: "users",
+                    localField: "users",
+                    foreignField: "_id",
+                    as: "user"
+                }
+        },
+        {
+            $unwind:"$user"
+        },
+        {
+            $project:
+                {
+                    "_id": 0,
+                    "reviewTitle": 1,
+                    "reviewContent": 2,
+                    "rating": 3,
+                    "movie.title": 4,
+                    "movie.year": 5,
+                    "movie.genre": 6,
+                    "movie.description": 7,
+                    "movie.image_url": 8,
+                    "movie.trailer_video": 9,
+                    "user.username": 10,
+                    "user.firstName": 11,
+                    "user.lastName": 12
+                }
+        },
+
+    ]);
+
+
 const getReviewsByIds = async (review_ids) => {
     return await Reviews.find({'_id':{ $in:review_ids }});
 };
@@ -105,5 +153,6 @@ module.exports = {
     getReviewsByTitleRatingUsername,
     countReviews,
     topReviewsByDate,
-    getReviewsByIds
+    getReviewsByIds,
+    getReviewsMoviesUsers
 }

@@ -26,6 +26,12 @@ const getReviewsByMovieId = async (req, res) => {
 };
 
 
+const getReviewsMoviesUsers = async (req, res) => {
+    const reviews = await reviewsService.getReviewsMoviesUsers();
+    res.json(reviews);
+};
+
+
 const topReviewsByDate = async (req, res) => {
     const reviews = await reviewsService.topReviewsByDate(req.params.topNumber);
     res.json(reviews);
@@ -103,5 +109,6 @@ module.exports = {
     getReviewsByTitleRatingUsername,
     countReviews,
     topReviewsByDate,
-    getReviewsByMovieId
+    getReviewsByMovieId,
+    getReviewsMoviesUsers
 }
