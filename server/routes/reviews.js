@@ -25,7 +25,7 @@ router.route('/topReviews')
 
 
 /**
- * Get top number of input the reviews sort by desc date
+ * Get reviews by input number and sorting by date desc
  * http://localhost:8080/reviews/topReviews/:topNumber
  */
 router.route('/topReviews/:topNumber')
