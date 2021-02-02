@@ -18,6 +18,7 @@ export class UsersComponent {
 
   ngOnInit(): void {
     this.load();
+   
   }
 
   load(){

@@ -42,13 +42,13 @@
                                             <tr>
                                                
                                                 <td>
-                                                    <li *ngFor="let reviews of reviews">{{ reviews.reviewContent }}</li>
+                                                    <li *ngFor="let reviews of reviews">{{ reviews.reviewTitle }}  </li>
                                                 </td>
                                                 <td>
                                                     <li *ngFor="let reviews of reviews">{{ reviews.reviewContent }}</li>
                                                 </td>
                                                 <td>
-                                                    <li *ngFor="let reviews of reviews">{{ reviews.rating }}</li>
+                                                    <li *ngFor="let reviews of reviews"><i class="lar la-star mr-2"></i>{{ reviews.rating }}</li>
                                                 </td>
                                                 <td>
                                                     <li *ngFor="let reviews of reviews">{{ reviews.lastUpdated }}</li>
