@@ -1,7 +1,6 @@
 //Components
 import HeaderNav from './components/HeaderNav';
 import Footer from './components/Footer';
-import BackToTopButton from './components/BackToTopButton';
 //Pages
 import Home from './pages/Home';
 import Movies from './pages/Movies';
@@ -29,7 +28,6 @@ const App = () => {
         </Switch>
       </AnimatePresence>
       <Footer />
-      <BackToTopButton />
     </BrowserRouter>
   );
 }

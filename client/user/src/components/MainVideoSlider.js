@@ -30,24 +30,9 @@ const MainVideoSlider = () => {
   ]
 
   return (
-    < section id="home" className="iq-main-slider p-0" >
-      <div id="home-slider" className="slider m-0 p-0">
-        {/* Should render here a list of 10 movies components fitted to the slider instead of the 3 hardcoded movies here */}
-        {movies.map((movie) => (
-          <MainVideoSliderItem
-            movieTitle={movie.movieTitle}
-            genre={movie.genre}
-            year={movie.year}
-            description={movie.description}
-          />
-        ))}
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44px" height="44px" id="circle" fill="none" stroke="currentColor">
-          <circle r={20} cy={22} cx={22} id="test" />
-        </symbol>
-      </svg>
-    </section >
+    <div>
+      main video slider
+    </div>
   );
 }
 
