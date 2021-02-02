@@ -13,6 +13,16 @@ router.route('/countReviews')
     .get(reviewController.countReviews);
 
 
+//http://localhost:8080/reviews/topReviews
+router.route('/topReviews')
+    .get(reviewController.topReviewsByDate);
+
+
+//http://localhost:8080/reviews/topReviews/:topNumber
+router.route('/topReviews/:topNumber')
+    .get(reviewController.topReviewsByDate);
+
+
 //http://localhost:8080/reviews
 router.route('/')
     .post(reviewController.createReview)

@@ -12,6 +12,12 @@ const getReviews = async (req, res) => {
 };
 
 
+const topReviewsByDate = async (req, res) => {
+    const reviews = await reviewsService.topReviewsByDate(req.params.topNumber);
+    res.json(reviews);
+};
+
+
 const countReviews = async (req, res) => {
     const review = await reviewsService.countReviews();
     res.json(review);
@@ -81,5 +87,6 @@ module.exports = {
     updateReview,
     deleteReview,
     getReviewsByTitleRatingUsername,
-    countReviews
+    countReviews,
+    topReviewsByDate
 }
