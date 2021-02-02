@@ -1,4 +1,5 @@
 const reviewsService = require('../services/reviews');
+const moviesService = require('../services/movies');
 
 const createReview = async (req, res) => {
     const newReview = await reviewsService.createReview(req.body);
@@ -9,6 +10,19 @@ const createReview = async (req, res) => {
 const getReviews = async (req, res) => {
     const review = await reviewsService.getReviews();
     res.json(review);
+};
+
+
+const getReviewsByMovieId = async (req, res) => {
+    const review_ids = await moviesService.getReviewsByMovieId(req.params.movieId);
+
+    const reviews = await reviewsService.getReviewsByIds(review_ids.reviews)
+
+    if (!reviews){
+        return res.status(404).json({errors: ['Reviews not found']});
+    }
+
+    res.json(reviews);
 };
 
 
@@ -88,5 +102,6 @@ module.exports = {
     deleteReview,
     getReviewsByTitleRatingUsername,
     countReviews,
-    topReviewsByDate
+    topReviewsByDate,
+    getReviewsByMovieId
 }

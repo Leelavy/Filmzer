@@ -27,6 +27,11 @@ const getReviews = async () => {
 };
 
 
+const getReviewsByIds = async (review_ids) => {
+    return await Reviews.find({'_id':{ $in:review_ids }});
+};
+
+
 const topReviewsByDate = async (topNumber) => {
     if (!topNumber){
         return await Reviews.find({}).sort({'lastUpdated': -1}).exec();
@@ -99,5 +104,6 @@ module.exports = {
     getReviewById,
     getReviewsByTitleRatingUsername,
     countReviews,
-    topReviewsByDate
+    topReviewsByDate,
+    getReviewsByIds
 }
