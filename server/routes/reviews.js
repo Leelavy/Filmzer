@@ -18,6 +18,11 @@ router.route('/topReviews')
     .get(reviewController.topReviewsByDate);
 
 
+//http://localhost:8080/reviews/getReviewsByMovieId/:movieId
+router.route('/getReviewsByMovieId/:movieId')
+    .get(reviewController.getReviewsByMovieId)
+
+
 //http://localhost:8080/reviews/topReviews/:topNumber
 router.route('/topReviews/:topNumber')
     .get(reviewController.topReviewsByDate);
