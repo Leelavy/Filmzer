@@ -40,6 +40,8 @@ const topMoviesByRating = async (topNumber) => {
                     "year": 2,
                     "genre": 3,
                     "description": 4,
+                    "image_url":5,
+                    "trailer_video":6,
                     "rating_review.rating": {$avg: "$rating_review.rating"},
                 }
         },
@@ -51,6 +53,8 @@ const topMoviesByRating = async (topNumber) => {
                     "year": 2,
                     "genre": 3,
                     "description": 4,
+                    "image_url":5,
+                    "trailer_video":6,
                     "rating_review": { $slice: [ "$rating_review", 1 ] }
 
                 }
