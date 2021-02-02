@@ -4,8 +4,8 @@ var router = express.Router();
 
 
 //http://localhost:8080/movies/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear
-router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear')
-    .get(movieController.getMovieByTitleGenreRatingYear);
+// router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear')
+//     .get(movieController.getMovieByTitleGenreRatingYear);
 
 
 /**

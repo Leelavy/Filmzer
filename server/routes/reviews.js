@@ -4,8 +4,8 @@ var router = express.Router();
 
 
 //http://localhost:8080/reviews/getReviewByParams/:reviewRating/:movieTitle/:userName
-router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
-    .get(reviewController.getReviewsByTitleRatingUsername)
+// router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
+//     .get(reviewController.getReviewsByTitleRatingUsername)
 
 
 /**
