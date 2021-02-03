@@ -3,7 +3,7 @@ const reviewController = require('../controllers/reviews');
 var router = express.Router();
 
 
-//http://localhost:8080/reviews/getReviewByParams/:reviewRating/:movieTitle/:userName
+// http://localhost:8080/reviews/getReviewByParams/:reviewRating/:movieTitle/:userName
 // router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
 //     .get(reviewController.getReviewsByTitleRatingUsername)
 
@@ -18,17 +18,17 @@ router.route('/countReviews')
 
 /**
  * Get all reviews sort by desc date
- * http://localhost:8080/reviews/topReviews
+ * http://localhost:8080/reviews/latestReviews
  */
-router.route('/topReviews')
+router.route('/latestReviews')
     .get(reviewController.topReviewsByDate);
 
 
 /**
  * Get reviews by input number and sorting by date desc
- * http://localhost:8080/reviews/topReviews/:topNumber
+ * http://localhost:8080/reviews/latestReviews/:topNumber
  */
-router.route('/topReviews/:topNumber')
+router.route('/latestReviews/:topNumber')
     .get(reviewController.topReviewsByDate);
 
 
