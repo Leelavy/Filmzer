@@ -6,15 +6,13 @@ import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Components
 import Loader from '../components/Loader';
+import CustomTextField from '../components/ui-elements/CustomTextField';
 //Animation 
 import { pageAnimation } from '../styles/animation';
 //MUI components
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -69,28 +67,17 @@ const SignIn = () => {
               Sign in
             </Typography>
             <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
+              <CustomTextField
                 id="email"
                 label="Email Address"
-                name="email"
                 autoComplete="email"
-                autoFocus
-                InputProps={classes.input}
+                autoFocus={true}
               />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
+              <CustomTextField
                 id="password"
+                label="Password"
                 autoComplete="current-password"
+                type="password"
               />
               <Button
                 type="submit"
@@ -100,7 +87,7 @@ const SignIn = () => {
                 className={classes.submit}
               >
                 Sign In
-          </Button>
+              </Button>
               <StyledLink to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </StyledLink>

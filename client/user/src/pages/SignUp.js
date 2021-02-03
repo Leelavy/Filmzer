@@ -6,13 +6,13 @@ import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Components
 import Loader from '../components/Loader';
+import CustomTextField from '../components/ui-elements/CustomTextField';
 //Animation 
 import { pageAnimation } from '../styles/animation';
 //MUI Components
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -70,49 +70,32 @@ const SignUp = () => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
+                  <CustomTextField
                     id="firstName"
                     label="First Name"
-                    autoFocus
+                    autoComplete="fname"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
+                  <CustomTextField
                     id="lastName"
                     label="Last Name"
-                    name="lastName"
                     autoComplete="lname"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
+                  <CustomTextField
                     id="email"
                     label="Email Address"
-                    name="email"
                     autoComplete="email"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
+                  <CustomTextField
                     id="password"
+                    label="Password"
                     autoComplete="current-password"
+                    type="password"
                   />
                 </Grid>
               </Grid>
