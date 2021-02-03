@@ -1,11 +1,12 @@
 import React from 'react';
+import { StyledContentDiv } from '../styles/styles';
 
 const Login = () => {
 
   return (
-    <div>
+    <StyledContentDiv>
       Login
-    </div>
+    </StyledContentDiv>
   );
 }
 

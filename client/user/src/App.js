@@ -31,8 +31,8 @@ const App = () => {
       <StyledContainer>
         <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        <StyledContentContainer>
-          <AnimatePresence exitBeforeEnter>
+        <AnimatePresence exitBeforeEnter>
+          <StyledContentContainer>
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -43,16 +43,18 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </Switch>
-          </AnimatePresence>
-        </StyledContentContainer>
+          </StyledContentContainer>
+        </AnimatePresence>
         <Footer />
       </StyledContainer>
     </BrowserRouter>
   );
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div` 
+  text-align: center;
   position: relative;
+  justify-content: center;
   background: #141414;
   height: 100vh;
   color: white;
@@ -60,7 +62,7 @@ const StyledContainer = styled.div`
 
 const StyledContentContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   background: #1b1b1b;
   min-height: 80vh;

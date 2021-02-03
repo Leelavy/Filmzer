@@ -1,11 +1,12 @@
 import React from 'react';
+import { StyledContentDiv } from '../styles/styles';
 
 const Register = () => {
 
   return (
-    <div>
+    <StyledContentDiv>
       Register
-    </div>
+    </StyledContentDiv>
   );
 }
 

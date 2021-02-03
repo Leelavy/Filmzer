@@ -1,11 +1,12 @@
 import React from 'react';
+import { StyledContentDiv } from '../styles/styles';
 
 const About = () => {
 
   return (
-    <div>
+    <StyledContentDiv>
       About
-    </div>
+    </StyledContentDiv>
   );
 }
 
