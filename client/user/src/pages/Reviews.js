@@ -17,7 +17,7 @@ const Reviews = () => {
         animate="show"
         exit="exit"
       >
-        Register
+        Reviews
       </StyledMotionDiv>
     </>
   );

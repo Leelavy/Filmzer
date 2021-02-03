@@ -27,7 +27,7 @@ const Footer = () => {
 }
 
 const StyledFooter = styled.footer`
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   div {

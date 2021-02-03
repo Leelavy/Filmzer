@@ -8,8 +8,8 @@ import Home from './pages/Home';
 import Movies from './pages/Movies';
 import Reviews from './pages/Reviews';
 import About from './pages/About';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 //Styles
 import GlobalStyles from './styles/GlobalStyles';
 import styled from 'styled-components';
@@ -37,8 +37,8 @@ const App = () => {
             <Route exact path="/movies" component={Movies} />
             <Route exact path="/reviews" component={Reviews} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/SignUp" component={SignUp} />
           </Switch>
         </StyledContentContainer>
         <Footer />

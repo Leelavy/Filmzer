@@ -132,13 +132,13 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
         <Divider />
         <List>
           <StyledListItem
-            button key={'Login'}
+            button key={'Sign In'}
             component={Link}
-            to={'/login'}
+            to={'/signin'}
             onClick={handleDrawerClose}
           >
             <StyledAccountCircleIcon />
-            <ListItemText primary={'Login'} />
+            <ListItemText primary={'Sign In'} />
           </StyledListItem>
         </List>
       </Drawer>

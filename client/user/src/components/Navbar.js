@@ -42,7 +42,7 @@ const Navbar = ({ openDrawer, setOpenDrawer }) => {
           <Link to="/">
             <StyledLogo src="logo.png" alt="logo" />
           </Link>
-          <StyledLoginButton component={Link} to={'/login'} color="inherit">Login</StyledLoginButton>
+          <StyledLoginButton component={Link} to={'/signin'} color="inherit">Sign In</StyledLoginButton>
         </StyledToolBar>
       </AppBar>
     </div>
