@@ -2,6 +2,7 @@ import React from 'react';
 //Routing
 import { Link } from 'react-router-dom';
 //Styles
+import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Components
 import Loader from '../components/Loader';
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: 'red',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -36,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: 'white',
+    backgroundColor: 'red',
+    '&:hover': {
+      transition: '0.2s',
+      backgroundColor: '#c01717',
+    }
   },
 }));
 
@@ -52,7 +59,7 @@ const SignIn = () => {
         animate="show"
         exit="exit"
       >
-        <Container component="main" maxWidth="xs">
+        <Container className={classes.root} component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -60,7 +67,7 @@ const SignIn = () => {
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in
-        </Typography>
+            </Typography>
             <form className={classes.form} noValidate>
               <TextField
                 variant="outlined"
@@ -72,6 +79,7 @@ const SignIn = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                InputProps={classes.input}
               />
               <TextField
                 variant="outlined"
@@ -84,10 +92,6 @@ const SignIn = () => {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -97,9 +101,9 @@ const SignIn = () => {
               >
                 Sign In
           </Button>
-              <Link to="/signup" variant="body2">
+              <StyledLink to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </StyledLink>
             </form>
           </div>
         </Container>
@@ -107,5 +111,10 @@ const SignIn = () => {
     </>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+`;
 
 export default SignIn;
