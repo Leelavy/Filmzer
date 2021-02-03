@@ -2,6 +2,7 @@ import React from 'react';
 //Routing
 import { Link } from 'react-router-dom';
 //Styles
+import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Components
 import Loader from '../components/Loader';
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     backgroundColor: 'red',
     '&:hover': {
-      transition: '0.5s',
+      transition: '0.2s',
       backgroundColor: '#c01717',
     }
   },
@@ -65,7 +66,7 @@ const SignUp = () => {
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign up
-        </Typography>
+            </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
@@ -123,9 +124,9 @@ const SignUp = () => {
               >
                 Sign Up
           </Button>
-              <Link to="/signin" variant="body2">
+              <StyledLink to="/signin" variant="body2">
                 {"Already have an account? Sign In"}
-              </Link>
+              </StyledLink>
             </form>
           </div>
         </Container>
@@ -133,5 +134,10 @@ const SignUp = () => {
     </>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+`;
 
 export default SignUp;

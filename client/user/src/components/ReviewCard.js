@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ReviewCard = ({ movie }) => {
+const ReviewCard = ({ review }) => {
   const classes = useStyles();
 
   return (
@@ -48,29 +48,26 @@ const ReviewCard = ({ movie }) => {
         <CardMedia
           className={classes.media}
           component="img"
-          alt={`${movie.movieTitle}`}
+          alt={`${review.movie.movieTitle}`}
           height="140"
-          image={`${movie.imageUrl}`}
-          title={`${movie.movieTitle}`}
+          image={`${review.movie.imageUrl}`}
+          title={`${review.movie.movieTitle}`}
         />
         <CardContent className={classes.content}>
           <StyledHeaderCardDiv>
-            <Typography gutterBottom variant="h5" component="h2" align="left">
-              {`${movie.movieTitle}`}
+            <Typography gutterBottom variant="h6" component="h2" align="left">
+              {`${review.reviewTitle}`}
             </Typography>
-            <div>Rating</div>
+            <div>{`${review.rating}/10`}</div>
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
-            {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
+            {`${review.reviewContent.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.actions}>
         <StyledButton size="small" color="inherit">
-          REVIEWS
-        </StyledButton>
-        <StyledButton size="small" color="inherit">
-          WATCH TRAILER
+          READ MORE
         </StyledButton>
       </CardActions>
     </Card>
