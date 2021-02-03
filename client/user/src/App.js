@@ -15,8 +15,6 @@ import GlobalStyles from './styles/GlobalStyles';
 import styled from 'styled-components';
 //Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-//animation - detecs presence of component when they dismount
-import { AnimatePresence } from 'framer-motion';
 //Socket
 // import io from "socket.io-client";
 // const socket = io.connect("http://localhost:8080");
@@ -29,22 +27,20 @@ const App = () => {
     <BrowserRouter>
       <GlobalStyles />
       <StyledContainer>
-        <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        <AnimatePresence exitBeforeEnter>
-          <StyledContentContainer>
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/movies" component={Movies} />
-              <Route exact path="/reviews" component={Reviews} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-            </Switch>
-          </StyledContentContainer>
-        </AnimatePresence>
+        <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+        <StyledContentContainer>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/movies" component={Movies} />
+            <Route exact path="/reviews" component={Reviews} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </Switch>
+        </StyledContentContainer>
         <Footer />
       </StyledContainer>
     </BrowserRouter>
@@ -68,6 +64,7 @@ const StyledContentContainer = styled.div`
   min-height: 80vh;
   width: 100%;
   color: white;
+
 `;
 
 export default App;

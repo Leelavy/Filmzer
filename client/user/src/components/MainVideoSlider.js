@@ -27,7 +27,7 @@ const MainVideoSlider = () => {
 
   return (
     <div>
-      mainSlider
+      Main Slider
     </div>
   );
 }

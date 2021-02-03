@@ -1,12 +1,25 @@
 import React from 'react';
-import { StyledContentDiv } from '../styles/styles';
+//Styles
+import { StyledMotionDiv } from '../styles/styles';
+//Components
+import Loader from '../components/Loader';
+//Animation 
+import { pageAnimation } from '../styles/animation';
 
 const Login = () => {
 
   return (
-    <StyledContentDiv>
-      Login
-    </StyledContentDiv>
+    <>
+      <Loader />
+      <StyledMotionDiv
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        Login
+      </StyledMotionDiv>
+    </>
   );
 }
 

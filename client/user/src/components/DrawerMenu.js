@@ -18,6 +18,8 @@ import MovieIcon from '@material-ui/icons/Movie';
 import StarsIcon from '@material-ui/icons/Stars';
 import InfoIcon from '@material-ui/icons/Info';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const drawerWidth = 240;
 
@@ -69,6 +71,10 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer - 1,
+    color: '#fff',
+  },
 }));
 
 const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
@@ -79,62 +85,65 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
   };
 
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      anchor="left"
-      open={openDrawer}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          <StyledChevronLeftIcon />
-        </IconButton>
-      </div>
-      <Divider />
-      <List>
-        <StyledListItem
-          button key={'Movies'}
-          component={Link}
-          to={'/movies'}
-          onClick={handleDrawerClose}>
-          <StyledMovieIcon />
-          <ListItemText primary={'Movies'} />
-        </StyledListItem>
-        <StyledListItem
-          button key={'Reviews'}
-          component={Link}
-          to={'/reviews'}
-          onClick={handleDrawerClose}
-        >
-          <StyledStarIcon />
-          <ListItemText primary={'Reviews'} />
-        </StyledListItem>
-        <StyledListItem
-          button key={'About'}
-          component={Link}
-          to={'/about'}
-          onClick={handleDrawerClose}
-        >
-          <StyledInfoIcon />
-          <ListItemText primary={'About'} />
-        </StyledListItem>
-      </List>
-      <Divider />
-      <List>
-        <StyledListItem
-          button key={'Login'}
-          component={Link}
-          to={'/login'}
-          onClick={handleDrawerClose}
-        >
-          <StyledAccountCircleIcon />
-          <ListItemText primary={'Login'} />
-        </StyledListItem>
-      </List>
-    </Drawer>
+    <>
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="left"
+        open={openDrawer}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            <StyledChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <StyledListItem
+            button key={'Movies'}
+            component={Link}
+            to={'/movies'}
+            onClick={handleDrawerClose}>
+            <StyledMovieIcon />
+            <ListItemText primary={'Movies'} />
+          </StyledListItem>
+          <StyledListItem
+            button key={'Reviews'}
+            component={Link}
+            to={'/reviews'}
+            onClick={handleDrawerClose}
+          >
+            <StyledStarIcon />
+            <ListItemText primary={'Reviews'} />
+          </StyledListItem>
+          <StyledListItem
+            button key={'About'}
+            component={Link}
+            to={'/about'}
+            onClick={handleDrawerClose}
+          >
+            <StyledInfoIcon />
+            <ListItemText primary={'About'} />
+          </StyledListItem>
+        </List>
+        <Divider />
+        <List>
+          <StyledListItem
+            button key={'Login'}
+            component={Link}
+            to={'/login'}
+            onClick={handleDrawerClose}
+          >
+            <StyledAccountCircleIcon />
+            <ListItemText primary={'Login'} />
+          </StyledListItem>
+        </List>
+      </Drawer>
+      <Backdrop className={classes.backdrop} open={openDrawer} onClick={handleDrawerClose} />
+    </>
   );
 }
 

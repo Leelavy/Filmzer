@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 //styled components
-export const StyledContentDiv = styled.div`
+
+export const StyledMotionDiv = styled(motion.div)`
+  width: 100%;
   padding: 2rem;
-  height: 100%;
-  width: 80%;
 `;

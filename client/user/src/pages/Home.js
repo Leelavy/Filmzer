@@ -1,18 +1,28 @@
 import React from 'react';
 //Styles
-import styled from 'styled-components';
-import { StyledContentDiv } from '../styles/styles';
+import { StyledMotionDiv } from '../styles/styles';
+//Animation
+import { pageAnimation } from '../styles/animation';
 //Components
+import Loader from '../components/Loader';
 import MainVideoSlider from '../components/MainVideoSlider';
 import ReviewsSlider from '../components/ReviewsSlider';
 
 const Home = () => {
 
   return (
-    <StyledContentDiv>
-      <MainVideoSlider />
-      <ReviewsSlider />
-    </StyledContentDiv>
+    <>
+      <Loader />
+      <StyledMotionDiv
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <MainVideoSlider />
+        <ReviewsSlider />
+      </StyledMotionDiv>
+    </>
   );
 }
 
