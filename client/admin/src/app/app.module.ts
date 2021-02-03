@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -18,7 +18,7 @@ import { AddMovieComponent } from './components/movies/add-movie/add-movie.compo
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
 import { SearchPipe } from './search.pipe';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment.prod';
 
 const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
@@ -41,6 +41,7 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    ChartsModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [],

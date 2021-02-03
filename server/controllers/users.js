@@ -57,22 +57,6 @@ const updateUser = async (req, res) => {
 };
 
 
-const updatePassword = async (req, res) => {
-    if (!req.body.password) {
-        res.status(400).json({
-            message: "username is required",
-        });
-    }
-
-    const user = await usersService.updatePassword(req.params.id, req.body.password);
-    if (!user) {
-        return res.status(404).json({ errors: ['password not found'] });
-    }
-
-    res.json(user);
-};
-
-
 const updateReviewOfUser = async (req, res) => {
 
     if (!req.body) {
@@ -106,7 +90,6 @@ module.exports = {
     getByUsername,
     getUserById,
     updateUser,
-    updatePassword,
     updateReviewOfUser,
     deleteUser,
     countUsers

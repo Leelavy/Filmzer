@@ -51,17 +51,6 @@ const updateUser = async (id, body) => {
 };
 
 
-const updatePassword = async (id, password) => {
-    const user = await getUserById(id);
-    if (!user)
-        return null;
-
-    user.password = password
-    await user.save();
-    return user;
-};
-
-
 const updateReviewOfUser = async (id, review) => {
 
     const user = await getUserById(id);
@@ -97,7 +86,6 @@ module.exports = {
     getByUsername,
     getUserById,
     updateUser,
-    updatePassword,
     updateReviewOfUser,
     deleteUser,
     countUsers

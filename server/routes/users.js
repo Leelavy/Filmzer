@@ -2,37 +2,50 @@ const express = require('express');
 const userController = require('../controllers/users');
 var router = express.Router();
 
-
-//http://localhost:8080/users/updateReviewOfUser/:id
+/**
+ * Update the review of user id in users table
+ http://localhost:8080/users/updateReviewOfUser/:id
+ */
 router.route('/updateReviewOfUser/:id')
     .patch(userController.updateReviewOfUser);
 
 
-//http://localhost:8080/users
+/**
+ * post - create a new user
+ * get - get all users
+ * http://localhost:8080/users
+ */
 router.route('/')
     .post(userController.createUser)
     .get(userController.getUsers);
 
 
-//http://localhost:8080/users/countUsers
+/**
+ * Counter of all the users
+ * http://localhost:8080/users/countUsers
+ */
 router.route('/countUsers')
     .get(userController.countUsers);
 
 
-//http://localhost:8080/users/:username
+/**
+ * get user by username
+ * http://localhost:8080/users/:username
+ */
 router.route('/:username')
     .get(userController.getByUsername)
 
 
-//http://localhost:8080/users/:id
+/**
+ * get - get user by user id
+ * delete - delete user by user id
+ * patch - update user by user id
+ * http://localhost:8080/users/:id
+ */
 router.route('/:id')
     .get(userController.getUserById)
     .delete(userController.deleteUser)
     .patch(userController.updateUser);
-
-
-// router.route('/:id/:password')
-//     .patch(userController.updatePassword)
 
 
 module.exports = router;
