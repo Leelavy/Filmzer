@@ -21,13 +21,27 @@
                             </div>
                         </div>
 
+                        <div class="ml-auto search-container">
+                            <form  class="searchbox">
+
+                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                <input type="text" class="text search-input" placeholder="filter by movie...">
+                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                <input type="text" class="text search-input" placeholder="filter by category...">
+                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                <input type="text" class="text search-input" placeholder="filter by year...">
+                            
+                            </form>
+                        </div>
+
                         <div class="iq-card-body">
                             <div class="table-view">
-                                <table class="data-tables table movie_table " style="width:100%">
+                                <!-- data-tables  -->
+                                <table class="table movie_table " style="width:100%">
 
                                     <thead>
                                         <tr>
-                                            <th>Movie</th>
+                                            <th style="width: 20%;">Movie</th>
                                             <th>Category</th>
                                             <th>Release Year</th>
                                             <th style="width: 20%;">Description</th>
@@ -35,21 +49,13 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <li *ngFor="let movies of movies">{{ movies.title }}</li>
-                                            </td>
-                                            <td>
-                                                <li *ngFor="let movies of movies">{{ movies.genre }}</li>
-                                            </td>
-                                            <td>
-                                                <li *ngFor="let movies of movies">{{ movies.year }}</li>
-                                            </td>
-                                            <td>
-                                                <li *ngFor="let movies of movies">{{ movies.description }}</li>
-                                            </td>
-                                            
+                                    <tbody
+                                    >
+                                        <tr *ngFor="let movies of movies">
+                                            <td> {{ movies.title }} </td>
+                                            <td> {{ movies.genre }} </td>
+                                            <td> {{ movies.year }} </td>
+                                            <td> {{ movies.description }} </td>
                                             
                                             <td>
                                                 <div class="flex align-items-center list-user-action">

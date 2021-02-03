@@ -15,17 +15,24 @@
                                     <h4 class="card-title">Review Lists</h4>
                                 </div>
                             </div>
+                    
+                            <div class="ml-auto search-container">
+                                <form  class="searchbox">
 
-                            <div class="iq-search-bar ml-auto">
-                                <form action="#" class="searchbox">
-                                    <input type="text" class="text search-input" placeholder="Search Here...">
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by title...">
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by Content...">
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by rating...">
+                                
                                 </form>
                             </div>
 
                             <div class="iq-card-body">
                                 <div class="table-view">
-                                    <table class="data-tables table movie_table" style="width:100%">
+                                     <!-- data-tables  -->
+                                    <table class="table movie_table" style="width:100%">
 
                                         <thead>
 
@@ -39,21 +46,14 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                               
-                                                <td>
-                                                    <li *ngFor="let reviews of reviews">{{ reviews.reviewTitle }}  </li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let reviews of reviews">{{ reviews.reviewContent }}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let reviews of reviews"><i class="lar la-star mr-2"></i>{{ reviews.rating }}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let reviews of reviews">{{ reviews.lastUpdated }}</li>
-                                                </td>
 
+                                            <tr *ngFor="let reviews of reviews">
+
+                                                <td>  {{ reviews.reviewTitle }} </td>
+                                                <td>  {{ reviews.reviewContent }} </td>
+                                                <td> <i class="lar la-star mr-2"></i> {{ reviews.rating }} </td>
+                                                <td>  {{ reviews.lastUpdated }} </td>
+                                               
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="iq-bg-success" data-toggle="tooltip"
