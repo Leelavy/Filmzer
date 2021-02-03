@@ -16,17 +16,25 @@
                                 </div>
                             </div>
 
-                            <div class="iq-search-bar ml-auto">
-                                <form action="#" class="searchbox">
-                                    <input type="text" class="text search-input" placeholder="Search Here...">
+
+                            <div class="search-container">
+                                <form  class="searchbox">
+
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input  id="s" type="text" class="text search-input"  placeholder="filter by user-name..." >
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by full-name...">
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by email...">
+                                
                                 </form>
                             </div>
 
 
                             <div class="iq-card-body">
                                 <div class="table-view">
-                                    <table class="data-tables table movie_table" style="width:100%">
+                                    <!-- data-tables  -->
+                                    <table class="table movie_table" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th style="width: 10%;"> User-Name</th>
@@ -39,24 +47,12 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr>   
-                                                                                         
-                                                <td>
-                                                    <li *ngFor="let users of users">{{ users.username }}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let users of users">{{users.firstName }} {{
-                                                        users.lastName}}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let users of users">{{users.email}}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let users of users">{{users.password}}</li>
-                                                </td>
-                                                <td>
-                                                    <li *ngFor="let users of users">{{users.admin}}</li>
-                                                </td>
+                                            <tr *ngFor="let users of users ">   
+                                                <td>{{users.username}}</td>
+                                                <td>{{users.firstName}} {{users.lastName}}</td>
+                                                <td>{{users.email}}</td>
+                                                <td>{{users.password}}</td>
+                                                <td>{{users.admin}}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="iq-bg-success" data-toggle="tooltip"
@@ -67,8 +63,8 @@
                                                             href="#"><i class="ri-delete-bin-line"></i></a>
                                                     </div>
                                                 </td>
-
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
