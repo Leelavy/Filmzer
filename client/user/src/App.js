@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 //Components
 import Navbar from './components/Navbar';
+import DrawerMenu from './components/DrawerMenu';
 import Footer from './components/Footer';
 //Pages
 import Home from './pages/Home';
@@ -21,15 +23,20 @@ import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
 
+  const [openDrawer, setOpenDrawer] = useState(false);
+
   return (
     <BrowserRouter>
       <GlobalStyles />
       <StyledContainer>
-        <Navbar />
+        <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+        <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <StyledContentContainer>
           <AnimatePresence exitBeforeEnter>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/">
+                <Home />
+              </Route>
               <Route exact path="/movies" component={Movies} />
               <Route exact path="/reviews" component={Reviews} />
               <Route exact path="/about" component={About} />
@@ -52,8 +59,12 @@ const StyledContainer = styled.div`
 `;
 
 const StyledContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #1b1b1b;
   min-height: 80vh;
+  width: 100%;
   color: white;
 `;
 

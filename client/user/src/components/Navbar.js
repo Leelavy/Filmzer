@@ -23,14 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ openDrawer, setOpenDrawer }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <StyledToolBar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setOpenDrawer(!openDrawer)}
+          >
             <StyledMenuIcon />
           </IconButton>
           <Link to="/">
