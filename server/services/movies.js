@@ -98,9 +98,25 @@ const getMovieByImdbTitleId = async (title_id) => {
 };
 
 
-const getMovieByTitleGenreRatingYear = async (title, genre, rating, year) => {
-    return await Movies.find({'title':{$regex: `.*${title}.*`}, 'genre':{$regex: `.*${genre}.*`}, 'year':year})
-        .populate({path:'reviews', match:{'rating':rating}}).exec()};
+const getMovieByTitleGenreYear = async (title, genre, year, all) => {
+
+    const filter = [
+        {$and: [{'title': {$regex: `.*${title}.*`}}]},
+        {$and: [{'genre': {$regex: `.*${genre}.*`}}]},
+        {$and: [{'year': year}]}
+    ]
+
+    if(all){
+        return Movies.find({
+                $and: filter
+            }
+        );
+    }
+    return Movies.find({
+        $or: filter
+        }
+    );
+};
 
 
 const updateMovie = async (id, body) => {
@@ -156,7 +172,7 @@ module.exports = {
     updateMovie,
     updateReviewOfMovie,
     deleteMovie,
-    getMovieByTitleGenreRatingYear,
+    getMovieByTitleGenreYear,
     countMovies,
     topMoviesByRating,
     getReviewsByMovieId,

@@ -15,7 +15,7 @@ const createUser = async (body) => {
 
 
 const getUsers = async () => {
-    return await Users.find({});
+    return await Users.find({},{'_id':1, 'username':2, 'password':3, 'admin':4, 'firstName':5, 'lastName':6, 'email':7});
 };
 
 
