@@ -3,9 +3,13 @@ const movieController = require('../controllers/movies');
 var router = express.Router();
 
 
-//http://localhost:8080/movies/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear
-// router.route('/getMovieByParams/:movieTitle/:movieGenre/:reviewRating/:movieYear')
-//     .get(movieController.getMovieByTitleGenreRatingYear);
+/**
+ * Find movies by movie title, movie genre, and movie year
+ * param - title=genre=year
+ * http://localhost:8080/movies/getMovieByParams/:param
+ */
+router.route('/getMovieByParams/:param')
+    .get(movieController.getMovieByTitleGenreYear);
 
 
 /**
@@ -13,7 +17,7 @@ var router = express.Router();
  * http://localhost:8080/movies/getMoviesByGenre/:genre
  */
 router.route('/getMoviesByGenre/:genre')
-    .get(movieController.getMoviesByGenre)
+    .get(movieController.getMoviesByGenre);
 
 
 /**
@@ -39,14 +43,14 @@ router.route('/')
  * http://localhost:8080/movies/topMovies/:topNumber
  */
 router.route('/topMovies/:topNumber')
-    .get(movieController.topMoviesByRating)
+    .get(movieController.topMoviesByRating);
 
 /**
  * Get all movies by average of rating
  * http://localhost:8080/movies/topMovies
  */
 router.route('/topMovies')
-    .get(movieController.topMoviesByRating)
+    .get(movieController.topMoviesByRating);
 
 /**
  * Get movie by title name
@@ -66,6 +70,21 @@ router.route('/:movieId')
     .get(movieController.getMovieById)
     .patch(movieController.updateMovies)
     .delete(movieController.deleteMovie);
+
+/**
+ * map reduce - average on number of movies by year
+ *
+ */
+// router.route('/avgMoviesByYear')
+//     .get(movieController.avgMoviesByYear);
+
+/**
+ * Count by genre
+ *
+ */
+// router.route('/countByGenre')
+//     .get(movieController.countByGenre);
+
 
 
 // //http://localhost:8080/movies/titleId/:imdbTitleId

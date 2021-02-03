@@ -68,16 +68,39 @@ const getMovieById = async (req, res) => {
 };
 
 
-const getMovieByTitleGenreRatingYear = async (req, res) => {
+const getMovieByTitleGenreYear = async (req, res) => {
 
-    const movie = await moviesService.getMovieByTitleGenreRatingYear(
-        req.params.movieTitle, req.params.movieGenre, req.params.reviewRating, req.params.movieYear
-    );
-    if (!movie) {
-        return res.status(404).json({errors: ['Movie not found']});
+    var [movieTitle, movieGenre, movieYear] = req.params.param.split('=');
+    var count = 3;
+    var all = true;
+
+    if(movieTitle === ''){
+        movieTitle =  NaN
+        count--;
     }
 
-    res.json(movie);
+    if(movieGenre === ''){
+        movieGenre =  NaN
+        count--;
+    }
+
+    if(movieYear === ''){
+        movieYear =  undefined
+        count--;
+    }
+
+    if(count !== 3){
+        all = false;
+    }
+
+    const movies = await moviesService.getMovieByTitleGenreYear(
+        movieTitle, movieGenre, movieYear, all
+    );
+    if (!movies) {
+        return res.status(404).json({errors: ['Movies are snot found']});
+    }
+
+    res.json(movies);
 };
 
 
@@ -150,7 +173,7 @@ module.exports = {
     getImageByTitleId,
     updateMovies,
     deleteMovie,
-    getMovieByTitleGenreRatingYear,
+    getMovieByTitleGenreYear,
     countMovies,
     topMoviesByRating,
     getMoviesByGenre
