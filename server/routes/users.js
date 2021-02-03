@@ -32,7 +32,7 @@ router.route('/countUsers')
  * get user by username
  * http://localhost:8080/users/:username
  */
-router.route('/:username')
+router.route('/getUsername/:username')
     .get(userController.getByUsername)
 
 
