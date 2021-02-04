@@ -20,6 +20,11 @@ import { EditProfileComponent } from './components/dashboard/profile/edit-profil
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment.prod';
+import { FilterPipe } from './filter.pipe';
+import { SmallBoxesComponent } from './components/dashboard/small-boxes/small-boxes.component';
+
+
+
 
 const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
 
@@ -34,7 +39,10 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     DashboardComponent,
     AddMovieComponent,
     EditProfileComponent,
-    SearchPipe
+    SearchPipe,
+    FilterPipe,
+    SmallBoxesComponent
+   
   ],
   imports: [
     BrowserModule,

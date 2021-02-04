@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Users } from 'src/app/models/users';
 import { UsersService } from 'src/app/services/users.service';
 // import { CurrentUsersService } from 'src/app/services/users.service'
@@ -10,22 +10,33 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./users.component.css']
 })
 
-export class UsersComponent {
+export class UsersComponent implements OnInit {
 
-  users : Users[]=[];
+  searchUser: string;
+  users: Users[] = [];
+  user: Users;
+ 
 
-  constructor(private usersService : UsersService) { }
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
     this.load();
-   
+
   }
 
-  load(){
-    this.usersService.getUsers().subscribe(data=>{
+  load() {
+    this.usersService.getUsers().subscribe(data => {
       this.users = data;
     });
   }
+
+  
+  // onDelete() {
+  //   this.usersService.deleteUser(this.user._id).subscribe(() => {
+  //     this.users = null;
+  //   });
+
+  // }
 
 
 }

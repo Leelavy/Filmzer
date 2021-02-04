@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   pure: false
 })
 
+
 export class SearchPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {

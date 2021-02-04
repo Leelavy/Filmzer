@@ -16,8 +16,8 @@ import styled from 'styled-components';
 //Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //Socket
-// import io from "socket.io-client";
-// const socket = io.connect("http://localhost:8080");
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:8080");
 
 const App = () => {
 

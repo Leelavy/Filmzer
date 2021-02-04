@@ -31,13 +31,11 @@ io.on('connection', (socket) => {
     if (socket.handshake.headers.origin === "http://localhost:3000") {
         count++;        
         socket.broadcast.emit('count', count); 
-        
-        console.log(count);
 
         socket.on('disconnect', () => {
             count--;                   
             socket.broadcast.emit('count', count);    
-            console.log(count);        
+                
         });
     }   
 }); 

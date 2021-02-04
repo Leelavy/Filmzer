@@ -18,6 +18,31 @@ export class UsersService {
     return this.http.get<Users[]>(this.usersUrl);
   }
 
+  // updateUser(user:Users): Observable<Users[]>{
+  //   const url=`${this.usersUrl}/${user.username.index}`;
+  //   return this.http.patch<Users[]>(url,{user: user.username});
+
+
+  // }
+
+  getUserById(id:number): Observable<Users>{
+    const url=`${this.usersUrl}/${id}`;
+    return this.http.get<Users>(url)
+  }
+
+  deleteUser(user:Users):Observable<Users>{
+    const url=`${this.usersUrl}/${user.username.index}`;
+    return this.http.delete<Users>(url);
+  }
+
+  countUsers(count:string):Observable<Users>{
+    const url=`${this.usersUrl}/${count}`;
+    return this.http.get<Users>(url);
+  }
+
+
+
+
 }
 
 

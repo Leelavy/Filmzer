@@ -20,8 +20,10 @@
                             <div class="search-container">
                                 <form  class="searchbox">
 
+
+
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                                    <input  id="s" type="text" class="text search-input"  placeholder="filter by user-name..." >
+                                    <input  id="s" type="text" class="text search-input"   placeholder="filter by user-name..." [(ngModel)]="searchUser" [ngModelOptions]="{standalone: true}">
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                                     <input type="text" class="text search-input" placeholder="filter by full-name...">
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
@@ -29,6 +31,7 @@
                                 
                                 </form>
                             </div>
+
 
 
                             <div class="iq-card-body">
@@ -47,7 +50,8 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr *ngFor="let users of users ">   
+
+                                            <tr *ngFor="let users of users | filter:searchUser ">   
                                                 <td>{{users.username}}</td>
                                                 <td>{{users.firstName}} {{users.lastName}}</td>
                                                 <td>{{users.email}}</td>

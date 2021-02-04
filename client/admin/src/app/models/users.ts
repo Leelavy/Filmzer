@@ -2,7 +2,7 @@
 
 
 export interface Users{
-
+    
     username: {
         type: String,
         index: { unique: true }
