@@ -20,7 +20,7 @@ const Home = () => {
         exit="exit"
       >
         <MainVideoSlider />
-        <ReviewsSlider />
+        <ReviewsSlider sliderTitle="LATEST REVIEWS" />
       </StyledMotionDiv>
     </>
   );

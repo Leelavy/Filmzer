@@ -10,48 +10,45 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 const MainVideoSlider = () => {
 
   const options = {
+    type: 'loop',
     gap: '1rem',
+    drag: true,
+    autoplay: true,
+    interval: 3000,
+    pauseOnHover: true,
+    resetProgress: false,
+    arrows: 'slider',
   };
 
   return (
 
-    <Splide
+    <StyledSplideSlider
       options={options}
     >
-      <SplideSlide>
-        <StyledDiv>
-          <img src={movies[0].imageUrl} alt="Image 1" />
-        </StyledDiv>
-      </SplideSlide>
-      <SplideSlide>
-        <img src={movies[1].imageUrl} alt="Image 2" />
-      </SplideSlide>
-    </Splide>
-
-    // <Splide
-    //   options={{
-    //     rewind: true,
-    //     perPage: 2,
-    //     perMove: 1,
-    //     gap: '1rem',
-    //   }}
-    //   onMoved={(splide, newIndex) => { console.log('moved', newIndex) }}
-    // >
-    //   { movies.map(movie => (
-    //     <SplideSlide key={movie.movieTitle}>
-    //       <img src={movie.imageUrl} alt={movie.movieTitle} />
-    //     </SplideSlide>
-    //   ))}
-    // </Splide>
+      {movies.slice(0, 3).map(movie => (
+        <SplideSlide key={movie.movieTitle}>
+          <StyledDiv>
+            <img src={movie.imageUrl} alt={movie.movieTitle} />
+          </StyledDiv>
+        </SplideSlide>
+      ))}
+    </StyledSplideSlider>
   );
 }
+
+const StyledSplideSlider = styled(Splide)`
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+`;
 
 const StyledDiv = styled.div`
   width: 100%;
   img {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     object-fit: cover;
+    object-position: top;
   }
 `;
 

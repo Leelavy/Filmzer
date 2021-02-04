@@ -61,8 +61,8 @@ const StyledContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background: #1b1b1b;
-  padding: 5rem 0 10rem 0;
-  min-height: 100vh;
+  padding: 5rem 0 5rem 0;
+  min-height: 84.5%;
   width: 100%;
   color: white;
 

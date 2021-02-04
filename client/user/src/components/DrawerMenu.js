@@ -11,15 +11,13 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MovieIcon from '@material-ui/icons/Movie';
 import StarsIcon from '@material-ui/icons/Stars';
 import InfoIcon from '@material-ui/icons/Info';
+import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 const drawerWidth = 240;
 
@@ -103,6 +101,14 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
         <Divider />
         <List>
           <StyledListItem
+            button key={'Home'}
+            component={Link}
+            to={'/'}
+            onClick={handleDrawerClose}>
+            <StyledHomeIcon />
+            <ListItemText primary={'Home'} />
+          </StyledListItem>
+          <StyledListItem
             button key={'Movies'}
             component={Link}
             to={'/movies'}
@@ -165,6 +171,11 @@ const StyledStarIcon = styled(StarsIcon)`
 `;
 
 const StyledInfoIcon = styled(InfoIcon)`
+  color: white;
+  margin-right: 2rem;
+`;
+
+const StyledHomeIcon = styled(HomeIcon)`
   color: white;
   margin-right: 2rem;
 `;
