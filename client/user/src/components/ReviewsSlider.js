@@ -18,7 +18,7 @@ const ReviewsSlider = ({ sliderTitle }) => {
     perMove: 1,
     drag: true,
     autoplay: true,
-    interval: 5000,
+    interval: 1000,
     pauseOnHover: true,
     resetProgress: false,
     arrows: 'slider',
