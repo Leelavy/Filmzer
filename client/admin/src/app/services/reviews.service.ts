@@ -12,12 +12,16 @@ import { environment } from '../../environments/environment.prod';
 
 export class ReviewsService {
 
+  private latestReviewUrl = environment.latestReviewsUrl;
   private reviewsUrl = environment.reviewsUrl;
 
   constructor(private http: HttpClient) { }
 
   getReviews(): Observable<Reviews[]> {
     return this.http.get<Reviews[]>(this.reviewsUrl);
+  }
+  topReviewsByDate(): Observable<Reviews[]> {
+    return this.http.get<Reviews[]>(this.latestReviewUrl)
   }
 
 
