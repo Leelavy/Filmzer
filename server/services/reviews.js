@@ -43,7 +43,7 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
         match["user.username"] = new RegExp(userName)
     }
 
-    return await Reviews.aggregate([
+    return Reviews.aggregate([
         {
             $lookup:
                 {
