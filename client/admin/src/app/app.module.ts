@@ -24,6 +24,7 @@ import { FilterPipe } from './filter.pipe';
 import { SmallBoxesComponent } from './components/dashboard/small-boxes/small-boxes.component';
 import { TopRatedComponent } from './components/dashboard/top-rated/top-rated.component';
 
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 
 
@@ -52,6 +53,7 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     HttpClientModule,
     AppRoutingModule,
     ChartsModule,
+    IvyCarouselModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [],

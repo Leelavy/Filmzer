@@ -24,5 +24,11 @@ export class ReviewsService {
     return this.http.get<Reviews[]>(this.latestReviewUrl)
   }
 
+  deleteReview(_id: number): Observable<Reviews> {
+    const url = `${this.reviewsUrl}/${_id}`;
+    return this.http.delete<Reviews>(url);
+
+  }
+
 
 }

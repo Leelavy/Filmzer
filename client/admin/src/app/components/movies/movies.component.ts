@@ -11,10 +11,11 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviesComponent implements OnInit {
 
   movies: Movies[] = [];
+  movie: Movies;
 
   constructor(private moviesService: MoviesService) {
     console.log(moviesService.getMovies);
-   }
+  }
 
   ngOnInit(): void {
     this.load();
@@ -26,5 +27,13 @@ export class MoviesComponent implements OnInit {
     });
 
   }
+
+  onDelete(_id:number) {
+    this.moviesService.deleteMovie(_id).subscribe(()=>{
+      this.movie=null;
+    });
+    
+
+}
 
 }

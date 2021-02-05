@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 
 export class CountSmallBoxesService {
 
-  private countUUrl=environment.countReviewsUrl;
+  private countUUrl=environment.countUsersUrl;
   private countRUrl=environment.countReviewsUrl;
   private countmUrl=environment.countMoviesUrl;
   currentCounter = this.socket.fromEvent<Number>('count')

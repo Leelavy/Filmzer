@@ -52,16 +52,17 @@
                                                 <td>  {{ reviews.reviewTitle }} </td>
                                                 <td>  {{ reviews.reviewContent }} </td>
                                                 <td> <i class="lar la-star mr-2"></i> {{ reviews.rating }} </td>
-                                                <td>  {{ reviews.lastUpdated }} </td>
+                                                <td>  {{ reviews.lastUpdated | date:'short'}} </td>
                                                
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="iq-bg-success" data-toggle="tooltip"
                                                             data-placement="top" title="" data-original-title="Edit"
                                                             href="#"><i class="ri-pencil-line"></i></a>
-                                                        <a class="iq-bg-primary" data-toggle="tooltip"
-                                                            data-placement="top" title="" data-original-title="Delete"
-                                                            href="#"><i class="ri-delete-bin-line"></i></a>
+
+                                                            <a class="iq-bg-primary" data-toggle="tooltip"
+                                                            data-placement="top" type="button" data-original-title="Delete"
+                                                           (click)="onDelete(reviews._id)"><i class="ri-delete-bin-line"></i></a>
                                                     </div>
                                                 </td>
 

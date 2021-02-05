@@ -25,5 +25,11 @@ export class MoviesService {
     return this.http.get<Movies[]>(this.topRaUrl);
   }
 
+  deleteMovie(_id: number): Observable<Movies> {
+    const url = `${this.moviesUrl}/${_id}`;
+    return this.http.delete<Movies>(url);
+
+  }
+
 }
 

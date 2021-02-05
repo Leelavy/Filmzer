@@ -10,6 +10,7 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 export class ReviewsComponent implements OnInit {
 
   reviews: Reviews[] = [];
+  review:Reviews;
 
   constructor(private reviewsService: ReviewsService) { }
 
@@ -23,4 +24,13 @@ export class ReviewsComponent implements OnInit {
     });
 
   }
+
+  onDelete(_id:number) {
+      this.reviewsService.deleteReview(_id).subscribe(()=>{
+        this.review=null;
+      });
+      
+
+  }
+
 }

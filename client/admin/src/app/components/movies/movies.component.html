@@ -62,12 +62,14 @@
                                                     <a class="iq-bg-warning" data-toggle="tooltip" data-placement="top"
                                                         title="" data-original-title="View" href="#"><i
                                                             class="lar la-eye"></i></a>
+                                                            
                                                     <a class="iq-bg-success" data-toggle="tooltip" data-placement="top"
                                                         title="" data-original-title="Edit" href="#"><i
                                                             class="ri-pencil-line"></i></a>
+
                                                     <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
-                                                        title="" data-original-title="Delete" href="#"><i
-                                                            class="ri-delete-bin-line"></i></a>
+                                                        type="button" data-original-title="Delete" 
+                                                        (click)="onDelete(movies._id)"><i class="ri-delete-bin-line"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

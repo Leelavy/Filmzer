@@ -31,12 +31,13 @@ export class UsersComponent implements OnInit {
   }
 
   
-  // onDelete() {
-  //   this.usersService.deleteUser(this.user._id).subscribe(() => {
-  //     this.users = null;
-  //   });
+  onDelete(_id:number) {
+    this.usersService.deleteUser(_id).subscribe(() => {
+      this.users = null;
+      
+    });
 
-  // }
+  }
 
 
 }

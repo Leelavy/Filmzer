@@ -25,18 +25,19 @@ export class UsersService {
 
   // }
 
-  getUserById(id:number): Observable<Users>{
-    const url=`${this.usersUrl}/${id}`;
+  getUserById(id: number): Observable<Users> {
+    const url = `${this.usersUrl}/${id}`;
     return this.http.get<Users>(url)
   }
 
-  deleteUser(user:Users):Observable<Users>{
-    const url=`${this.usersUrl}/${user.username.index}`;
+  deleteUser(_id: number): Observable<Users> {
+    const url = `${this.usersUrl}/${_id}`;
     return this.http.delete<Users>(url);
+
   }
 
-  countUsers(count:string):Observable<Users>{
-    const url=`${this.usersUrl}/${count}`;
+  countUsers(count: string): Observable<Users> {
+    const url = `${this.usersUrl}/${count}`;
     return this.http.get<Users>(url);
   }
 

@@ -2,7 +2,7 @@
 
 
 export interface Movies{
-
+    _id:number,
     title: {type:String, unique: true},
     year: Number,
     genre: String,  
