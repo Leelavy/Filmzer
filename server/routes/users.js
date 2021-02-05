@@ -4,13 +4,15 @@ var router = express.Router();
 
 /**
  * get user by username, fullname and email
- *
+ * param - username=fullname=email
+ * http://localhost:8080/users/getUserByParam/:param
  */
-
+// router.route('/getUserByParam/:param')
+//     .get(userController.getUserByParam);
 
 /**
  * Update the review of user id in users table
- http://localhost:8080/users/updateReviewOfUser/:id
+ * http://localhost:8080/users/updateReviewOfUser/:id
  */
 router.route('/updateReviewOfUser/:id')
     .patch(userController.updateReviewOfUser);
