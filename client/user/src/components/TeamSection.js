@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import TeamMemberCard from '../components/ui-elements/TeamMemberCard';
 //Team pictures
 import teamPictureLee from '../images/teamPictureLee.png';
+import teamPictureDaniel from '../images/teamPictureDaniel.png';
+import teamPictureMichael from '../images/teamPictureMichael.png';
 //Animation
 import { motion } from 'framer-motion';
 
@@ -21,13 +23,13 @@ const TeamSection = () => {
       <TeamMemberCard
         name="Daniel Gutman"
         role="Project Manager"
-        image={teamPictureLee}
+        image={teamPictureDaniel}
       >
       </TeamMemberCard>
       <TeamMemberCard
         name="Michael Yakobi"
         role="Movies Overlord"
-        image={teamPictureLee}
+        image={teamPictureMichael}
       >
       </TeamMemberCard>
     </StyledTeamDiv>
@@ -38,7 +40,6 @@ const StyledTeamDiv = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
   padding: 1rem;
 `;
 

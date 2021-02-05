@@ -8,6 +8,8 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { reviews } from '../dummyData';
 //MUI components
 import StarsIcon from '@material-ui/icons/Stars';
+//Animation
+import { motion } from 'framer-motion';
 
 const ReviewsSlider = ({ sliderTitle }) => {
 
@@ -18,7 +20,7 @@ const ReviewsSlider = ({ sliderTitle }) => {
     perMove: 1,
     drag: true,
     autoplay: true,
-    interval: 1000,
+    interval: 2000,
     pauseOnHover: true,
     resetProgress: false,
     arrows: 'slider',
@@ -36,6 +38,14 @@ const ReviewsSlider = ({ sliderTitle }) => {
         {reviews.slice(0, 8).map(review => (
           <SplideSlide key={review.movie.movieTitle}>
             <StyledDiv>
+              <StyledSliderDataDiv>
+                <StyledGrayDiv>
+                  {review.movie.movieTitle}
+                </StyledGrayDiv>
+                <StyledGrayDiv>
+                  {`${review.rating}/10`}
+                </StyledGrayDiv>
+              </StyledSliderDataDiv>
               <img src={review.movie.imageUrl} alt={review.movie.movieTitle} />
             </StyledDiv>
           </SplideSlide>
@@ -60,7 +70,18 @@ const StyledSliderHeader = styled.div`
 `;
 
 const StyledDiv = styled.div`
+  transition: transform .2s;
+  position: relative;
   width: 100%;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+    border-radius: 0px;
+    cursor: pointer;
+    transform: scale(0.95);
+  }
+
   img {
     width: 100%;
     height: 20vh;
@@ -69,6 +90,26 @@ const StyledDiv = styled.div`
     border-radius: 0.5rem;
     overflow: hidden;
   }
+`;
+
+const StyledSliderDataDiv = styled(motion.div)`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  h1 {
+    font-size: 3rem;
+  }
+`;
+
+const StyledGrayDiv = styled(motion.div)`
+  padding: 0.5rem 0.7rem;
+  margin: 5rem 1rem 0.5rem 0;
+  background-color: #141414;
+  border-radius: 5px;
+  font-size: 0.8rem;
 `;
 
 export default ReviewsSlider;

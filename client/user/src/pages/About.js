@@ -7,7 +7,7 @@ import Loader from '../components/Loader';
 import AboutUsSection from '../components/AboutUsSection';
 import TeamSection from '../components/TeamSection';
 //Animation 
-import { pageAnimationFromBottom } from '../styles/animation';
+import { pageAnimationFromLeft } from '../styles/animation';
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -16,7 +16,7 @@ const About = () => {
     <>
       <Loader />
       <StyledMotionDiv
-        variants={pageAnimationFromBottom}
+        variants={pageAnimationFromLeft}
         initial="hidden"
         animate="show"
         exit="exit"
