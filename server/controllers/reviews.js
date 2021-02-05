@@ -58,21 +58,27 @@ const getReviewById = async (req, res) => {
 
 const getReviewsByTitleRatingUsername = async (req, res) => {
 
-    const review = await reviewsService.getReviewsByTitleRatingUsername(
-        req.params.reviewRating, req.params.movieTitle, req.params.userName
-    );
+    var [movieTitle, rating, userName] = req.params.param.split('=');
 
-    var reviewResult = [];
-    review.forEach(function (arrayItem) {
-        if(arrayItem.movies.length !== 0)
-            reviewResult.push(arrayItem);
-    });
+    if(movieTitle === ''){
+        movieTitle =  null
+    }
 
-    if (!reviewRating){
+    if(userName === ''){
+        userName =  null
+    }
+
+    if(rating === ''){
+        rating =  NaN
+    }
+
+    const allReviews = await reviewsService.getReviewsMoviesUsers(movieTitle, rating, userName);
+
+    if (!allReviews){
         return res.status(404).json({errors: ['reviews not found']});
     }
 
-    res.json(reviewRating);
+    res.json(allReviews);
 };
 
 

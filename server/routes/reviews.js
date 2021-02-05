@@ -3,9 +3,13 @@ const reviewController = require('../controllers/reviews');
 var router = express.Router();
 
 
-// http://localhost:8080/reviews/getReviewByParams/:reviewRating/:movieTitle/:userName
-// router.route('/getReviewByParams/:reviewRating/:movieTitle/:userName')
-//     .get(reviewController.getReviewsByTitleRatingUsername)
+/**
+ * Find reviews by movie title, rating, and username
+ * param - title=rating=username
+ * http://localhost:8080/reviews/getReviewByParams/:param
+ */
+router.route('/getReviewByParams/:param')
+    .get(reviewController.getReviewsByTitleRatingUsername)
 
 
 /**

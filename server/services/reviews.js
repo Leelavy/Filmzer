@@ -27,8 +27,23 @@ const getReviews = async () => {
 };
 
 
-const getReviewsMoviesUsers = async () =>
-    await Reviews.aggregate([
+const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null) => {
+
+    var match = {};
+
+    if(movieTitle!==null){
+        match["movie.title"] = new RegExp(movieTitle)
+    }
+
+    if(isNaN(rating)!==true){
+        match["rating"] = {$eq:parseInt(rating)};
+    }
+
+    if(userName!==null){
+        match["user.username"] = new RegExp(userName)
+    }
+
+    return await Reviews.aggregate([
         {
             $lookup:
                 {
@@ -71,8 +86,10 @@ const getReviewsMoviesUsers = async () =>
                     "user.lastName": 12
                 }
         },
-
-    ]);
+        {
+            $match:match
+        }
+    ])};
 
 
 const getReviewsByIds = async (review_ids) => {
