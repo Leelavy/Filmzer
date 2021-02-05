@@ -22,6 +22,21 @@ const countMovies = async () => {
 };
 
 
+const countByGenre = async () => {
+    return Movies.aggregate([
+        {
+            $group: {
+                _id: "$genre",
+                count: {$sum: 1}
+            }
+        },
+        {
+            $sort: {count:-1}
+        }
+    ]);
+};
+
+
 const topMoviesByRating = async (topNumber) => {
     return Movies.aggregate([
         { $lookup:
@@ -176,5 +191,6 @@ module.exports = {
     countMovies,
     topMoviesByRating,
     getReviewsByMovieId,
-    getMoviesByGenre
+    getMoviesByGenre,
+    countByGenre
     }

@@ -61,6 +61,22 @@ router.route('/title/:movieTitle')
 
 
 /**
+ * Count by genre
+ * http://localhost:8080/movies/countByGenre
+ */
+router.route('/countByGenre')
+    .get(movieController.countByGenre);
+
+
+/**
+ * map reduce - average on number of movies by year
+ *
+ */
+// router.route('/avgMoviesByYear')
+//     .get(movieController.avgMoviesByYear);
+
+
+/**
  * get - Gets movie by id
  * patch - Update movie by id
  * delete - Delete movie by id
@@ -70,20 +86,6 @@ router.route('/:movieId')
     .get(movieController.getMovieById)
     .patch(movieController.updateMovies)
     .delete(movieController.deleteMovie);
-
-/**
- * map reduce - average on number of movies by year
- *
- */
-// router.route('/avgMoviesByYear')
-//     .get(movieController.avgMoviesByYear);
-
-/**
- * Count by genre
- *
- */
-// router.route('/countByGenre')
-//     .get(movieController.countByGenre);
 
 
 

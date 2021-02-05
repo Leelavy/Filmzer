@@ -35,6 +35,19 @@ const countMovies = async (req, res) => {
 };
 
 
+const countByGenre = async (req, res) => {
+    const genresCount = await moviesService.countByGenre();
+
+    var newGenresCount = Object()
+    Object.keys(genresCount).forEach(function(key) {
+        console.log(genresCount[key]['_id']);
+        console.log(genresCount[key]['count']);
+        newGenresCount[genresCount[key]['_id']] = genresCount[key]['count']
+    });
+    res.json(newGenresCount);
+};
+
+
 const getMovieByTitle = async (req, res) => {
     const movie = await moviesService.getMovieByTitle(req.params.movieTitle);
 
@@ -59,7 +72,6 @@ const getMoviesByGenre = async (req, res) => {
 
 const getMovieById = async (req, res) => {
     const movie = await moviesService.getMovieById(req.params.movieId);
-
     if (!movie){
         return res.status(404).json({errors: ['Movie not found']});
     }
@@ -176,5 +188,6 @@ module.exports = {
     getMovieByTitleGenreYear,
     countMovies,
     topMoviesByRating,
-    getMoviesByGenre
+    getMoviesByGenre,
+    countByGenre
 }
