@@ -17,6 +17,32 @@ const getMovies = async () => {
 };
 
 
+const avgRatingByYear = async () => {
+     return Movies.aggregate([
+        {
+            $lookup:
+                {
+                    from:"reviews",
+                    localField:"reviews",
+                    foreignField: "_id",
+                    as: "rating_review"
+                }
+        },
+         {
+             $unwind:"$rating_review"
+         },
+         {
+             $project:
+                 {
+                     "_id": 0,
+                     "year": 1,
+                     "rating_review.rating": 2
+                 }
+         }
+        ]);
+};
+
+
 const countMovies = async () => {
     return await Movies.countDocuments({})
 };
@@ -192,5 +218,6 @@ module.exports = {
     topMoviesByRating,
     getReviewsByMovieId,
     getMoviesByGenre,
-    countByGenre
+    countByGenre,
+    avgRatingByYear
     }

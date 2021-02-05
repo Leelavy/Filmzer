@@ -3,6 +3,12 @@ const userController = require('../controllers/users');
 var router = express.Router();
 
 /**
+ * get user by username, fullname and email
+ *
+ */
+
+
+/**
  * Update the review of user id in users table
  http://localhost:8080/users/updateReviewOfUser/:id
  */

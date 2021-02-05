@@ -1,5 +1,6 @@
 
 const unirest = require("unirest");
+const _ = require("lodash");
 const moviesService = require('../services/movies');
 
 
@@ -26,6 +27,32 @@ const topMoviesByRating = async (req, res) => {
 const getMovies = async (req, res) => {
     const movies = await moviesService.getMovies();
     res.json(movies);
+};
+
+
+const avgRatingByYear = async (req, res) => {
+    const ratingByYears = await moviesService.avgRatingByYear();
+
+    var map = _.mapValues(_.groupBy(ratingByYears, 'year'),
+        clist => clist.map(ratingByYears => _.omit(ratingByYears, 'year')));
+
+    var data = {};
+    Object.keys(map).forEach(function(key) {
+        var newArray = []
+        map[key].forEach(function (arrayItem) {
+            newArray.push(arrayItem['rating_review']['rating'])
+        });
+        data[key] = newArray
+    });
+
+    var reduce = {}
+    Object.keys(data).forEach(function (key){
+        reduce[key] = average = data[key].reduce(function (avg, value, _, { length }) {
+            return avg + value / length;
+        }, 0);
+    });
+
+    res.json(reduce);
 };
 
 
@@ -189,5 +216,6 @@ module.exports = {
     countMovies,
     topMoviesByRating,
     getMoviesByGenre,
-    countByGenre
+    countByGenre,
+    avgRatingByYear
 }

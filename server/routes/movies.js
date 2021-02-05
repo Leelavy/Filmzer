@@ -70,10 +70,10 @@ router.route('/countByGenre')
 
 /**
  * map reduce - average on number of movies by year
- *
+ * http://localhost:8080/movies/avgRatingByYear
  */
-// router.route('/avgMoviesByYear')
-//     .get(movieController.avgMoviesByYear);
+router.route('/avgRatingByYear')
+    .get(movieController.avgRatingByYear);
 
 
 /**
