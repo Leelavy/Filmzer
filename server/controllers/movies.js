@@ -194,7 +194,8 @@ const updateMovies = async (req, res) => {
 
 
 const deleteMovie = async (req, res) => {
-    const movie = await moviesService.deleteMovie(req.params.id);
+
+    const movie = await moviesService.deleteMovie(req.params.movieId);
     if (!movie) {
         return res.status(404).json({ errors: ['movie not found'] });
     }
