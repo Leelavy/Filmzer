@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Button } from "@material-ui/core";
+import { movies } from "../dummyData";
 
 const useStyles = makeStyles({
   root: {
@@ -39,8 +40,25 @@ const useStyles = makeStyles({
   },
 });
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onWatchClick }) => {
   const classes = useStyles();
+
+  const handleWatchClick = (e) => {
+    e.stopPropagation();
+    onWatchClick(movie);
+  }
+
+  const rating = () => {
+    let sum = 0;
+    for (let i = 0; i < movie.reviews.length; i++) {
+      sum += movie.reviews[i].rating;
+      console.log(sum);
+    }
+    if (sum) {
+      return `${sum}/10`;
+    }
+    return "No Reviews";
+  }
 
   return (
     <Card className={classes.root}>
@@ -56,9 +74,11 @@ const MovieCard = ({ movie }) => {
         <CardContent className={classes.content}>
           <StyledHeaderCardDiv>
             <Typography gutterBottom variant="h5" component="h2" align="left">
-              {`${movie.movieTitle}`}
+              {`${movie.movieTitle.toUpperCase()}`}
             </Typography>
-            <div>Rating</div>
+            {movie.reviews && (
+              <div>{rating()}</div>
+            )}
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
             {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
@@ -67,9 +87,9 @@ const MovieCard = ({ movie }) => {
       </CardActionArea>
       <CardActions className={classes.actions}>
         <StyledButton size="small" color="inherit">
-          REVIEWS
+          READ MORE
         </StyledButton>
-        <StyledButton size="small" color="inherit">
+        <StyledButton size="small" color="inherit" onClick={handleWatchClick}>
           WATCH TRAILER
         </StyledButton>
       </CardActions>
@@ -86,7 +106,8 @@ const StyledHeaderCardDiv = styled.div`
     padding: 0.3rem 0.5rem 0.3rem 0.5rem;
     margin-left: 1rem;
     margin-bottom: 0.5rem;
-    background-color: #141414;
+    background-color: red;
+    border-radius: 10px;
   }
 `;
 

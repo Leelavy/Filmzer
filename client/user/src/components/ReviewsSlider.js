@@ -1,6 +1,8 @@
 import React from 'react';
 //Styles
 import styled from 'styled-components';
+//Routing
+import { Link } from 'react-router-dom';
 //Splide carousel
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
@@ -38,15 +40,17 @@ const ReviewsSlider = ({ sliderTitle }) => {
         {reviews.slice(0, 8).map(review => (
           <SplideSlide key={review.movie.movieTitle}>
             <StyledDiv>
-              <StyledSliderDataDiv>
-                <StyledGrayDiv>
-                  {review.movie.movieTitle}
-                </StyledGrayDiv>
-                <StyledGrayDiv>
-                  {`${review.rating}/10`}
-                </StyledGrayDiv>
-              </StyledSliderDataDiv>
-              <img src={review.movie.imageUrl} alt={review.movie.movieTitle} />
+              <StyledLink to={`/movies/${review.movie.movieTitle}`}>
+                <StyledSliderDataDiv>
+                  <StyledGrayDiv>
+                    <motion.h4>{review.movie.movieTitle}</motion.h4>
+                  </StyledGrayDiv>
+                  <StyledGrayDiv>
+                    <motion.h4>{`${review.rating}/10`}</motion.h4>
+                  </StyledGrayDiv>
+                </StyledSliderDataDiv>
+                <img src={review.movie.imageUrl} alt={review.movie.movieTitle} />
+              </StyledLink>
             </StyledDiv>
           </SplideSlide>
         ))}
@@ -110,6 +114,14 @@ const StyledGrayDiv = styled(motion.div)`
   background-color: #141414;
   border-radius: 5px;
   font-size: 0.8rem;
+
+  h4 {
+    text-decoration: none;
+    color: white;
+  }
+`;
+
+const StyledLink = styled(Link)`
 `;
 
 export default ReviewsSlider;

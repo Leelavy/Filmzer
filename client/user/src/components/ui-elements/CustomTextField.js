@@ -2,20 +2,8 @@ import React from 'react';
 //Styles
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  cssLabel: {
-    color: 'white',
-  },
-  cssFocused: {
-    color: 'white !important',
-  },
-}));
 
 const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false }) => {
-
-  const classes = useStyles();
 
   return (
     <StyledTextField

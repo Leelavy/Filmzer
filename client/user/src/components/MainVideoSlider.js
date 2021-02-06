@@ -1,4 +1,6 @@
 import React from "react";
+//Routing
+import { Link } from 'react-router-dom';
 //Styles
 import styled from 'styled-components';
 //Dummy Data
@@ -10,9 +12,6 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { motion } from 'framer-motion';
 //MUI components
 import { Button } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
-
-
 
 const MainVideoSlider = () => {
 
@@ -55,7 +54,7 @@ const MainVideoSlider = () => {
                   {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
                 </motion.p>
               </StyledDescription>
-              <StyledButton variant="contained" size="large">
+              <StyledButton component={Link} to={`/movies/${movie.movieTitle}`} variant="contained" size="large">
                 READ MORE
               </StyledButton>
             </StyledSliderDataDiv>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import DrawerMenu from './components/DrawerMenu';
 import Footer from './components/Footer';
+import BackToTopButton from './components/BackToTopButton';
 //Pages
 import Home from './pages/Home';
 import Movies from './pages/Movies';
@@ -10,14 +11,15 @@ import Reviews from './pages/Reviews';
 import About from './pages/About';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import MovieDetails from './pages/MovieDetails';
 //Styles
 import GlobalStyles from './styles/GlobalStyles';
 import styled from 'styled-components';
 //Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-//Socket
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:8080");
+// //Socket
+// import io from "socket.io-client";
+// const socket = io.connect("http://localhost:8080");
 
 const App = () => {
 
@@ -29,16 +31,16 @@ const App = () => {
       <StyledContainer>
         <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+        <BackToTopButton />
         <StyledContentContainer>
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" component={Home} />
             <Route exact path="/movies" component={Movies} />
             <Route exact path="/reviews" component={Reviews} />
             <Route exact path="/about" component={About} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
+            <Route exact path="/movies/:movieTitle" component={MovieDetails} />
           </Switch>
         </StyledContentContainer>
         <Footer />

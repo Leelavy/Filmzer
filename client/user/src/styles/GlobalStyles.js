@@ -21,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.1rem;
+    background: #141414;
   }
 `;
 

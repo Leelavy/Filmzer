@@ -2,6 +2,8 @@ import React from "react";
 //styles
 import styled from 'styled-components';
 import { StyledButton } from '../styles/styles';
+//Routing
+import { Link } from 'react-router-dom';
 //MUI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -65,11 +67,11 @@ const ReviewCard = ({ review }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.actions}>
-        <StyledButton size="small" color="inherit">
-          READ MORE
+      <StyledActions className={classes.actions}>
+        <StyledButton component={Link} to={`/movies/${review.movie.movieTitle}`} size="small" color="inherit">
+          READ MORE REVIEWS
         </StyledButton>
-      </CardActions>
+      </StyledActions>
     </Card>
   );
 }
@@ -83,8 +85,15 @@ const StyledHeaderCardDiv = styled.div`
     padding: 0.3rem 0.5rem 0.3rem 0.5rem;
     margin-left: 1rem;
     margin-bottom: 0.5rem;
-    background-color: #141414;
+    background-color: red;
+    border-radius: 10px;
   }
+`;
+
+const StyledActions = styled(CardActions)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default ReviewCard;
