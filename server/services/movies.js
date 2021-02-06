@@ -13,7 +13,8 @@ const createMovie = async (body) => {
 };
 
 const getMovies = async () => {
-    return await Movies.find({})
+    return await Movies.aggregate([{ "$project": {'_id':1, 'title':2, 'year':3, 'genre':4,'description':5,
+            'imageURL':6, 'trailerVideo':7, 'reviews':8}}])
 };
 
 
