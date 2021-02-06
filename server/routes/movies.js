@@ -4,18 +4,6 @@ var router = express.Router();
 
 
 /**
- * get - Gets movie by id
- * patch - Update movie by id
- * delete - Delete movie by id
- * http://localhost:8080/movies/:movieId
- */
-router.route('/:movieId')
-    .get(movieController.getMovieById)
-    .patch(movieController.updateMovies)
-    .delete(movieController.deleteMovie);
-
-
-/**
  * Find movies by movie title, movie genre, and movie year
  * param - title=genre=year
  * http://localhost:8080/movies/getMovieByParams/:param
@@ -88,6 +76,16 @@ router.route('/avgRatingByYear')
     .get(movieController.avgRatingByYear);
 
 
+/**
+ * get - Gets movie by id
+ * patch - Update movie by id
+ * delete - Delete movie by id
+ * http://localhost:8080/movies/:movieId
+ */
+router.route('/:movieId')
+    .get(movieController.getMovieById)
+    .patch(movieController.updateMovies)
+    .delete(movieController.deleteMovie);
 
 
 // //http://localhost:8080/movies/titleId/:imdbTitleId
