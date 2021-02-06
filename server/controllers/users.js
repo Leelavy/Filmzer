@@ -13,6 +13,16 @@ const getUsers = async (req, res) => {
 };
 
 
+const getUserByParam = async (req, res) => {
+
+    var [userName, firstName, lastName ,email] = req.params.param.split('=');
+
+    const users = await usersService.getUserByParam(userName, firstName, lastName, email);
+
+    res.json(users);
+};
+
+
 const countUsers = async (req, res) => {
     const users = await usersService.countUsers();
     res.json(users);
@@ -92,5 +102,6 @@ module.exports = {
     updateUser,
     updateReviewOfUser,
     deleteUser,
-    countUsers
+    countUsers,
+    getUserByParam
 }
