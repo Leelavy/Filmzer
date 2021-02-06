@@ -24,6 +24,19 @@ const countUsers = async () => {
 };
 
 
+const getUserByParam = async (userName, firstName, lastName, email) => {
+
+    return Users.find(
+        {
+            'username': {$regex: `.*${userName}.*`},
+            'firstName': {$regex: `.*${firstName}.*`},
+            'lastName': {$regex: `.*${lastName}.*`},
+            'email': {$regex: `.*${email}.*`}
+        }
+    );
+};
+
+
 const getByUsername = async (username) => {
     return await Users.find({'username': username});
 };
@@ -88,5 +101,6 @@ module.exports = {
     updateUser,
     updateReviewOfUser,
     deleteUser,
-    countUsers
+    countUsers,
+    getUserByParam
 }

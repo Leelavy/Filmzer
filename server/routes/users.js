@@ -3,12 +3,12 @@ const userController = require('../controllers/users');
 var router = express.Router();
 
 /**
- * get user by username, fullname and email
- * param - username=fullname=email
+ * get user by username, first name,last name and email
+ * param - username=firstName=lastName=email
  * http://localhost:8080/users/getUserByParam/:param
  */
-// router.route('/getUserByParam/:param')
-//     .get(userController.getUserByParam);
+router.route('/getUserByParam/:param')
+    .get(userController.getUserByParam);
 
 /**
  * Update the review of user id in users table
