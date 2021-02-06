@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+//Redux data and actions
+import { useDispatch } from 'react-redux';
+import { loadAllMovies } from '../actions/moviesActions'
+//Routing
 import { Link } from 'react-router-dom';
 //Styles
 import { StyledMotionDiv } from '../styles/styles';
@@ -19,6 +23,11 @@ const Movies = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [movieTrailerId, setMovieTrailerId] = useState("");
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadAllMovies());
+  })
 
   const handleWatchClick = (movie) => {
     if (movie) {
