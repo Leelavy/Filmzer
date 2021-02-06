@@ -10,6 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import logo from '../images/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,7 @@ const Navbar = ({ openDrawer, setOpenDrawer }) => {
             <StyledMenuIcon />
           </IconButton>
           <Link to="/">
-            <StyledLogo src="logo.png" alt="logo" />
+            <StyledLogo src={logo} alt="logo" />
           </Link>
           <StyledLoginButton component={Link} to={'/signin'} color="inherit">Sign In</StyledLoginButton>
         </StyledToolBar>

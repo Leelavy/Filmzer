@@ -47,7 +47,7 @@ const BackToTopButton = (props) => {
       <Container>
       </Container>
       <StyledScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </StyledScrollTop>
@@ -56,8 +56,10 @@ const BackToTopButton = (props) => {
 }
 
 const StyledScrollTop = styled(ScrollTop)`
-  .MuiFab-secondary	{
-    background-color: red;
+  button {
+
+    background-color: red !important;
+    
   }
 `;
 

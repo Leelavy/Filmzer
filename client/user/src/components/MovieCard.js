@@ -44,7 +44,7 @@ const MovieCard = ({ movie, onWatchClick }) => {
   const classes = useStyles();
 
   const handleWatchClick = (e) => {
-    e.stopPropagation();
+    e.preventDefault();
     onWatchClick(movie);
   }
 
