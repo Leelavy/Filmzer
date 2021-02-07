@@ -17,35 +17,47 @@ import GlobalStyles from './styles/GlobalStyles';
 import styled from 'styled-components';
 //Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// //Socket
+//MUI
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+//Socket
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:8080");
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FF0000',
+    },
+  },
+});
 
 const App = () => {
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
-    <BrowserRouter>
-      <GlobalStyles />
-      <StyledContainer>
-        <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        <BackToTopButton />
-        <StyledContentContainer>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/movies" component={Movies} />
-            <Route exact path="/reviews" component={Reviews} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/movies/:movieTitle" component={MovieDetails} />
-          </Switch>
-        </StyledContentContainer>
-        <Footer />
-      </StyledContainer>
-    </BrowserRouter>
+    <MuiThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyles />
+        <StyledContainer>
+          <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+          <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+          <BackToTopButton />
+          <StyledContentContainer>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/movies" component={Movies} />
+              <Route exact path="/reviews" component={Reviews} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/SignUp" component={SignUp} />
+              <Route exact path="/movies/:movieTitle" component={MovieDetails} />
+            </Switch>
+          </StyledContentContainer>
+          <Footer />
+        </StyledContainer>
+      </BrowserRouter>
+    </MuiThemeProvider>
   );
 }
 

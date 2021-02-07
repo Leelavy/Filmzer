@@ -6,15 +6,15 @@ const createMovie = async (body) => {
         year: body.year,
         genre: body.genre,  // delimiter ','
         description: body.description,
-        imageURL: body.imageURL,
-        trailerVideo: body.trailerVideo
+        image_url: body.image_url,
+        trailer_video: body.trailer_video
     });
     return await movie.save();
 };
 
 const getMovies = async () => {
     return await Movies.aggregate([{ "$project": {'_id':1, 'title':2, 'year':3, 'genre':4,'description':5,
-            'imageURL':6, 'trailerVideo':7, 'reviews':8}}])
+            'image_url':6, 'trailer_video':7, 'reviews':8}}])
 };
 
 
@@ -170,8 +170,8 @@ const updateMovie = async (id, body) => {
     movie.year = body.year;
     movie.genre = body.genre;
     movie.description = body.description;
-    movie.imageURL = body.imageURL;
-    movie.trailerVideo = body.trailerVideo;
+    movie.imageURL = body.image_url;
+    movie.trailer_video = body.trailer_video;
     await movie.save();
     return movie;
 };
