@@ -34,6 +34,23 @@ const topMoviesByRating = async (req, res) => {
 
 const getMovies = async (req, res) => {
     const movies = await moviesService.getMovies();
+
+    movies.forEach(function (movieItem) {
+        Object.defineProperty(movieItem, "rating_avg",
+            Object.getOwnPropertyDescriptor(movieItem, "rating_review"));
+        delete movieItem["rating_review"];
+
+        var newArray = []
+        movieItem["rating_avg"].forEach(function (arrayItem) {
+            newArray.push(arrayItem['rating'])
+        });
+        movieItem["rating_avg"] = newArray
+
+        movieItem["rating_avg"] = average = movieItem["rating_avg"].reduce(function (avg, value, _, { length }) {
+            return avg + value / length;
+        }, 0);
+    });
+
     res.json(movies);
 };
 
@@ -41,8 +58,16 @@ const getMovies = async (req, res) => {
 const avgRatingByYear = async (req, res) => {
     const ratingByYears = await moviesService.avgRatingByYear();
 
-    var map = _.mapValues(_.groupBy(ratingByYears, 'year'),
-        clist => clist.map(ratingByYears => _.omit(ratingByYears, 'year')));
+    const avgRatingByYear = await avgRatingMapReduce(ratingByYears, 'year');
+
+    res.json(avgRatingByYear);
+};
+
+
+const avgRatingMapReduce = async (obj, keyMap) => {
+
+    var map = _.mapValues(_.groupBy(obj, keyMap),
+        clist => clist.map(obj => _.omit(obj, keyMap)));
 
     var data = {};
     Object.keys(map).forEach(function(key) {
@@ -53,6 +78,7 @@ const avgRatingByYear = async (req, res) => {
         data[key] = newArray
     });
 
+    // add function of reduce
     var reduce = {}
     Object.keys(data).forEach(function (key){
         reduce[key] = average = data[key].reduce(function (avg, value, _, { length }) {
@@ -60,8 +86,8 @@ const avgRatingByYear = async (req, res) => {
         }, 0);
     });
 
-    res.json(reduce);
-};
+    return reduce
+}
 
 
 const countMovies = async (req, res) => {

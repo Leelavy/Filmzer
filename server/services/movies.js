@@ -13,8 +13,29 @@ const createMovie = async (body) => {
 };
 
 const getMovies = async () => {
-    return await Movies.aggregate([{ "$project": {'_id':1, 'title':2, 'year':3, 'genre':4,'description':5,
-            'image_url':6, 'trailer_video':7, 'reviews':8}}])
+    return Movies.aggregate([
+        {
+            $lookup:
+                {
+                    from:"reviews",
+                    localField:"reviews",
+                    foreignField: "_id",
+                    as: "rating_review"
+                }
+        },
+        {
+            $project:
+                {
+                    '_id':1,
+                    'title':2,
+                    'year':3,
+                    'genre':4,
+                    'description':5,
+                    'image_url':6,
+                    'trailer_video':7,
+                    'rating_review.rating':8,
+                }
+        }])
 };
 
 
