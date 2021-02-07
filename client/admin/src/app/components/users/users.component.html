@@ -25,7 +25,9 @@
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                                     <input  id="s" type="text" class="text search-input"   placeholder="filter by user-name..." [(ngModel)]="searchUser" [ngModelOptions]="{standalone: true}">
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                                    <input type="text" class="text search-input" placeholder="filter by full-name...">
+                                    <input type="text" class="text search-input" placeholder="filter by first-name...">
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                    <input type="text" class="text search-input" placeholder="filter by last-name...">
                                     <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                                     <input type="text" class="text search-input" placeholder="filter by email...">
                                 
@@ -40,8 +42,9 @@
                                     <table class="table movie_table" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th style="width: 10%;"> First-Name</th>
+                                                <th style="width: 10%;"> Last-Name</th>
                                                 <th style="width: 10%;"> User-Name</th>
-                                                <th style="width: 10%;"> Full-Name</th>
                                                 <th style="width: 20%;"> Email</th>
                                                 <th style="width: 10%;"> Passwors</th>
                                                 <th style="width: 10%;"> IsManager</th>
@@ -52,8 +55,9 @@
 
 
                                             <tr *ngFor="let users of users">   
+                                                <td>{{users.firstName}}</td>
+                                                <td>{{users.lastName}}</td>
                                                 <td>{{users.username}}</td>
-                                                <td>{{users.firstName}} {{users.lastName}}</td>
                                                 <td>{{users.email}}</td>
                                                 <td>{{users.password}}</td>
                                                 <td>{{users.admin}}</td>
