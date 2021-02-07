@@ -44,8 +44,6 @@ const BackToTopButton = (props) => {
   return (
     <>
       <Toolbar id="back-to-top-anchor" />
-      <Container>
-      </Container>
       <StyledScrollTop {...props}>
         <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

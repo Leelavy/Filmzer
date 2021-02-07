@@ -24,15 +24,13 @@ const MainVideoSlider = ({ topMovies }) => {
     arrows: 'slider',
   };
 
-  console.log(topMovies);
-  console.log(topMovies[0]);
   return (
 
     <StyledSplideSlider
       options={options}
     >
       {topMovies.map(movie => (
-        <SplideSlide key={movie.title}>
+        <SplideSlide key={movie._id}>
           <StyledDiv>
             <StyledSliderDataDiv>
               <motion.h1>

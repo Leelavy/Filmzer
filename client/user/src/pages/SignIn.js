@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const inputProps = {
+  onChange: "handleEmailInput",
+};
+
 
 const SignIn = () => {
 
@@ -100,14 +104,14 @@ const SignIn = () => {
                 label="Email Address"
                 autoComplete="email"
                 autoFocus={true}
-                onChange={(e) => handleEmailInput(e)}
+                inputProps={inputProps}
               />
               <CustomTextField
                 id="password"
                 label="Password"
                 autoComplete="current-password"
                 type="password"
-                onChange={handlePasswordInput}
+                inputProps={inputProps}
               />
               <Button
                 type="submit"
