@@ -1,4 +1,6 @@
 import React from "react";
+//Axios 
+import axios from 'axios';
 //styles
 import styled from 'styled-components';
 import { StyledButton } from '../styles/styles';
@@ -10,8 +12,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Button } from "@material-ui/core";
-import { movies } from "../dummyData";
 
 const useStyles = makeStyles({
   root: {
@@ -48,16 +48,19 @@ const MovieCard = ({ movie, onWatchClick }) => {
     onWatchClick(movie);
   }
 
+  const { title, description, image_url } = movie;
+
+  //Rating should be calculated on server abd be added to each movie
   const rating = () => {
-    let sum = 0;
-    for (let i = 0; i < movie.reviews.length; i++) {
-      sum += movie.reviews[i].rating;
-      console.log(sum);
-    }
-    if (sum) {
-      return `${sum}/10`;
-    }
-    return "No Reviews";
+    // let sum = 0;
+    // for (let i = 0; i < movie.reviews.length; i++) {
+    //   sum += movie.reviews[i].rating;
+    //   console.log(sum);
+    // }
+    // if (sum) {
+    //   return `${sum}/10`;
+    // }
+    // return "No Reviews";
   }
 
   return (
@@ -66,22 +69,22 @@ const MovieCard = ({ movie, onWatchClick }) => {
         <CardMedia
           className={classes.media}
           component="img"
-          alt={`${movie.movieTitle}`}
+          alt={`${title}`}
           height="140"
-          image={`${movie.imageUrl}`}
-          title={`${movie.movieTitle}`}
+          image={`${image_url}`}
+          title={`${title}`}
         />
         <CardContent className={classes.content}>
           <StyledHeaderCardDiv>
             <Typography gutterBottom variant="h5" component="h2" align="left">
-              {`${movie.movieTitle.toUpperCase()}`}
+              {`${title.toUpperCase()}`}
             </Typography>
             {movie.reviews && (
               <div>{rating()}</div>
             )}
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
-            {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
+            {`${description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
           </Typography>
         </CardContent>
       </CardActionArea>

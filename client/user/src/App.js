@@ -51,7 +51,7 @@ const App = () => {
               <Route exact path="/about" component={About} />
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/SignUp" component={SignUp} />
-              <Route exact path="/movies/:movieTitle" component={MovieDetails} />
+              <Route exact path="/movies/:movieId" component={MovieDetails} />
             </Switch>
           </StyledContentContainer>
           <Footer />

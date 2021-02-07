@@ -15,10 +15,10 @@ export const reviewsCountURL = () => `${base_url}/countReviews`;
 export const latestReviewsURL = () => `${base_url}/latestReviews`;
 
 // Get X reviews (by param inserted) sorted in descending date (top X latest reviews)
-export const topLatesrReviewsURL = () => `${base_url}/latestReviews/:topNumber`;
+export const topLatestReviewsURL = (topNumWanted) => `${base_url}/latestReviews/${topNumWanted}`;
 
 // Get reviews by movie id input
-export const reviewsByMovieIdURL = () => `${base_url}/getReviewsByMovieId/:movieId`;
+export const reviewsByMovieIdURL = (id) => `${base_url}/getReviewsByMovieId/${id}`;
 
 // Get all reviews with the movies and the users connected to it
 export const reviewsWithMoviesAndUsersURL = () => `${base_url}/getReviewsMoviesUsers`;

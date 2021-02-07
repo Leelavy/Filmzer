@@ -1,8 +1,8 @@
-const base_url = "http://localhost:8080";
+const base_url = "http://localhost:8080/movies";
 
 // post - create a movie
 // get - gets all movies
-export const moviesURL = () => `${base_url}/movies`;
+export const moviesURL = () => `${base_url}/`;
 
 // get - Gets movie by id
 // patch - Update movie by id
@@ -10,7 +10,7 @@ export const moviesURL = () => `${base_url}/movies`;
 export const movieByIdURL = () => `${base_url}/:movieId`;
 
 // Get movies by input number and by average of rating
-export const topMoviesURL = () => `${base_url}/topMovies/:topNumber`;
+export const topMoviesURL = (topNumWanted) => `${base_url}/topMovies/${topNumWanted}`;
 
 // Get movie by title name
 export const moviesByTitleURL = () => `${base_url}/title/:movieTitle`;

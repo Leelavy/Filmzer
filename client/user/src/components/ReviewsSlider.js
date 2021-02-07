@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+//Redux
+import { useSelector } from 'react-redux';
 //Styles
 import styled from 'styled-components';
 //Routing
@@ -13,7 +15,7 @@ import StarsIcon from '@material-ui/icons/Stars';
 //Animation
 import { motion } from 'framer-motion';
 
-const ReviewsSlider = ({ sliderTitle }) => {
+const ReviewsSlider = ({ sliderTitle, topLatestReviews }) => {
 
   const options = {
     type: 'loop',
@@ -28,6 +30,25 @@ const ReviewsSlider = ({ sliderTitle }) => {
     arrows: 'slider',
   };
 
+  const allMovies = useSelector(state => state.movies.allMovies);
+  const [reviewsWithMovieData, setReviewsWithMovieData] = useState([]);
+
+  useEffect(() => {
+    // maybe should not be done here but on server side //
+    const reviewsWithMovies = topLatestReviews.map((review) => {
+      const movieDetails = allMovies.filter((movie) => movie._id === review.movies)[0];
+      if (movieDetails) {
+        return ({
+          ...review,
+          movies: movieDetails,
+        });
+      }
+    });
+    setReviewsWithMovieData(reviewsWithMovies);
+    // =============================================== //
+
+  }, [topLatestReviews])
+
   return (
     <>
       <StyledSliderHeader>
@@ -37,23 +58,24 @@ const ReviewsSlider = ({ sliderTitle }) => {
       <Splide
         options={options}
       >
-        {reviews.slice(0, 8).map(review => (
-          <SplideSlide key={review.movie.movieTitle}>
-            <StyledDiv>
-              <StyledLink to={`/movies/${review.movie.movieTitle}`}>
-                <StyledSliderDataDiv>
-                  <StyledGrayDiv>
-                    <motion.h4>{review.movie.movieTitle}</motion.h4>
-                  </StyledGrayDiv>
-                  <StyledGrayDiv>
-                    <motion.h4>{`${review.rating}/10`}</motion.h4>
-                  </StyledGrayDiv>
-                </StyledSliderDataDiv>
-                <img src={review.movie.imageUrl} alt={review.movie.movieTitle} />
-              </StyledLink>
-            </StyledDiv>
-          </SplideSlide>
-        ))}
+        {reviewsWithMovieData && (
+          reviewsWithMovieData.map(review => (
+            <SplideSlide key={review.movies_id}>
+              <StyledDiv>
+                <StyledLink to={`/movies/${review.movies._id}`}>
+                  <StyledSliderDataDiv>
+                    <StyledGrayDiv>
+                      <motion.h4>{review.movies.title}</motion.h4>
+                    </StyledGrayDiv>
+                    <StyledGrayDiv>
+                      <motion.h4>{`${review.rating}/10`}</motion.h4>
+                    </StyledGrayDiv>
+                  </StyledSliderDataDiv>
+                  <img src={review.movies.image_url} alt={review.movies.title} />
+                </StyledLink>
+              </StyledDiv>
+            </SplideSlide>
+          )))}
       </Splide>
     </>
   );

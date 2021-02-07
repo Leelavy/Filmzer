@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+//Axios
+import axios from 'axios';
+import { reviewsByMovieIdURL } from '../api/reviews';
+//Redux
+import { useSelector } from 'react-redux';
 //Styled
 import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Routing
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-//dummy data
-import { movies } from '../dummyData';
 //Components
 import Loader from '../components/Loader';
 import ReviewFeedItem from '../components/ReviewFeedItem';
@@ -19,12 +22,21 @@ const MovieDetails = () => {
 
   const location = useLocation();
   const pathId = decodeURI(location.pathname.split("/")[2]);
+
   const [currentMovie, setCurrentMovie] = useState(null);
+  const [currentMovieReviews, setCurrentMoviesReviews] = useState([]);
+  const allMovies = useSelector(state => state.movies.allMovies);
 
   useEffect(() => {
-    const movieFiltered = movies.filter((movie) => (movie.movieTitle === pathId));
+    const movieFiltered = allMovies.filter((movie) => (movie._id === pathId));
     setCurrentMovie(movieFiltered[0]);
-  }, [movies, pathId]);
+    axios.get(reviewsByMovieIdURL(movieFiltered._id))
+      .then((response) => response.json())
+      .then((data) => setCurrentMoviesReviews(data))
+  }, [allMovies, pathId]);
+
+  console.log(currentMovie);
+  console.log(currentMovieReviews);
 
   return (
     <>
@@ -41,11 +53,11 @@ const MovieDetails = () => {
               <StyledStarDiv>
                 <motion.h4>Rating in stars</motion.h4>
               </StyledStarDiv>
-              <StyledMovieImg src={currentMovie.imageUrl} alt="" />
+              <StyledMovieImg src={currentMovie.image_url} alt="" />
               <StyledDataDiv>
                 <StyledGrayDiv>
                   <motion.h4>TITLE</motion.h4>
-                  <motion.h2>{currentMovie.movieTitle.toUpperCase()}</motion.h2>
+                  <motion.h2>{currentMovie.title.toUpperCase()}</motion.h2>
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>GENRE</motion.h4>
@@ -69,9 +81,10 @@ const MovieDetails = () => {
               <motion.p>{currentMovie.description}</motion.p>
             </StyledDescriptionDiv>
             <ReviewForm />
-            {currentMovie.reviews.map((review) => (
-              <ReviewFeedItem review={review} />
-            ))}
+            {currentMovieReviews && (
+              currentMovieReviews.map((review) => (
+                <ReviewFeedItem review={review} />
+              )))}
           </>
         }
       </StyledMotionDiv>

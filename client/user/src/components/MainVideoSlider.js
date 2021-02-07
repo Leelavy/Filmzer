@@ -3,8 +3,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 //Styles
 import styled from 'styled-components';
-//Dummy Data
-import { movies } from '../dummyData';
 //Splide carousel
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
@@ -13,7 +11,7 @@ import { motion } from 'framer-motion';
 //MUI components
 import { Button } from "@material-ui/core";
 
-const MainVideoSlider = () => {
+const MainVideoSlider = ({ topMovies }) => {
 
   const options = {
     type: 'loop',
@@ -26,17 +24,19 @@ const MainVideoSlider = () => {
     arrows: 'slider',
   };
 
+  console.log(topMovies);
+  console.log(topMovies[0]);
   return (
 
     <StyledSplideSlider
       options={options}
     >
-      {movies.slice(0, 3).map(movie => (
-        <SplideSlide key={movie.movieTitle}>
+      {topMovies.map(movie => (
+        <SplideSlide key={movie.title}>
           <StyledDiv>
             <StyledSliderDataDiv>
               <motion.h1>
-                {movie.movieTitle.toUpperCase()}
+                {movie.title.toUpperCase()}
               </motion.h1>
               <StyledBlockDiv>
                 <StyledGrayDiv>
@@ -54,11 +54,11 @@ const MainVideoSlider = () => {
                   {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
                 </motion.p>
               </StyledDescription>
-              <StyledButton component={Link} to={`/movies/${movie.movieTitle}`} variant="contained" size="large">
+              <StyledButton component={Link} to={`/movies/${movie._id}`} variant="contained" size="large">
                 READ MORE
               </StyledButton>
             </StyledSliderDataDiv>
-            <img src={movie.imageUrl} alt={movie.movieTitle} />
+            <img src={movie.image_url} alt={movie.title} />
           </StyledDiv>
         </SplideSlide>
       ))}

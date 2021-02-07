@@ -11,6 +11,11 @@ const moviesReducer = (state = initState, action) => {
         ...state,
         allMovies: action.payload.allMovies,
       };
+    case "FETCH_TOP_MOVIES":
+      return {
+        ...state,
+        topMovies: action.payload.topMovies,
+      };
     default:
       return { ...state };
   }

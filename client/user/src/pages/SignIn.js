@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+//Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signIn } from '../redux/actions/usersActions';
 //Routing
 import { Link } from 'react-router-dom';
 //Styles
@@ -44,10 +47,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const SignIn = () => {
 
   const classes = useStyles();
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
 
+  const dispatch = useDispatch();
+
+  const handleEmailInput = (e) => {
+    console.log(e.target.value);
+    setEmailInput(e.target.value);
+  }
+
+  const handlePasswordInput = (e) => {
+    console.log(e.target.value);
+    setPasswordInput(e.target.value);
+  }
+
+  const handleSignInSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signIn(emailInput, passwordInput));
+  }
+
+  console.log(emailInput);
   return (
     <>
       <Loader />
@@ -66,18 +90,24 @@ const SignIn = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={handleSignInSubmit}
+            >
               <CustomTextField
                 id="email"
                 label="Email Address"
                 autoComplete="email"
                 autoFocus={true}
+                onChange={(e) => handleEmailInput(e)}
               />
               <CustomTextField
                 id="password"
                 label="Password"
                 autoComplete="current-password"
                 type="password"
+                onChange={handlePasswordInput}
               />
               <Button
                 type="submit"

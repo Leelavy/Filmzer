@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 //Redux Setup
 import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from './reducers';
+import rootReducer from './redux/reducers/index';
 import { Provider } from 'react-redux';
 //allows us to use async fetching like axios in action creators for redux reducers
 import thunk from 'redux-thunk';
