@@ -38,10 +38,19 @@ router.route('/countUsers')
 
 /**
  * get user by username
- * http://localhost:8080/users/:username
+ * http://localhost:8080/users/getUsername/:username
  */
 router.route('/getUsername/:username')
     .get(userController.getByUsername)
+
+
+/**
+ * get user by email
+ * http://localhost:8080/users/getUserByEmail/:email
+ */
+router.route('/getUserByEmail/:email')
+    .get(userController.getUserByEmail)
+
 
 
 /**

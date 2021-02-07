@@ -42,6 +42,11 @@ const getByUsername = async (username) => {
 };
 
 
+const getUserByEmail = async (email) => {
+    return await Users.find({'email': email});
+};
+
+
 const getUserById = async (id) => {
     return await Users.findById(id);
 };
@@ -102,5 +107,6 @@ module.exports = {
     updateReviewOfUser,
     deleteUser,
     countUsers,
-    getUserByParam
+    getUserByParam,
+    getUserByEmail
 }
