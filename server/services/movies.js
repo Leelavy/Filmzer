@@ -77,26 +77,26 @@ const topMoviesByRating = async (topNumber) => {
         {
             $project:
                 {
-                    "_id": 0,
-                    "title": 1,
-                    "year": 2,
-                    "genre": 3,
-                    "description": 4,
-                    "image_url":5,
-                    "trailer_video":6,
+                    "_id": 1,
+                    "title": 2,
+                    "year": 3,
+                    "genre": 4,
+                    "description": 5,
+                    "image_url":6,
+                    "trailer_video":7,
                     "rating_review.rating": {$avg: "$rating_review.rating"},
                 }
         },
         {
             $project:
                 {
-                    "_id": 0,
-                    "title": 1,
-                    "year": 2,
-                    "genre": 3,
-                    "description": 4,
-                    "image_url":5,
-                    "trailer_video":6,
+                    "_id": 1,
+                    "title": 2,
+                    "year": 3,
+                    "genre": 4,
+                    "description": 5,
+                    "image_url":6,
+                    "trailer_video":7,
                     "rating_review": { $slice: [ "$rating_review", 1 ] }
 
                 }
@@ -143,8 +143,8 @@ const getMovieByImdbTitleId = async (title_id) => {
 const getMovieByTitleGenreYear = async (title, genre, year, all) => {
 
     const filter = [
-        {$and: [{'title': {$regex: `.*${title}.*`}}]},
-        {$and: [{'genre': {$regex: `.*${genre}.*`}}]},
+        {$and: [{'title': {$regex: `^${title}.*`}}]},
+        {$and: [{'genre': {$regex: `^${genre}.*`}}]},
         {$and: [{'year': year}]}
     ]
 
