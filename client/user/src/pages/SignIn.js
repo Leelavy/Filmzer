@@ -56,12 +56,10 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const handleEmailInput = (e) => {
-    console.log(e.target.value);
     setEmailInput(e.target.value);
   }
 
   const handlePasswordInput = (e) => {
-    console.log(e.target.value);
     setPasswordInput(e.target.value);
   }
 

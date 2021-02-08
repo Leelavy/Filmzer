@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+//Redux
+import { useDispatch } from 'react-redux';
+import { signUp } from '../redux/actions/usersActions';
 //Routing
 import { Link } from 'react-router-dom';
 //Styles
@@ -48,6 +51,43 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = () => {
 
   const classes = useStyles();
+  const [firstNameInput, setFirstNameInput] = useState('');
+  const [lastNameInput, setLastNameInput] = useState('');
+  const [usernameInput, setUsernameInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleFirstNameInput = (e) => {
+    setFirstNameInput(e.target.value);
+  }
+  const handleLastNameInput = (e) => {
+    setLastNameInput(e.target.value);
+  }
+  const handleUsernameInput = (e) => {
+    setUsernameInput(e.target.value);
+  }
+  const handleEmailInput = (e) => {
+    setEmailInput(e.target.value);
+  }
+
+  const handlePasswordInput = (e) => {
+    setPasswordInput(e.target.value);
+  }
+
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      signUp(
+        firstNameInput,
+        lastNameInput,
+        usernameInput,
+        emailInput,
+        passwordInput,
+      )
+    );
+  }
 
   return (
     <>
@@ -67,13 +107,18 @@ const SignUp = () => {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={handleSignUpSubmit}
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomTextField
                     id="firstName"
                     label="First Name"
                     autoComplete="fname"
+                    onChange={handleFirstNameInput}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -81,6 +126,7 @@ const SignUp = () => {
                     id="lastName"
                     label="Last Name"
                     autoComplete="lname"
+                    onChange={handleLastNameInput}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -88,6 +134,15 @@ const SignUp = () => {
                     id="email"
                     label="Email Address"
                     autoComplete="email"
+                    onChange={handleEmailInput}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <CustomTextField
+                    id="username"
+                    label="Username"
+                    autoComplete="username"
+                    onChange={handleUsernameInput}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -96,6 +151,7 @@ const SignUp = () => {
                     label="Password"
                     autoComplete="current-password"
                     type="password"
+                    onChange={handlePasswordInput}
                   />
                 </Grid>
               </Grid>

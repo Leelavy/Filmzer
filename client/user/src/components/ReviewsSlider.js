@@ -13,7 +13,7 @@ import StarsIcon from '@material-ui/icons/Stars';
 //Animation
 import { motion } from 'framer-motion';
 
-const ReviewsSlider = ({ sliderTitle, topLatestReviewsWithMovieData }) => {
+const ReviewsSlider = ({ sliderTitle }) => {
 
   const options = {
     type: 'loop',
@@ -28,7 +28,21 @@ const ReviewsSlider = ({ sliderTitle, topLatestReviewsWithMovieData }) => {
     arrows: 'slider',
   };
 
-  console.log(topLatestReviewsWithMovieData);
+  const allMovies = useSelector(state => state.movies.allMovies);
+  const topLatestReviews = useSelector(state => state.reviews.topLatestReviews);
+  const [topLatestReviewsWithMovieData, setTopLatestReviewsWithMovieData] = useState(null);
+
+  useEffect(() => {
+    const reviews = topLatestReviews.map((review) => {
+      const movieFiltered = allMovies.filter((movie) => (movie._id === review.movies))[0];
+      return {
+        ...review,
+        movies: movieFiltered,
+      };
+    });
+    setTopLatestReviewsWithMovieData(reviews);
+  }, [topLatestReviews, allMovies])
+
   return (
     <>
       <StyledSliderHeader>
@@ -38,7 +52,7 @@ const ReviewsSlider = ({ sliderTitle, topLatestReviewsWithMovieData }) => {
       <Splide
         options={options}
       >
-        {topLatestReviewsWithMovieData.length && (
+        {topLatestReviewsWithMovieData && (
           topLatestReviewsWithMovieData.map((review) => (
             <SplideSlide key={review.movies._id}>
               <StyledDiv>

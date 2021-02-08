@@ -21,20 +21,6 @@ const Home = () => {
   }, [dispatch]) //useEffect runs only when dispatch happens
 
   const topMovies = useSelector(state => state.movies.topMovies);
-  const allMovies = useSelector(state => state.movies.allMovies);
-  const topLatestReviews = useSelector(state => state.reviews.topLatestReviews);
-  const [topLatestReviewsWithMovieData, setTopLatestReviewsWithMovieData] = useState([]);
-
-  useEffect(() => {
-    const reviews = topLatestReviews.map((review) => {
-      const movieFiltered = allMovies.filter((movie) => (movie._id === review.movies))[0];
-      return {
-        ...review,
-        movies: movieFiltered,
-      };
-    });
-    setTopLatestReviewsWithMovieData(reviews);
-  }, [allMovies, topMovies, topLatestReviews])
 
   return (
     <>
@@ -46,9 +32,8 @@ const Home = () => {
         exit="exit"
       >
         <MainVideoSlider topMovies={topMovies} />
-        {topLatestReviewsWithMovieData.length && (
-          <ReviewsSlider sliderTitle="LATEST REVIEWS" topLatestReviewsWithMovieData={topLatestReviewsWithMovieData} />
-        )}
+        <ReviewsSlider sliderTitle="LATEST REVIEWS" />
+
       </StyledMotionDiv>
     </>
   );
