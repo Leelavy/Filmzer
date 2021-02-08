@@ -28,6 +28,7 @@ export class ReviewsComponent implements OnInit {
   onDelete(_id:number) {
       this.reviewsService.deleteReview(_id).subscribe(()=>{
         this.review=null;
+        this.load();
       });
       
 
