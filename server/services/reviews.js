@@ -43,7 +43,7 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
         match["user.username"] = new RegExp(userName)
     }
 
-    return Reviews.aggregate([
+    var query = [
         {
             $lookup:
                 {
@@ -91,7 +91,62 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
         {
             $match:match
         }
-    ])};
+    ]
+
+    return Reviews.aggregate(query)};
+
+
+const searchReview = async (title=null, rating=NaN, user=null, date=null) => {
+
+    var match = {};
+
+    if(title!==null){
+        match["reviewTitle"] = new RegExp(title)
+    }
+
+    if(isNaN(rating)!==true){
+        match["rating"] = {$eq:parseInt(rating)};
+    }
+
+    if(user!==null){
+        match["user.username"] = new RegExp(user)
+    }
+
+    if(date!==null){
+        match["lastUpdated"] = new Date(date)
+    }
+
+    var query = [
+        {
+            $lookup:
+                {
+                    from: "users",
+                    localField: "users",
+                    foreignField: "_id",
+                    as: "user"
+                }
+        },
+        {
+            $unwind:"$user"
+        },
+        {
+            $project:
+                {
+                    "_id": 1,
+                    "reviewTitle": 2,
+                    "reviewContent": 3,
+                    "rating": 4,
+                    "lastUpdated":5,
+                    "user.username": 6
+                }
+        },
+        {
+            $match:match
+        }
+    ]
+
+    return await Reviews.aggregate(query)
+};
 
 
 const getReviewsByIds = async (review_ids) => {
@@ -258,5 +313,6 @@ module.exports = {
     countReviews,
     topReviewsByDate,
     getReviewsByIds,
-    getReviewsMoviesUsers
+    getReviewsMoviesUsers,
+    searchReview
 }

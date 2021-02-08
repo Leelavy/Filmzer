@@ -32,6 +32,36 @@ const getReviewsMoviesUsers = async (req, res) => {
 };
 
 
+const searchReview = async (req, res) => {
+
+    var [title, rating, user, date] = req.params.param.split('=');
+
+    if(title === ''){
+        title =  null
+    }
+
+    if(user === ''){
+        user =  null
+    }
+
+    if(rating === ''){
+        rating =  NaN
+    }
+
+    if(date === ''){
+        date =  null
+    }
+
+    const reviews = await reviewsService.searchReview(title, rating, user, date);
+
+    if (!reviews){
+        return res.status(404).json({errors: ['reviews not found']});
+    }
+
+    res.json(reviews);
+};
+
+
 const topReviewsByDate = async (req, res) => {
 
     if (!req.params.topNumber){
@@ -124,5 +154,6 @@ module.exports = {
     countReviews,
     topReviewsByDate,
     getReviewsByMovieId,
-    getReviewsMoviesUsers
+    getReviewsMoviesUsers,
+    searchReview
 }

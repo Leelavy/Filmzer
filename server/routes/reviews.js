@@ -13,6 +13,15 @@ router.route('/getReviewByParams/:param')
 
 
 /**
+ * Search by title review, rating, user and last updated
+ * param - title=rating=user=date
+ * http://localhost:8080/reviews/searchReview/:param
+ */
+router.route('/searchReview/:param')
+    .get(reviewController.searchReview)
+
+
+/**
  * Counter of all the reviews
  * http://localhost:8080/reviews/countReviews
  */
