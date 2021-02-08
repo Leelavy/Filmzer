@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../redux/actions/usersActions';
 //Routing
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 //Styles
 import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
@@ -58,6 +58,7 @@ const SignUp = () => {
   const [passwordInput, setPasswordInput] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleFirstNameInput = (e) => {
     setFirstNameInput(e.target.value);
@@ -87,6 +88,7 @@ const SignUp = () => {
         passwordInput,
       )
     );
+    history.push("/");
   }
 
   return (
