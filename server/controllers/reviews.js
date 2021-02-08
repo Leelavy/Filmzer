@@ -33,7 +33,15 @@ const getReviewsMoviesUsers = async (req, res) => {
 
 
 const topReviewsByDate = async (req, res) => {
-    const reviews = await reviewsService.topReviewsByDate(req.params.topNumber);
+
+    if (!req.params.topNumber){
+        var topNumber = await reviewsService.countReviews();
+    }
+    else{
+        var topNumber = req.params.topNumber;
+    }
+
+    const reviews = await reviewsService.topReviewsByDate(topNumber);
     res.json(reviews);
 };
 

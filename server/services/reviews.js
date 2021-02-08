@@ -100,12 +100,63 @@ const getReviewsByIds = async (review_ids) => {
 
 
 const topReviewsByDate = async (topNumber) => {
-    if (!topNumber){
-        return await Reviews.find({}).sort({'lastUpdated': -1}).exec();
-    }
-    else {
-        return await Reviews.find({}).sort({'lastUpdated': -1}).limit(parseInt(topNumber)).exec();
-    }
+
+    var select = [
+        {
+            $lookup:
+                {
+                    from: "movies",
+                    localField: "movies",
+                    foreignField: "_id",
+                    as: "movie"
+                }
+        },
+        {
+            $unwind:"$movie"
+        },
+        {
+            $lookup:
+                {
+                    from: "users",
+                    localField: "users",
+                    foreignField: "_id",
+                    as: "user"
+                }
+        },
+        {
+            $unwind:"$user"
+        },
+        {
+            $project:
+                {
+                    "_id": 1,
+                    "reviewTitle": 2,
+                    "reviewContent": 3,
+                    "rating": 4,
+                    "movie._id":5,
+                    "movie.title": 6,
+                    "movie.year": 7,
+                    "movie.genre": 8,
+                    "movie.description": 9,
+                    "movie.image_url": 10,
+                    "movie.trailer_video": 11,
+                    "user._id":12,
+                    "user.username": 13,
+                    "user.firstName": 14,
+                    "user.lastName": 15
+                }
+        },
+        {
+            $sort:{
+                'lastUpdated': -1
+            }
+        },
+        {
+            $limit:parseInt(topNumber)
+        }
+    ]
+
+    return await Reviews.aggregate([select])
 };
 
 
