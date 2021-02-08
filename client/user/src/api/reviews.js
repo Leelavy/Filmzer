@@ -6,7 +6,7 @@ export const reviewsURL = () => `${base_url}/`;
 
 // Find reviews by movie title, rating, and username
 // param - title=rating=username
-export const reviewByParamsURL = () => `${base_url}/getReviewByParams/:param`;
+export const searchedReviewsURL = (title, rating, username) => `${base_url}/getReviewByParams/${title}=${rating}=${username}`;
 
 // Counter of all the reviews
 export const reviewsCountURL = () => `${base_url}/countReviews`;

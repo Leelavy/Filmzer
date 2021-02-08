@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   reviewsURL,
-  reviewByParamsURL,
+  searchedReviewsURL,
   reviewsCountURL,
   latestReviewsURL,
   topLatestReviewsURL,
@@ -39,6 +39,16 @@ export const loadTopLatestReviews = (numWanted) => async (dispatch) => {
     type: "FETCH_TOP_LATEST_REVIEWS",
     payload: {
       topLatestReviews: topLatestReviewsData.data,
+    },
+  });
+};
+
+export const loadSearchedReviews = (title, rating, username) => async (dispatch) => {
+  const searchedReviewsData = await axios.get(searchedReviewsURL(title, rating, username));
+  dispatch({
+    type: "FETCH_SEARCHED_REVIEWS",
+    payload: {
+      searchedReviews: searchedReviewsData.data,
     },
   });
 };

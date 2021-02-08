@@ -49,20 +49,7 @@ const MovieCard = ({ movie, onWatchClick }) => {
     onWatchClick(movie);
   }
 
-  const { title, description, image_url } = movie;
-
-  //Rating should be calculated on server abd be added to each movie
-  const rating = () => {
-    // let sum = 0;
-    // for (let i = 0; i < movie.reviews.length; i++) {
-    //   sum += movie.reviews[i].rating;
-    //   console.log(sum);
-    // }
-    // if (sum) {
-    //   return `${sum}/10`;
-    // }
-    // return "No Reviews";
-  }
+  const { title, description, image_url, rating_avg } = movie;
 
   return (
     <Card className={classes.root}>
@@ -80,9 +67,7 @@ const MovieCard = ({ movie, onWatchClick }) => {
             <Typography gutterBottom variant="h5" component="h2" align="left">
               {`${title.toUpperCase()}`}
             </Typography>
-            {movie.reviews && (
-              <div>{rating()}</div>
-            )}
+            {rating_avg ? (<div>{`${rating_avg}/10`}</div>) : (<div style={{ background: '#141414' }}>No Reviews</div>)}
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
             {`${description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}

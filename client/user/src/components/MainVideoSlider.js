@@ -11,55 +11,56 @@ import { motion } from 'framer-motion';
 //MUI components
 import { Button } from "@material-ui/core";
 
-const MainVideoSlider = ({ topMovies }) => {
+const options = {
+  type: 'loop',
+  gap: '1rem',
+  drag: true,
+  autoplay: true,
+  interval: 3000,
+  pauseOnHover: true,
+  resetProgress: false,
+  arrows: 'slider',
+};
 
-  const options = {
-    type: 'loop',
-    gap: '1rem',
-    drag: true,
-    autoplay: true,
-    interval: 4000,
-    pauseOnHover: true,
-    resetProgress: false,
-    arrows: 'slider',
-  };
+const MainVideoSlider = ({ topMovies }) => {
 
   return (
 
     <StyledSplideSlider
       options={options}
     >
-      {topMovies.map(movie => (
-        <SplideSlide key={movie._id}>
-          <StyledDiv>
-            <StyledSliderDataDiv>
-              <motion.h1>
-                {movie.title.toUpperCase()}
-              </motion.h1>
-              <StyledBlockDiv>
-                <StyledGrayDiv>
-                  {movie.year}
-                </StyledGrayDiv>
-                <StyledGrayDiv>
-                  {movie.genre}
-                </StyledGrayDiv>
-                <StyledGrayDiv>
-                  Rating
-                </StyledGrayDiv>
-              </StyledBlockDiv>
-              <StyledDescription>
-                <motion.p>
-                  {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
-                </motion.p>
-              </StyledDescription>
-              <StyledButton component={Link} to={`/movies/${movie._id}`} variant="contained" size="large">
-                READ MORE
+      {topMovies && (
+        topMovies.map(movie => (
+          <SplideSlide key={movie._id}>
+            <StyledDiv>
+              <StyledSliderDataDiv>
+                <motion.h1>
+                  {movie.title.toUpperCase()}
+                </motion.h1>
+                <StyledBlockDiv>
+                  <StyledGrayDiv>
+                    {movie.year}
+                  </StyledGrayDiv>
+                  <StyledGrayDiv>
+                    {movie.genre}
+                  </StyledGrayDiv>
+                  <StyledGrayDiv>
+                    {`${movie.rating_avg}/10`}
+                  </StyledGrayDiv>
+                </StyledBlockDiv>
+                <StyledDescription>
+                  <motion.p>
+                    {`${movie.description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
+                  </motion.p>
+                </StyledDescription>
+                <StyledButton component={Link} to={`/movies/${movie._id}`} variant="contained" size="large">
+                  READ MORE
               </StyledButton>
-            </StyledSliderDataDiv>
-            <img src={movie.image_url} alt={movie.title} />
-          </StyledDiv>
-        </SplideSlide>
-      ))}
+              </StyledSliderDataDiv>
+              <img src={movie.image_url} alt={movie.title} />
+            </StyledDiv>
+          </SplideSlide>
+        )))}
     </StyledSplideSlider>
   );
 }

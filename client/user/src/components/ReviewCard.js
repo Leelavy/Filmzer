@@ -12,7 +12,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -44,7 +43,7 @@ const useStyles = makeStyles({
 const ReviewCard = ({ review }) => {
   const classes = useStyles();
   const { reviewTitle, reviewContent, rating } = review;
-  const { title, image_url } = review.movies;
+  const { title, image_url } = review.movie;
 
   return (
     <Card className={classes.root}>
@@ -70,7 +69,7 @@ const ReviewCard = ({ review }) => {
         </CardContent>
       </CardActionArea>
       <StyledActions className={classes.actions}>
-        <StyledButton component={Link} to={`/movies/${review.movies._id}`} size="small" color="inherit">
+        <StyledButton component={Link} to={`/movies/${review.movie._id}`} size="small" color="inherit">
           READ MORE REVIEWS
         </StyledButton>
       </StyledActions>

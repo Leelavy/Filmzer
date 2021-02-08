@@ -6,21 +6,31 @@ import { motion } from 'framer-motion';
 
 const ReviewFeedItem = ({ review }) => {
 
+  if (!review) {
+    return "";
+  }
+
+  console.log(review);
+
   return (
-    <StyledContainer>
-      <StyledReviewHeader>
-        <motion.div>
-          <motion.h1>{review.reviewTitle}</motion.h1>
-          <StyledRatingDiv>
-            {`${review.rating}/10`}
-          </StyledRatingDiv>
-        </motion.div>
-        {/* <motion.h5>By {review.user.username}</motion.h5> */}
-      </StyledReviewHeader>
-      <StyledReviewContent>
-        {/* <motion.p>{review.reviewContent}</motion.p> */}
-      </StyledReviewContent>
-    </StyledContainer>
+    <>
+      {review.user && (
+        <StyledContainer>
+          <StyledReviewHeader>
+            <motion.div>
+              <motion.h1>{review.reviewTitle}</motion.h1>
+              <StyledRatingDiv>
+                {`${review.rating}/10`}
+              </StyledRatingDiv>
+            </motion.div>
+            <motion.h5>{`By ${review.user.username}`}</motion.h5>
+          </StyledReviewHeader>
+          <StyledReviewContent>
+            <motion.p>{review.reviewContent}</motion.p>
+          </StyledReviewContent>
+        </StyledContainer>
+      )}
+    </>
   );
 }
 

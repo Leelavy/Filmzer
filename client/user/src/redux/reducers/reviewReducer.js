@@ -2,6 +2,7 @@ const initState = {
   allReviews: [],
   allReviewsWithData: [],
   topLatestReviews: [],
+  searchedReviews: [],
 }
 
 const reviewsReducer = (state = initState, action) => {
@@ -22,6 +23,11 @@ const reviewsReducer = (state = initState, action) => {
         ...state,
         topLatestReviews: action.payload.topLatestReviews,
       };
+    case "FETCH_SEARCHED_REVIEWS":
+      return {
+        ...state,
+        searchedReviews: action.payload.searchedReviews,
+      }
     default:
       return { ...state };
   }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { loadAllMovies, loadTopMovies } from '../redux/actions/moviesActions'
-import { loadAllReviews, loadTopLatestReviews } from '../redux/actions/reviewsActions';
+import { loadTopMovies } from '../redux/actions/moviesActions'
+import { loadTopLatestReviews } from '../redux/actions/reviewsActions';
 //Styles
 import { StyledMotionDiv } from '../styles/styles';
 //Animation
@@ -18,10 +18,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(loadTopMovies(5));
     dispatch(loadTopLatestReviews(10));
-  }, [dispatch]) //useEffect runs only when dispatch happens
+  }, [dispatch])
 
   const topMovies = useSelector(state => state.movies.topMovies);
+  const topLatestReviews = useSelector(state => state.reviews.topLatestReviews);
 
+  console.log(topMovies);
   return (
     <>
       <Loader />
@@ -32,7 +34,7 @@ const Home = () => {
         exit="exit"
       >
         <MainVideoSlider topMovies={topMovies} />
-        <ReviewsSlider sliderTitle="LATEST REVIEWS" />
+        <ReviewsSlider sliderTitle="LATEST REVIEWS" topLatestReviews={topLatestReviews} />
 
       </StyledMotionDiv>
     </>

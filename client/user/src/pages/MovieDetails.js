@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
 //Routing
 import { useLocation } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 //Components
 import Loader from '../components/Loader';
 import ReviewFeedItem from '../components/ReviewFeedItem';
@@ -21,16 +20,16 @@ import { motion } from 'framer-motion';
 const MovieDetails = () => {
 
   const location = useLocation();
-  const pathId = decodeURI(location.pathname.split("/")[2]);
+  const movieId = decodeURI(location.pathname.split("/")[2]);
 
   const [currentMovie, setCurrentMovie] = useState(null);
-  const [currentMovieReviews, setCurrentMoviesReviews] = useState([]);
+  const [currentMovieReviews, setCurrentMovieReviews] = useState([]);
   const allMovies = useSelector(state => state.movies.allMovies);
 
   const isLogged = useSelector(state => state.user.isLogged);
 
   useEffect(() => {
-    const movieFiltered = allMovies.filter((movie) => (movie._id === pathId))[0];
+    const movieFiltered = allMovies.filter((movie) => (movie._id === movieId))[0];
     setCurrentMovie(movieFiltered);
     if (!movieFiltered) {
       return;
@@ -39,8 +38,10 @@ const MovieDetails = () => {
       .then((response) => {
         return response.data;
       })
-      .then((data) => setCurrentMoviesReviews(data))
-  }, [allMovies, pathId]);
+      .then((data) => setCurrentMovieReviews(data))
+  }, [allMovies, movieId]);
+
+  console.log(currentMovieReviews);
 
   return (
     <>
@@ -77,7 +78,7 @@ const MovieDetails = () => {
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>AVERAGE RATING</motion.h4>
-                  <motion.h2>Average</motion.h2>
+                  <motion.h2>{currentMovie.rating_avg}</motion.h2>
                 </StyledGrayDiv>
               </StyledDataDiv>
             </StyledMovieHeaderDiv>
@@ -85,7 +86,11 @@ const MovieDetails = () => {
               <motion.p>{currentMovie.description}</motion.p>
             </StyledDescriptionDiv>
             {isLogged ?
-              (<ReviewForm />)
+              (<ReviewForm
+                movieId={movieId}
+                currentMovieReviews={currentMovieReviews}
+                setCurrentMovieReviews={setCurrentMovieReviews}
+              />)
               :
               (<Styledh1>* <span>SIGN IN</span> TO POST A REVIEW *</Styledh1>)
             }

@@ -1,5 +1,9 @@
-import React from 'react';
-//Routing
+import React, { useState } from 'react';
+//Axios
+import axios from 'axios';
+import { reviewsURL } from '../api/reviews';
+//Redux 
+import { useSelector } from 'react-redux';
 //Styles
 import styled from 'styled-components';
 //Components
@@ -35,9 +39,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReviewForm = () => {
+const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews, setAvrgRating }) => {
 
   const classes = useStyles();
+  const [titleInput, setTitleInput] = useState("");
+  const [ratingInput, setRatingInput] = useState("");
+  const [contentInput, setContentInput] = useState("");
+
+  const userLogged = useSelector(state => state.user.user);
+
+  const handleTitleInput = (e) => {
+    setTitleInput(e.target.value);
+  }
+
+  const handleRatingInput = (e) => {
+    setRatingInput(e.target.value);
+  }
+
+  const handleContentInput = (e) => {
+    setContentInput(e.target.value);
+  }
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    axios.post(
+      reviewsURL(),
+      {
+        reviewTitle: titleInput,
+        rating: ratingInput,
+        reviewContent: contentInput,
+        movies: { _id: movieId },
+        users: { _id: userLogged._id },
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        delete data["users"];
+        data["user"] = userLogged;
+        setCurrentMovieReviews([data].concat(currentMovieReviews))
+      })
+  }
 
   return (
     <StyledContainer>
@@ -47,24 +89,31 @@ const ReviewForm = () => {
           <Typography component="h1" variant="h5">
             POST A REVIEW
         </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleSubmitReview}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <CustomTextField
                   id="title"
                   label="Review Title"
+                  onChange={handleTitleInput}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <CustomTextField
                   id="rating"
                   label="Rating"
+                  onChange={handleRatingInput}
                 />
               </Grid>
               <Grid item xs={12}>
                 <CustomTextField
                   id="reviewContent"
                   label="Write a Review..."
+                  onChange={handleContentInput}
                 />
               </Grid>
             </Grid>
