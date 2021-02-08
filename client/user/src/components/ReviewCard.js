@@ -70,7 +70,7 @@ const ReviewCard = ({ review }) => {
         </CardContent>
       </CardActionArea>
       <StyledActions className={classes.actions}>
-        <StyledButton component={Link} to={`/movies/${title}`} size="small" color="inherit">
+        <StyledButton component={Link} to={`/movies/${review.movies._id}`} size="small" color="inherit">
           READ MORE REVIEWS
         </StyledButton>
       </StyledActions>

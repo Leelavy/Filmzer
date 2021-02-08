@@ -8,14 +8,12 @@ import { Link } from 'react-router-dom';
 //Splide carousel
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-//Dummy Data
-import { reviews } from '../dummyData';
 //MUI components
 import StarsIcon from '@material-ui/icons/Stars';
 //Animation
 import { motion } from 'framer-motion';
 
-const ReviewsSlider = ({ sliderTitle, topLatestReviews }) => {
+const ReviewsSlider = ({ sliderTitle, topLatestReviewsWithMovieData }) => {
 
   const options = {
     type: 'loop',
@@ -30,25 +28,7 @@ const ReviewsSlider = ({ sliderTitle, topLatestReviews }) => {
     arrows: 'slider',
   };
 
-  const allMovies = useSelector(state => state.movies.allMovies);
-  const [reviewsWithMovieData, setReviewsWithMovieData] = useState([]);
-
-  useEffect(() => {
-    // maybe should not be done here but on server side //
-    const reviewsWithMovies = topLatestReviews.map((review) => {
-      const movieDetails = allMovies.filter((movie) => movie._id === review.movies)[0];
-      if (movieDetails) {
-        return ({
-          ...review,
-          movies: movieDetails,
-        });
-      }
-    });
-    setReviewsWithMovieData(reviewsWithMovies);
-    // =============================================== //
-
-  }, [topLatestReviews])
-
+  console.log(topLatestReviewsWithMovieData);
   return (
     <>
       <StyledSliderHeader>
@@ -58,9 +38,9 @@ const ReviewsSlider = ({ sliderTitle, topLatestReviews }) => {
       <Splide
         options={options}
       >
-        {reviewsWithMovieData && (
-          reviewsWithMovieData.map(review => (
-            <SplideSlide key={review.movies_id}>
+        {topLatestReviewsWithMovieData.length && (
+          topLatestReviewsWithMovieData.map((review) => (
+            <SplideSlide key={review.movies._id}>
               <StyledDiv>
                 <StyledLink to={`/movies/${review.movies._id}`}>
                   <StyledSliderDataDiv>

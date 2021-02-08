@@ -28,15 +28,17 @@ const MovieDetails = () => {
   const allMovies = useSelector(state => state.movies.allMovies);
 
   useEffect(() => {
-    const movieFiltered = allMovies.filter((movie) => (movie._id === pathId));
-    setCurrentMovie(movieFiltered[0]);
+    const movieFiltered = allMovies.filter((movie) => (movie._id === pathId))[0];
+    setCurrentMovie(movieFiltered);
+    if (!movieFiltered) {
+      return;
+    }
     axios.get(reviewsByMovieIdURL(movieFiltered._id))
-      .then((response) => response.json())
+      .then((response) => {
+        return response.data;
+      })
       .then((data) => setCurrentMoviesReviews(data))
   }, [allMovies, pathId]);
-
-  console.log(currentMovie);
-  console.log(currentMovieReviews);
 
   return (
     <>

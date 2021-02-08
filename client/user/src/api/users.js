@@ -15,11 +15,16 @@ export const updateReviewByUserIdURL = () => `${base_url}/updateReviewOfUser/:id
 export const usersCountURL = () => `${base_url}/countUsers`;
 
 // get user by username
-export const userByUserNameURL = () => `${base_url}/getUsername/:username`;
+export const userByUserNameURL = (username) => `${base_url}/getUsername/${username}`;
+
+// get user by email
+export const userByEmailURL = (email) => `${base_url}/getUserByEmail/${email}`;
 
 // get - get user by user id
 // delete - delete user by user id
 // patch - update user by user id
 export const userByUserIdURL = () => `${base_url}/:id`;
+
+
 
 

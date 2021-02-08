@@ -8,12 +8,12 @@ const userReducer = (state = initState, action) => {
 
     case "SIGN_IN":
       return {
-        isLogged: true,
+        isLogged: action.payload.isLogged,
         user: action.payload.user,
       };
     case "SIGN_OUT":
       return {
-        isLogged: false,
+        isLogged: action.payload.isLogged,
         user: {},
       };
     default:

@@ -22,11 +22,6 @@ const Movies = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [movieTrailerId, setMovieTrailerId] = useState("");
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadAllMovies());
-  }, [dispatch]) //useEffect runs only when dispatch happens
-
   const allMovies = useSelector(state => state.movies.allMovies);
 
   const handleWatchClick = (movie) => {
@@ -54,7 +49,7 @@ const Movies = () => {
           <ModalVideo channel='youtube' autoplay isOpen={isOpenModal} videoId={movieTrailerId} onClose={() => setIsOpenModal(false)} />
         )}
         <MoviesGrid>
-          {allMovies && (allMovies.map((movie) => (
+          {allMovies && (Object.values(allMovies).map((movie) => (
             <StyledLink to={`/movies/${movie._id}`}>
               <MovieCard movie={movie} onWatchClick={handleWatchClick} key={movie._id} />
             </StyledLink>

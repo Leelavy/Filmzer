@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+//Redux
+import { useDispatch } from 'react-redux';
+import { loadAllMovies } from './redux/actions/moviesActions'
+import { loadAllReviewsWithData } from './redux/actions/reviewsActions'
 //Components
 import Navbar from './components/Navbar';
 import DrawerMenu from './components/DrawerMenu';
@@ -34,6 +38,12 @@ const theme = createMuiTheme({
 const App = () => {
 
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadAllMovies());
+    dispatch(loadAllReviewsWithData());
+  }, [dispatch]) //useEffect runs only when dispatch happens
 
   return (
     <MuiThemeProvider theme={theme}>

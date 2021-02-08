@@ -23,6 +23,16 @@ export const loadAllReviews = () => async (dispatch) => {
   });
 };
 
+export const loadAllReviewsWithData = () => async (dispatch) => {
+  const allReviewsWithData = await axios.get(reviewsWithMoviesAndUsersURL());
+  dispatch({
+    type: "FETCH_REVIEWS_WITH_DATA",
+    payload: {
+      allReviewsWithData: allReviewsWithData.data,
+    },
+  });
+};
+
 export const loadTopLatestReviews = (numWanted) => async (dispatch) => {
   const topLatestReviewsData = await axios.get(topLatestReviewsURL(numWanted));
   dispatch({

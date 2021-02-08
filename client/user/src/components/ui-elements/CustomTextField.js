@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
-const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false }) => {
+const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false, onChange }) => {
 
   return (
     <StyledTextField
@@ -17,6 +17,7 @@ const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = f
       type={type}
       autoComplete={autoComplete}
       autoFocus={autoFocus}
+      onChange={onChange}
     />
   );
 }

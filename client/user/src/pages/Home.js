@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllMovies, loadTopMovies } from '../redux/actions/moviesActions'
@@ -16,14 +16,25 @@ const Home = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadAllMovies())
     dispatch(loadTopMovies(5));
-    dispatch(loadAllReviews())
     dispatch(loadTopLatestReviews(10));
   }, [dispatch]) //useEffect runs only when dispatch happens
 
   const topMovies = useSelector(state => state.movies.topMovies);
+  const allMovies = useSelector(state => state.movies.allMovies);
   const topLatestReviews = useSelector(state => state.reviews.topLatestReviews);
+  const [topLatestReviewsWithMovieData, setTopLatestReviewsWithMovieData] = useState([]);
+
+  useEffect(() => {
+    const reviews = topLatestReviews.map((review) => {
+      const movieFiltered = allMovies.filter((movie) => (movie._id === review.movies))[0];
+      return {
+        ...review,
+        movies: movieFiltered,
+      };
+    });
+    setTopLatestReviewsWithMovieData(reviews);
+  }, [allMovies, topMovies, topLatestReviews])
 
   return (
     <>
@@ -35,7 +46,9 @@ const Home = () => {
         exit="exit"
       >
         <MainVideoSlider topMovies={topMovies} />
-        <ReviewsSlider sliderTitle="LATEST REVIEWS" topLatestReviews={topLatestReviews} />
+        {topLatestReviewsWithMovieData.length && (
+          <ReviewsSlider sliderTitle="LATEST REVIEWS" topLatestReviewsWithMovieData={topLatestReviewsWithMovieData} />
+        )}
       </StyledMotionDiv>
     </>
   );

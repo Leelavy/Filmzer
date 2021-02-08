@@ -15,10 +15,10 @@ const ReviewFeedItem = ({ review }) => {
             {`${review.rating}/10`}
           </StyledRatingDiv>
         </motion.div>
-        <motion.h5>By {review.user.username}</motion.h5>
+        {/* <motion.h5>By {review.user.username}</motion.h5> */}
       </StyledReviewHeader>
       <StyledReviewContent>
-        <motion.p>{review.reviewContent}</motion.p>
+        {/* <motion.p>{review.reviewContent}</motion.p> */}
       </StyledReviewContent>
     </StyledContainer>
   );

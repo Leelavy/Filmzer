@@ -24,19 +24,15 @@ const Reviews = () => {
   }, [dispatch]);
 
   const allReviews = useSelector(state => state.reviews.allReviews);
-
-  // maybe should not be done here but on server side //
   const allMovies = useSelector(state => state.movies.allMovies);
-  const reviewsWithMovieData = allReviews.map((review) => {
-    const movieDetails = allMovies.filter((movie) => movie._id === review.movies)[0];
-    if (movieDetails) {
-      return ({
-        ...review,
-        movies: movieDetails,
-      });
+
+  const allReviewsWithMovieData = allReviews.map((review) => {
+    const movieFiltered = allMovies.filter((movie) => (movie._id === review.movies))[0];
+    return {
+      ...review,
+      movies: movieFiltered,
     }
-  });
-  // =============================================== //
+  })
 
   return (
     <>
@@ -48,8 +44,8 @@ const Reviews = () => {
         exit="exit"
       >
         <ReviewsGrid>
-          {reviewsWithMovieData && (
-            reviewsWithMovieData.map((review) => (
+          {allReviewsWithMovieData && (
+            allReviewsWithMovieData.map((review) => (
               <StyledLink to={`/movies/${review.movies._id}`}>
                 <ReviewCard review={review} />
               </StyledLink>
