@@ -17,7 +17,7 @@ export const moviesByTitleURL = () => `${base_url}/title/:movieTitle`;
 
 // Find movies by movie title, movie genre, and movie year
 // param - title=genre=year
-export const movieByParamsURL = () => `${base_url}/getMovieByParams/:param`;
+export const searchedMoviesURL = (title, genre, year) => `${base_url}/getMovieByParams/${title}=${genre}=${year}`;
 
 // ==========================================
 

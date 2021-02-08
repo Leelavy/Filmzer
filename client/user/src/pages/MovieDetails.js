@@ -84,7 +84,11 @@ const MovieDetails = () => {
             <StyledDescriptionDiv>
               <motion.p>{currentMovie.description}</motion.p>
             </StyledDescriptionDiv>
-            {isLogged ? (<ReviewForm />) : ''}
+            {isLogged ?
+              (<ReviewForm />)
+              :
+              (<Styledh1>* <span>SIGN IN</span> TO POST A REVIEW *</Styledh1>)
+            }
             {currentMovieReviews && (
               currentMovieReviews.map((review) => (
                 <ReviewFeedItem review={review} />
@@ -154,6 +158,13 @@ const StyledDescriptionDiv = styled(motion.div)`
     line-height: 2rem;
     font-weight: lighter;
     padding-right: 2rem;
+  }
+`;
+
+const Styledh1 = styled.h1`
+  letter-spacing: 0.5rem;
+  span {
+    color: red;
   }
 `;
 

@@ -40,6 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 const MovieCard = ({ movie, onWatchClick }) => {
   const classes = useStyles();
 

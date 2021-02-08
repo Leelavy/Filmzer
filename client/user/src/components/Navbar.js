@@ -36,6 +36,7 @@ const Navbar = ({ openDrawer, setOpenDrawer }) => {
 
   const classes = useStyles();
   const isLogged = useSelector(state => state.user.isLogged);
+  const user = useSelector(state => state.user.user);
   const [toggleSignIn, setToggleSignIn] = useState(true);
 
   const history = useHistory();
@@ -71,7 +72,12 @@ const Navbar = ({ openDrawer, setOpenDrawer }) => {
           {toggleSignIn ?
             (<StyledLoginButton component={Link} to={'/signin'} color="inherit">Sign In</StyledLoginButton>)
             :
-            (<StyledLoginButton onClick={handleSignOut} color="inherit">Sign Out</StyledLoginButton>)
+            (
+              <StyledLoggerDiv>
+                <h6>{`Hello ${user.username}`}</h6>
+                <StyledLoginButton onClick={handleSignOut} color="inherit">Sign Out</StyledLoginButton>
+              </StyledLoggerDiv>
+            )
           }
         </StyledToolBar>
       </AppBar>
@@ -102,6 +108,18 @@ const StyledLoginButton = styled(Button)`
   &:hover {
     transition: 0.5s;
     color: red;
+  }
+`;
+
+const StyledLoggerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h6 {
+    font-weight: lighter;
+    letter-spacing: 0.2rem;
   }
 `;
 
