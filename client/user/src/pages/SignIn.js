@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 //Redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signIn } from '../redux/actions/usersActions';
 //Routing
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 //Styles
 import styled from 'styled-components';
 import { StyledMotionDiv } from '../styles/styles';
@@ -53,6 +54,7 @@ const SignIn = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleEmailInput = (e) => {
@@ -66,9 +68,9 @@ const SignIn = () => {
   const handleSignInSubmit = (e) => {
     e.preventDefault();
     dispatch(signIn(emailInput, passwordInput));
+    history.goBack();
   }
 
-  console.log(emailInput);
   return (
     <>
       <Loader />

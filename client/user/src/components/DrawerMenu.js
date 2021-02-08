@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+//Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../redux/actions/usersActions';
 //Styles
 import styled from 'styled-components';
 //Routes
@@ -77,6 +80,21 @@ const useStyles = makeStyles((theme) => ({
 
 const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
   const classes = useStyles();
+  const isLogged = useSelector(state => state.user.isLogged);
+  const [toggleSignIn, setToggleSignIn] = useState(true);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setToggleSignIn(!isLogged);
+  }, [isLogged])
+
+  const handleSignOut = () => {
+    if (isLogged) {
+      dispatch(signOut());
+      handleDrawerClose();
+    }
+  }
 
   const handleDrawerClose = () => {
     setOpenDrawer(false);
@@ -137,15 +155,30 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
         </List>
         <Divider />
         <List>
-          <StyledListItem
-            button key={'Sign In'}
-            component={Link}
-            to={'/signin'}
-            onClick={handleDrawerClose}
-          >
-            <StyledAccountCircleIcon />
-            <ListItemText primary={'Sign In'} />
-          </StyledListItem>
+          {toggleSignIn ?
+            (
+              <StyledListItem
+                button key={'Sign In'}
+                component={Link}
+                to={'/signin'}
+                onClick={handleDrawerClose}
+              >
+                <StyledAccountCircleIcon />
+                <ListItemText primary={'Sign In'} />
+              </StyledListItem>
+            )
+            :
+            (
+              <StyledListItem
+                button key={'Sign Out'}
+                component={Link}
+                to={'/'}
+                onClick={handleSignOut}
+              >
+                <StyledAccountCircleIcon />
+                <ListItemText primary={'Sign Out'} />
+              </StyledListItem>
+            )}
         </List>
       </Drawer>
       <Backdrop className={classes.backdrop} open={openDrawer} onClick={handleDrawerClose} />

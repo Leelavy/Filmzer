@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+//Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../redux/actions/usersActions';
 //Routing
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 //Styles
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +33,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({ openDrawer, setOpenDrawer }) => {
+
   const classes = useStyles();
+  const isLogged = useSelector(state => state.user.isLogged);
+  const [toggleSignIn, setToggleSignIn] = useState(true);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setToggleSignIn(!isLogged);
+  }, [isLogged])
+
+  const handleSignOut = () => {
+    if (isLogged) {
+      dispatch(signOut());
+      history.push("/");
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -48,7 +68,11 @@ const Navbar = ({ openDrawer, setOpenDrawer }) => {
           <Link to="/">
             <StyledLogo src={logo} alt="logo" />
           </Link>
-          <StyledLoginButton component={Link} to={'/signin'} color="inherit">Sign In</StyledLoginButton>
+          {toggleSignIn ?
+            (<StyledLoginButton component={Link} to={'/signin'} color="inherit">Sign In</StyledLoginButton>)
+            :
+            (<StyledLoginButton onClick={handleSignOut} color="inherit">Sign Out</StyledLoginButton>)
+          }
         </StyledToolBar>
       </AppBar>
     </div>

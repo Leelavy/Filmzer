@@ -27,6 +27,8 @@ const MovieDetails = () => {
   const [currentMovieReviews, setCurrentMoviesReviews] = useState([]);
   const allMovies = useSelector(state => state.movies.allMovies);
 
+  const isLogged = useSelector(state => state.user.isLogged);
+
   useEffect(() => {
     const movieFiltered = allMovies.filter((movie) => (movie._id === pathId))[0];
     setCurrentMovie(movieFiltered);
@@ -71,7 +73,7 @@ const MovieDetails = () => {
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>REVIEWS COUNTER</motion.h4>
-                  <motion.h2>Count</motion.h2>
+                  <motion.h2>{currentMovieReviews.length}</motion.h2>
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>AVERAGE RATING</motion.h4>
@@ -82,7 +84,7 @@ const MovieDetails = () => {
             <StyledDescriptionDiv>
               <motion.p>{currentMovie.description}</motion.p>
             </StyledDescriptionDiv>
-            <ReviewForm />
+            {isLogged ? (<ReviewForm />) : ''}
             {currentMovieReviews && (
               currentMovieReviews.map((review) => (
                 <ReviewFeedItem review={review} />
