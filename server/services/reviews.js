@@ -95,13 +95,47 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
 
 
 const getReviewsByIds = async (review_ids) => {
-    return await Reviews.find({'_id':{ $in:review_ids }});
+
+    var query = [
+        {
+            $match: {
+                "_id": {$in: review_ids}
+            }
+        },
+        {
+            $lookup:
+                {
+                    from: "users",
+                    localField: "users",
+                    foreignField: "_id",
+                    as: "user"
+                }
+        },
+        {
+            $unwind:"$user"
+        },
+        {
+            $project:
+                {
+                    "_id": 1,
+                    "reviewTitle": 2,
+                    "reviewContent": 3,
+                    "rating": 4,
+                    "user._id":5,
+                    "user.username": 6,
+                    "user.firstName": 7,
+                    "user.lastName": 8
+                }
+        }
+    ]
+    return await Reviews.aggregate(query);
+    // return await Reviews.find({'_id':{ $in:review_ids }});
 };
 
 
 const topReviewsByDate = async (topNumber) => {
 
-    var select = [
+    var query = [
         {
             $lookup:
                 {
@@ -156,7 +190,7 @@ const topReviewsByDate = async (topNumber) => {
         }
     ]
 
-    return await Reviews.aggregate([select])
+    return await Reviews.aggregate([query])
 };
 
 
