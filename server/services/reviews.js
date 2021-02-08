@@ -71,19 +71,21 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
         {
             $project:
                 {
-                    "_id": 0,
-                    "reviewTitle": 1,
-                    "reviewContent": 2,
-                    "rating": 3,
-                    "movie.title": 4,
-                    "movie.year": 5,
-                    "movie.genre": 6,
-                    "movie.description": 7,
-                    "movie.image_url": 8,
-                    "movie.trailer_video": 9,
-                    "user.username": 10,
-                    "user.firstName": 11,
-                    "user.lastName": 12
+                    "_id": 1,
+                    "reviewTitle": 2,
+                    "reviewContent": 3,
+                    "rating": 4,
+                    "movie._id":5,
+                    "movie.title": 6,
+                    "movie.year": 7,
+                    "movie.genre": 8,
+                    "movie.description": 9,
+                    "movie.image_url": 10,
+                    "movie.trailer_video": 11,
+                    "user._id":12,
+                    "user.username": 13,
+                    "user.firstName": 14,
+                    "user.lastName": 15
                 }
         },
         {
