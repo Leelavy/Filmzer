@@ -12,20 +12,29 @@ const createMovie = async (req, res) => {
 
 const topMoviesByRating = async (req, res) => {
 
+    var topNumber;
+
     if (!req.params.topNumber){
-        var topNumber = await moviesService.countMovies();
+        topNumber = await moviesService.countMovies();
     }
     else{
-        var topNumber = req.params.topNumber;
+        topNumber = req.params.topNumber;
     }
 
     const movies = await moviesService.topMoviesByRating(topNumber);
 
     movies.forEach(function (movieItem) {
+
         Object.defineProperty(movieItem, "rating_avg",
             Object.getOwnPropertyDescriptor(movieItem, "rating_review"));
         delete movieItem["rating_review"];
-        movieItem["rating_avg"] = movieItem["rating_avg"][0]["rating"]
+
+        if(movieItem["rating_avg"].length){
+            movieItem["rating_avg"] = movieItem["rating_avg"][0]["rating"]
+        }
+        else{
+            movieItem["rating_avg"] = 0
+        }
     });
 
     res.json(movies);

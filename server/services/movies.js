@@ -86,7 +86,8 @@ const countByGenre = async () => {
 
 
 const topMoviesByRating = async (topNumber) => {
-    return Movies.aggregate([
+
+    var query = [
         { $lookup:
                 {
                     from:"reviews",
@@ -105,7 +106,7 @@ const topMoviesByRating = async (topNumber) => {
                     "description": 5,
                     "image_url":6,
                     "trailer_video":7,
-                    "rating_review.rating": {$avg: "$rating_review.rating"},
+                    "rating_review.rating": {$avg: "$rating_review.rating"}
                 }
         },
         {
@@ -132,7 +133,10 @@ const topMoviesByRating = async (topNumber) => {
         {
             $limit:parseInt(topNumber)
         }
-    ]);
+    ]
+
+    
+    return Movies.aggregate(query);
 };
 
 
