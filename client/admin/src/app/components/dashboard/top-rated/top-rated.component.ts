@@ -18,6 +18,7 @@ export class TopRatedComponent implements OnInit {
   ngOnInit(): void {
     this.load();
   }
+  
   load() {
     this.moviesService.topMoviesByRating().subscribe(data => {
       this.movies = data;

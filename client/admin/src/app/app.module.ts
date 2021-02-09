@@ -26,6 +26,7 @@ import { TopRatedComponent } from './components/dashboard/top-rated/top-rated.co
 
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
+import { DetailsmovieComponent } from './components/movies/detailsmovie/detailsmovie.component';
 
 
 
@@ -46,7 +47,8 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     FilterPipe,
     SmallBoxesComponent,
     TopRatedComponent,
-    AdduserComponent
+    AdduserComponent,
+    DetailsmovieComponent
    
   ],
   imports: [

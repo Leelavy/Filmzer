@@ -8,7 +8,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
 import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
-import { AdduserComponent } from './components/users/adduser/adduser.component'
+import { AdduserComponent } from './components/users/adduser/adduser.component';
+import { DetailsmovieComponent } from './components/movies/detailsmovie/detailsmovie.component';
 
 
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   {
     path: 'movies', component: MoviesComponent,
     children: [
-      { path: "addMovie", component: AddMovieComponent }
+      { path: "addMovie", component: AddMovieComponent },
+      { path: "detailsMovie", component: DetailsmovieComponent }
     ]
   },
 

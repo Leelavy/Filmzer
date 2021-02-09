@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movies } from '../models/movies';
+import { AddMovie } from '../models/addMovie'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 
@@ -11,8 +12,8 @@ import { environment } from '../../environments/environment.prod';
 
 export class MoviesService {
 
-  
-  private topRaUrl=environment.topRatedMoviesUrl;
+
+  private topRaUrl = environment.topRatedMoviesUrl;
   private moviesUrl = environment.moviesUrl;
 
   constructor(private http: HttpClient) { }
@@ -21,7 +22,7 @@ export class MoviesService {
     return this.http.get<Movies[]>(this.moviesUrl);
   }
 
-  topMoviesByRating():Observable<Movies[]>{
+  topMoviesByRating(): Observable<Movies[]> {
     return this.http.get<Movies[]>(this.topRaUrl);
   }
 
@@ -31,5 +32,14 @@ export class MoviesService {
 
   }
 
+  createMovie(newMovie: AddMovie): Observable<AddMovie> {
+    return this.http.post<AddMovie>(this.moviesUrl, newMovie);
+  }
+
+
 }
+
+
+
+
 

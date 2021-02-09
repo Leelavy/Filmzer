@@ -14,7 +14,7 @@ export class MoviesComponent implements OnInit {
   movie: Movies;
 
   constructor(private moviesService: MoviesService) {
-    console.log(moviesService.getMovies);
+    // console.log(moviesService.getMovies);
   }
 
   ngOnInit(): void {
@@ -24,17 +24,19 @@ export class MoviesComponent implements OnInit {
   load() {
     this.moviesService.getMovies().subscribe(data => {
       this.movies = data;
+    });
+
+  }
+
+  onDelete(_id: number) {
+    this.moviesService.deleteMovie(_id).subscribe(() => {
+      this.movie = null;
       this.load();
     });
 
   }
 
-  onDelete(_id:number) {
-    this.moviesService.deleteMovie(_id).subscribe(()=>{
-      this.movie=null;
-    });
-    
 
-}
+
 
 }
