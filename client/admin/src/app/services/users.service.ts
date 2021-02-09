@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Users } from '../models/users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
+import { addUser } from '../models/addUser';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,9 @@ export class UsersService {
     return this.http.get<Users>(url);
   }
 
-
+  createUser(newUser: addUser): Observable<addUser> {
+    return this.http.post<addUser>(this.usersUrl, newUser);
+  }
 
 
 }

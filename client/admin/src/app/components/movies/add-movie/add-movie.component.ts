@@ -1,6 +1,4 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-// import { Movies } from 'src/app/models/movies';
 import { MoviesService } from 'src/app/services/movies.service';
 import { AddMovie } from '../../../models/addMovie';
 
@@ -13,7 +11,6 @@ import { AddMovie } from '../../../models/addMovie';
 
 
 export class AddMovieComponent implements OnInit {
-  num:number;
   
   @Output() upDate = new EventEmitter<string>();
 
