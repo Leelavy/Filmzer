@@ -6,6 +6,7 @@ const moviesService = require('../services/movies');
 
 const createMovie = async (req, res) => {
     const newMovie = await moviesService.createMovie(req.body);
+    console.log(newMovie);
     res.json(newMovie);
 };
 
