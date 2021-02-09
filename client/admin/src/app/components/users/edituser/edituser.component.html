@@ -1,1 +1,67 @@
-<p>edituser works!</p>
+<!doctype html>
+<html lang="en">
+
+<body>
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <div id="content-page" class="content-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="iq-card">
+                            <div class="iq-card-header d-flex justify-content-between">
+                                <div class="iq-header-title">
+                                    <h3 class="card-title">Add User</h3>
+                                </div>
+                            </div>
+                            <div class="iq-card-body">
+                                <form action="movie-view.html">
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <div class="col">
+
+                                                <div class="col-6 form-group">
+                                                    <input #inpF type="text" class="form-control"
+                                                        placeholder="First-Name">
+                                                </div>
+                                                <div class="col-6 form-group">
+                                                    <input #inpL type="text" class="form-control"
+                                                        placeholder="Last-Name">
+                                                </div>
+                                                <div class="col-6 form-group">
+                                                    <input #inpU type="text" class="form-control"
+                                                        placeholder="User-Name">
+                                                </div>
+                                                <div class="col-6 form-group">
+                                                    <input #inpE type="text" class="form-control" placeholder="Email">
+                                                </div>
+                                                <div class="col-6 form-group">
+                                                    <input #inpP type="text" class="form-control"
+                                                        placeholder="Password">
+                                                </div>
+                                                <div class="col-6 form-group">
+                                                    <input #inpA type="text" class="form-control" placeholder="Admin">
+                                                </div>
+
+
+                                                <div class="col-12 form-group ">
+                                                    <button
+                                                        (click)="createUser(inpU.value,inpP.value,inpA.value,inpF.value,inpL.value,inpE.value)"
+                                                        type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="reset" class="btn btn-danger">cancel</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
