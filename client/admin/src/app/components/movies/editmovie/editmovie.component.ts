@@ -12,4 +12,6 @@ export class EditmovieComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }
+

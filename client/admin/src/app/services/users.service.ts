@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Users2 } from '../models/users';
 import { Users } from '../models/users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
@@ -44,6 +45,11 @@ export class UsersService {
 
   createUser(newUser: addUser): Observable<addUser> {
     return this.http.post<addUser>(this.usersUrl, newUser);
+  }
+
+  updateUser(user:Users2):Observable<Users2>{
+    const url= `${this.usersUrl}/${user._id}`;
+    return this.http.patch<Users2>(url, user);
   }
 
 

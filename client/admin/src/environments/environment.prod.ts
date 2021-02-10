@@ -8,6 +8,9 @@ export const environment = {
   countMoviesUrl: 'http://localhost:8080/movies/countMovies',
   countReviewsUrl: 'http://localhost:8080/reviews/countReviews',
   countUsersUrl: 'http://localhost:8080/users/countUsers',
-  latestReviewsUrl:'http://localhost:8080/reviews/latestReviews',
-  topRatedMoviesUrl:'http://localhost:8080/movies/topMovies'
+  latestReviewsUrl: 'http://localhost:8080/reviews/latestReviews',
+  topRatedMoviesUrl: 'http://localhost:8080/movies/topMovies',
+  avgRatingByYear: 'http://localhost:8080/movies/avgRatingByYear',
+  countByGenre:'http://localhost:8080/movies/countByGenre'
+
 };

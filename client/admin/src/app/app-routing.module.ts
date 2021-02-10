@@ -7,7 +7,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
@@ -20,10 +19,10 @@ const routes: Routes = [
   {
     path: 'movies', component: MoviesComponent,
     children: [
-      { path: "addMovie", component: AddMovieComponent },
-      { path: "editMovie", component: EditmovieComponent }
-    ]
-  },
+      { path: "addMovie", component: AddMovieComponent }
+              ]
+  },{ path: "movies/:id", component: EditmovieComponent },
+
 
   { path: 'reviews', component: ReviewsComponent ,
     children:[
@@ -31,19 +30,19 @@ const routes: Routes = [
     ]
   },
 
+
   {
     path: 'users', component: UsersComponent,
     children: [
-      { path: "addUser", component: AdduserComponent },
-      { path: "editUser", component: EdituserComponent }
-    ]
-  },
+      { path: "addUser", component: AdduserComponent }
+              ]
+  },{ path: 'users/:id', component: EdituserComponent },
+  
 
   { path: 'statistics', component: StatisticsComponent },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'editProfile', component: EditProfileComponent },
   { path: '', redirectTo: "/dashboard", pathMatch: 'full' }
 ];
 
