@@ -32,7 +32,7 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
     var match = {};
 
     if(movieTitle!==null){
-        match["movie.title"] = new RegExp(movieTitle)
+        match["movie.title"] = new RegExp(movieTitle, 'i')
     }
 
     if(isNaN(rating)!==true){
@@ -40,7 +40,7 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
     }
 
     if(userName!==null){
-        match["user.username"] = new RegExp(userName)
+        match["user.username"] = new RegExp(userName, 'i')
     }
 
     var query = [
@@ -101,7 +101,7 @@ const searchReview = async (title=null, rating=NaN, user=null, date=null) => {
     var match = {};
 
     if(title!==null){
-        match["reviewTitle"] = new RegExp(title)
+        match["reviewTitle"] = new RegExp(title, 'i')
     }
 
     if(isNaN(rating)!==true){
@@ -109,7 +109,7 @@ const searchReview = async (title=null, rating=NaN, user=null, date=null) => {
     }
 
     if(user!==null){
-        match["user.username"] = new RegExp(user)
+        match["user.username"] = new RegExp(user, 'i')
     }
 
     if(date!==null){

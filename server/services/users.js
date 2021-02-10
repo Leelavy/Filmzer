@@ -28,10 +28,10 @@ const getUserByParam = async (userName, firstName, lastName, email) => {
 
     return Users.find(
         {
-            'username': {$regex: `.*${userName}.*`},
-            'firstName': {$regex: `.*${firstName}.*`},
-            'lastName': {$regex: `.*${lastName}.*`},
-            'email': {$regex: `.*${email}.*`}
+            'username': {$regex: `.*${userName}.*`, $options:'i'},
+            'firstName': {$regex: `.*${firstName}.*`, $options:'i'},
+            'lastName': {$regex: `.*${lastName}.*`, $options:'i'},
+            'email': {$regex: `.*${email}.*`, $options:'i'}
         }
     );
 };

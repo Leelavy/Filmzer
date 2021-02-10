@@ -141,12 +141,12 @@ const topMoviesByRating = async (topNumber) => {
 
 
 const getMovieByTitle = async (title) => {
-    return await Movies.find({'title': {$regex: `.*${title}.*`}});
+    return await Movies.find({'title': {$regex: `.*${title}.*`, $options:'i'}});
 };
 
 
 const getMoviesByGenre = async (genre) => {
-    return await Movies.find({'genre': {$regex: `.*${genre}.*`}});
+    return await Movies.find({'genre': {$regex: `.*${genre}.*`, $options:'i'}});
 };
 
 
@@ -170,7 +170,7 @@ const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
     var match = {};
 
     if(title!==null){
-        match["title"] = new RegExp(title)
+        match["title"] = new RegExp(title,'i')
     }
 
     if(isNaN(year)!==true){
@@ -178,7 +178,7 @@ const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
     }
 
     if(genre!==null){
-        match["genre"] = new RegExp(genre)
+        match["genre"] = new RegExp(genre, 'i')
     }
 
     var query = [{
