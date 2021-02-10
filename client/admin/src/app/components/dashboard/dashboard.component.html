@@ -27,15 +27,19 @@
 
                   <thead>
                     <tr>
-                      <th style="width:20%;">Title</th>
-                      <th style="width:10%;">Contet</th>
-                      <th style="width:20%;">Rating</th>
+                      <th style="width:10%;">User-Name</th>
+                      <th style="width:10%;">Movie</th>
+                      <th style="width:10%;">Title</th>
+                      <th style="width:20%;">Contet</th>
+                      <th style="width:10%;">Rating</th>
                       <th style="width:10%;">Last-Update</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <tr *ngFor="let reviews of reviews">
+                      <td>{{reviews.user.username}}</td>
+                      <td>{{reviews.movie.title}}</td>
                       <td>{{reviews.reviewTitle}}</td>
                       <td>{{reviews.reviewContent}}</td>
                       <td> <i class="lar la-star mr-2"></i> {{reviews.rating}}</td>
