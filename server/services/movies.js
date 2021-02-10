@@ -9,7 +9,6 @@ const createMovie = async (body) => {
         image_url: body.image_url,
         trailer_video: body.trailer_video
     });
-    console.log(movie);
     return await movie.save();
 };
 

@@ -5,12 +5,7 @@ const moviesService = require('../services/movies');
 
 
 const createMovie = async (req, res) => {
-
-    console.log("body request from the client:")
-    console.log(req.body);
-
     const newMovie = await moviesService.createMovie(req.body);
-    console.log(newMovie);
     res.json(newMovie);
 };
 
