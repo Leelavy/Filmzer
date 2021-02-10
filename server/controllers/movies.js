@@ -2,6 +2,7 @@
 const unirest = require("unirest");
 const _ = require("lodash");
 const moviesService = require('../services/movies');
+// const reviewsService = require('../services/reviews');
 
 
 const createMovie = async (req, res) => {
@@ -87,12 +88,12 @@ const avgRatingMapReduce = async (obj, keyMap) => {
         data[key] = newArray
     });
 
-    // add function of reduce
-    var reduce = {}
+    var reduce = []
     Object.keys(data).forEach(function (key){
-        reduce[key] = average = data[key].reduce(function (avg, value, _, { length }) {
+        var avg_value = average = data[key].reduce(function (avg, value, _, { length }) {
             return avg + value / length;
         }, 0);
+        reduce.push({'year':key, 'avg_count': avg_value})
     });
 
     return reduce
@@ -108,11 +109,9 @@ const countMovies = async (req, res) => {
 const countByGenre = async (req, res) => {
     const genresCount = await moviesService.countByGenre();
 
-    var newGenresCount = Object()
+    var newGenresCount = []
     Object.keys(genresCount).forEach(function(key) {
-        console.log(genresCount[key]['_id']);
-        console.log(genresCount[key]['count']);
-        newGenresCount[genresCount[key]['_id']] = genresCount[key]['count']
+        newGenresCount.push({'genre': genresCount[key]['_id'], 'count': genresCount[key]['count']})
     });
     res.json(newGenresCount);
 };
@@ -233,6 +232,15 @@ const deleteMovie = async (req, res) => {
     if (!movie) {
         return res.status(404).json({ errors: ['movie not found'] });
     }
+    //
+    // const review_ids = await moviesService.getReviewsByMovieId(req.params.movieId);
+    // review_ids["reviews"].forEach(function (reviewId) {
+    //     const review = reviewsService.deleteReview(reviewId);
+    //     if (!review){
+    //         return res.status(404).json({ errors: ['review not found for deleted'] });
+    //     }
+    //
+    // });
 
     res.send();
 };
