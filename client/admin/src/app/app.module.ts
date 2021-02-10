@@ -15,7 +15,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
-import { EditProfileComponent } from './components/dashboard/profile/edit-profile/edit-profile.component';
 
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
@@ -45,7 +44,6 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     LoginComponent,
     DashboardComponent,
     AddMovieComponent,
-    EditProfileComponent,
     SearchPipe,
     FilterPipe,
     SmallBoxesComponent,

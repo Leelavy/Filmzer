@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AddMovieComponent } from '../components/movies/add-movie/add-movie.component'
-import { Movies } from '../models/movies';
+import { addUser } from '../models/addUser';
 
 
 
@@ -16,8 +16,8 @@ export class RefreshService {
 
   constructor() { }
 
-  refMovie( movie: Movies){
-    this.source.next(movie);
+  refMovie( user: addUser){
+    this.source.next(user);
   }
 
 }

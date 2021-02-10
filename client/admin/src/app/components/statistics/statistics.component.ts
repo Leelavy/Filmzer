@@ -11,14 +11,15 @@ export class StatisticsComponent implements OnInit {
 
   constructor() { }
 
-  public doughnutChartLabels = ['Drama Q1', 'Action Q2', 'Comedy Q3', 'Horror Q4'];
-  public doughnutChartData = [120, 150, 180, 90];
+  public doughnutChartLabels = ['Science Fiction', 'Thriller', 'Crime', 'Action','Comedy'];
+  public doughnutChartData = [120, 150, 180, 90,10];
   public doughnutChartType = 'doughnut';
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
   };
+
   public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType = 'bar';
   public barChartLegend = true;

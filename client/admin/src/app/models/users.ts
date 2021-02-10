@@ -15,3 +15,15 @@ export interface Users{
 
 
 }
+
+export interface Users2 {
+    
+    _id:number,
+    username: string,
+    password: number,
+    admin: string,
+    firstName: string,
+    lastName: string,
+    email: string
+
+}

@@ -64,8 +64,9 @@
                                                             class="lar la-eye"></i></a>
                                                              -->
                                                     <a class="iq-bg-success" data-toggle="tooltip" data-placement="top"
-                                                        type="button"  title="Edit" data-original-title="Edit" >
-                                                        <i class="ri-pencil-line" routerLink="/movies/editMovie"></i></a>
+                                                        type="button"  title="Edit" data-original-title="Edit" 
+                                                        (click)="editMov(movies._id, users)" >
+                                                        <i class="ri-pencil-line"></i></a>
 
                                                     <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top"
                                                         type="button" title="Delete" data-original-title="Delete" 
