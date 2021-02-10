@@ -51,7 +51,6 @@ const getUserByEmail = async (req, res) => {
 };
 
 
-
 const getUserById = async (req, res) => {
     const user = await usersService.getUserById(req.params.id);
 
@@ -62,6 +61,16 @@ const getUserById = async (req, res) => {
     res.json(user);
 };
 
+
+const getOnlyUserById = async (req, res) => {
+    const user = await usersService.getOnlyUserById(req.params.id);
+
+    if (!user){
+        return res.status(404).json({errors: ['user_id not found']});
+    }
+
+    res.json(user);
+};
 
 const updateUser = async (req, res) => {
     if (!req.body) {
@@ -116,5 +125,6 @@ module.exports = {
     deleteUser,
     countUsers,
     getUserByParam,
-    getUserByEmail
+    getUserByEmail,
+    getOnlyUserById
 }

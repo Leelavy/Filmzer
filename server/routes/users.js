@@ -52,6 +52,13 @@ router.route('/getUserByEmail/:email')
     .get(userController.getUserByEmail)
 
 
+/**
+ * get user by email
+ * http://localhost:8080/users/getUserById/:id
+ */
+router.route('/getUserById/:id')
+    .get(userController.getOnlyUserById)
+
 
 /**
  * get - get user by user id

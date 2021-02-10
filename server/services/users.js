@@ -52,6 +52,11 @@ const getUserById = async (id) => {
 };
 
 
+const getOnlyUserById = async (id) => {
+    return await Users.findById(id,{'username':1, 'password':2, 'admin':3, 'firstName':4, 'lastName':5, 'email':6});
+};
+
+
 const updateUser = async (id, body) => {
     const user = await getUserById(id);
     if (!user)
@@ -108,5 +113,6 @@ module.exports = {
     deleteUser,
     countUsers,
     getUserByParam,
-    getUserByEmail
+    getUserByEmail,
+    getOnlyUserById
 }
