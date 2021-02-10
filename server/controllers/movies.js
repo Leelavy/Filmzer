@@ -153,33 +153,24 @@ const getMovieById = async (req, res) => {
 const getMovieByTitleGenreYear = async (req, res) => {
 
     var [movieTitle, movieGenre, movieYear] = req.params.param.split('=');
-    var count = 3;
-    var all = true;
 
     if(movieTitle === ''){
-        movieTitle =  NaN
-        count--;
+        movieTitle =  null
     }
 
     if(movieGenre === ''){
-        movieGenre =  NaN
-        count--;
+        movieGenre =  null
     }
 
     if(movieYear === ''){
-        movieYear =  undefined
-        count--;
-    }
-
-    if(count !== 3){
-        all = false;
+        movieYear =  NaN
     }
 
     const movies = await moviesService.getMovieByTitleGenreYear(
-        movieTitle, movieGenre, movieYear, all
+        movieTitle, movieGenre, movieYear
     );
     if (!movies) {
-        return res.status(404).json({errors: ['Movies are snot found']});
+        return res.status(404).json({errors: ['Movies are not found']});
     }
 
     res.json(movies);

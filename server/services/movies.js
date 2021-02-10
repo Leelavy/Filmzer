@@ -165,24 +165,40 @@ const getMovieByImdbTitleId = async (title_id) => {
 };
 
 
-const getMovieByTitleGenreYear = async (title, genre, year, all) => {
+const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
 
-    const filter = [
-        {$and: [{'title': {$regex: `^${title}.*`}}]},
-        {$and: [{'genre': {$regex: `^${genre}.*`}}]},
-        {$and: [{'year': year}]}
+    var match = {};
+
+    if(title!==null){
+        match["title"] = new RegExp(title)
+    }
+
+    if(isNaN(year)!==true){
+        match["year"] = {$eq:parseInt(year)};
+    }
+
+    if(genre!==null){
+        match["genre"] = new RegExp(genre)
+    }
+
+    var query = [{
+        $project:
+            {
+                "_id": 1,
+                "title": 2,
+                "year": 3,
+                "genre": 4,
+                "description": 5,
+                "image_url": 6,
+                "trailer_video": 7,
+            }
+    },
+        {
+            $match:match
+        }
     ]
 
-    if(all){
-        return Movies.find({
-                $and: filter
-            }
-        );
-    }
-    return Movies.find({
-        $or: filter
-        }
-    );
+    return Movies.aggregate(query);
 };
 
 
