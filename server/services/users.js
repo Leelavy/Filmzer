@@ -52,6 +52,12 @@ const getUserById = async (id) => {
 };
 
 
+const removeUserReviews = async (review_ids) => {
+
+    return Users.update({},{$pull:{"reviews":{$in:review_ids}}},{multi:true});
+};
+
+
 const getOnlyUserById = async (id) => {
     return await Users.findById(id,{'username':1, 'password':2, 'admin':3, 'firstName':4, 'lastName':5, 'email':6});
 };
@@ -114,5 +120,6 @@ module.exports = {
     countUsers,
     getUserByParam,
     getUserByEmail,
-    getOnlyUserById
+    getOnlyUserById,
+    removeUserReviews
 }

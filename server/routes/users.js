@@ -53,7 +53,7 @@ router.route('/getUserByEmail/:email')
 
 
 /**
- * get user by email
+ * get user by id
  * http://localhost:8080/users/getUserById/:id
  */
 router.route('/getUserById/:id')

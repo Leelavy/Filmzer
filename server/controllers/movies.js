@@ -2,7 +2,8 @@
 const unirest = require("unirest");
 const _ = require("lodash");
 const moviesService = require('../services/movies');
-// const reviewsService = require('../services/reviews');
+const reviewsService = require('../services/reviews');
+const userService = require('../services/users');
 
 
 const createMovie = async (req, res) => {
@@ -228,19 +229,28 @@ const updateMovies = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
 
+    // remove movie reviews
+    const review_ids = await moviesService.getReviewsByMovieId(req.params.movieId);
+    review_ids["reviews"].forEach(function (reviewId) {
+        const review = reviewsService.deleteReview(reviewId);
+        if (!review){
+            return res.status(404).json({ errors: ['review not found for deleted'] });
+        }
+
+    });
+
+
+    // remove movie
     const movie = await moviesService.deleteMovie(req.params.movieId);
     if (!movie) {
         return res.status(404).json({ errors: ['movie not found'] });
     }
-    //
-    // const review_ids = await moviesService.getReviewsByMovieId(req.params.movieId);
-    // review_ids["reviews"].forEach(function (reviewId) {
-    //     const review = reviewsService.deleteReview(reviewId);
-    //     if (!review){
-    //         return res.status(404).json({ errors: ['review not found for deleted'] });
-    //     }
-    //
-    // });
+
+
+    // remove user reviews
+    const user = userService.removeUserReviews(review_ids["reviews"]);
+    console.log(user);
+
 
     res.send();
 };
