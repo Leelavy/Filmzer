@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Reviews } from 'src/app/models/reviews';
 import { ReviewsService } from 'src/app/services/reviews.service';
 
@@ -12,7 +13,8 @@ export class ReviewsComponent implements OnInit {
   reviews: Reviews[] = [];
   review:Reviews;
 
-  constructor(private reviewsService: ReviewsService) { }
+  constructor(private reviewsService: ReviewsService,
+    private rout:Router) { }
 
   ngOnInit(): void {
     this.load();
@@ -30,8 +32,13 @@ export class ReviewsComponent implements OnInit {
         this.review=null;
         this.load();
       });
-      
-
   }
+
+  editRe(id:number){
+    this.rout.navigate(['/reviews', id]); 
+    
+  }
+
+  
 
 }

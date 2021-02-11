@@ -29,18 +29,19 @@
                                                     <select #inpCat class="form-control" id="exampleFormControlSelect1">                                          
                                                         <option>Comedy</option>
                                                         <option>Crime</option>
-                                                        <option>Drama</option>
-                                                        <option>Horror</option>
-                                                        <option>Romance</option>
+                                                        <option>Action</option>
+                                                        <option>Thriller</option>
+                                                        <option>Science Fiction</option>
                                                     </select>
                                                 </div>
+
                                                 <div class="col-12 form-group">
                                                     <textarea #inpVid id="text" name="text" rows="5" class="form-control"
                                                         placeholder="Upload-Movie"></textarea>
                                                 </div>
+                                                
                                                 <div class="col-12 form-group">
-                                                    <input #inpImage type="text" class="form-control" placeholder="Upload-Image"> 
-                                                    
+                                                    <input #inpImage type="text" class="form-control" placeholder="Upload-Image">  
                                                 </div>
 
                                             </div>
@@ -58,7 +59,7 @@
                                         <div class="col-12 form-group ">
                                             <button (click)="createMovie(inpTitle.value, inpYear.value, inpCat.value, 
                                             inpDesc.value, inpImage.value , inpVid.value )" type="submit" class="btn btn-primary">Submit</button>
-                                            <button  type="reset" class="btn btn-danger">cancel</button>
+                                            <button  routerLink="/movies" type="reset" class="btn btn-danger">cancel</button>
                                         </div>
                                     </div>
                                 </form>

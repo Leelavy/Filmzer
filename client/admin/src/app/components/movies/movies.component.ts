@@ -39,11 +39,10 @@ export class MoviesComponent implements OnInit {
 
   }
 
-  editMov(id:number, movie:AddMovie){
+  editMov(id:number){
     this.rout.navigate(['/movies', id]);
     console.log(this.rout.navigate(['/movies', id]));
-    // this.moviesService.updateUser(user);
-    // console.log(user);
+
     
     
   }

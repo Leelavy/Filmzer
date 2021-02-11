@@ -17,27 +17,19 @@ import { EditreviewComponent } from './components/reviews/editreview/editreview.
 const routes: Routes = [
 
   {
-    path: 'movies', component: MoviesComponent,
-    children: [
-      { path: "addMovie", component: AddMovieComponent }
-              ]
-  },{ path: "movies/:id", component: EditmovieComponent },
+    path: 'movies', component: MoviesComponent},
+     { path: "movies/:id", component: EditmovieComponent },
+     { path: "addMovie", component: AddMovieComponent },
 
 
-  { path: 'reviews', component: ReviewsComponent ,
-    children:[
-      {path: "editReview", component: EditreviewComponent}
-    ]
-  },
+  { path: 'reviews', component: ReviewsComponent },
+  { path: "reviews/:id", component: EditreviewComponent },
 
 
-  {
-    path: 'users', component: UsersComponent,
-    children: [
-      { path: "addUser", component: AdduserComponent }
-              ]
-  },{ path: 'users/:id', component: EdituserComponent },
-  
+  {path: 'users', component: UsersComponent},
+     { path: 'users/:id', component: EdituserComponent },
+     { path: "addUser", component: AdduserComponent },
+
 
   { path: 'statistics', component: StatisticsComponent },
   { path: 'statistics', component: StatisticsComponent },

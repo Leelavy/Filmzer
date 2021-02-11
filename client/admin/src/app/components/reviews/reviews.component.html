@@ -1,3 +1,5 @@
+
+<router-outlet></router-outlet>
 <!doctype html>
 <html lang="en">
 
@@ -52,13 +54,13 @@
                                                 <td>  {{ reviews.reviewTitle }} </td>
                                                 <td>  {{ reviews.reviewContent }} </td>
                                                 <td> <i class="lar la-star mr-2"></i> {{ reviews.rating }} </td>
-                                                <td>  {{ reviews.lastUpdated | date:'short'}} </td>
+                                                <td>  {{ reviews.lastUpdated | date:'dd/MM/yyyy'}} </td>
                                                
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="iq-bg-success" data-toggle="tooltip"
-                                                            data-placement="top" title="Edit" data-original-title="Edit"
-                                                            href="#"><i class="ri-pencil-line"></i></a>
+                                                            data-placement="top" type="button" title="Edit" data-original-title="Edit"
+                                                            (click)="editRe(reviews._id)"><i class="ri-pencil-line"></i></a>
 
                                                             <a class="iq-bg-primary" data-toggle="tooltip"
                                                             data-placement="top" title="Delete" type="button" data-original-title="Delete"

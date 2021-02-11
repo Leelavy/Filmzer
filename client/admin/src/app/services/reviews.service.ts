@@ -30,5 +30,10 @@ export class ReviewsService {
 
   }
 
+  getReviewById(id: number): Observable<Reviews> {
+    const url = `${this.reviewsUrl}/${id}`;
+    return this.http.get<Reviews>(url);
+  }
+
 
 }

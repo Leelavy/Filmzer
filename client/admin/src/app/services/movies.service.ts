@@ -36,6 +36,11 @@ export class MoviesService {
     return this.http.post<AddMovie>(this.moviesUrl, newMovie);
   }
 
+  getMovieById(id: number): Observable<Movies> {
+    const url = `${this.moviesUrl}/${id}`;
+    return this.http.get<Movies>(url);
+  }
+
 
 }
 

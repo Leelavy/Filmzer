@@ -48,11 +48,8 @@ export class UsersComponent implements OnInit {
 
   }
 
-  editUs(id:number, user:Users2){
+  editUs(id:number){
     this.rout.navigate(['/users', id]);
-    console.log(this.rout.navigate(['/users', id]));
-    this.usersService.updateUser(user);
-    console.log(user);
     
   }
 

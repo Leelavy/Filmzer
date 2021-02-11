@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
 import { Users } from 'src/app/models/users';
+import { addUser } from 'src/app/models/addUser';
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Users } from 'src/app/models/users';
 })
 
 export class EdituserComponent implements OnInit {
- 
+  userUp:addUser;
   user:Users;
 
   constructor(private rout: ActivatedRoute,
@@ -27,6 +29,31 @@ export class EdituserComponent implements OnInit {
 
   }
 
+  // updateUser(usernameU: string, passwordU: number, adminU: string, firstNameU: string,
+  //   lastNameU: string, emailU: string){
+
+  //     // const userNew :addUser=({
+  //     //   username: usernameU,
+  //     //   password:passwordU,
+  //     //   admin:adminU,
+  //     //   firstName:firstNameU,
+  //     //   lastName:lastNameU,
+  //     //   email:emailU
+
+  //     // });
+
+  //     // this.userService.updateUser(this.user._id).subscribe();
+  //     // console.log(userNew);
+
+  // }
+
+
+  // onUpdate(){
+
+  //   this.userService.updateUser(this.user).subscribe(data=>{
+  //       this.user=data;
+  //   });
+  // }
 
 
 }
