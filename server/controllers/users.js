@@ -1,4 +1,5 @@
 const usersService = require('../services/users');
+const reviewService = require('../services/reviews');
 
 
 const createUser = async (req, res) => {
@@ -106,6 +107,17 @@ const updateReviewOfUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
+
+    const reviews_ids = await reviewService.getReviewByUserId(req.params.id);
+
+    reviews_ids.forEach(function (reviewId) {
+        const review = reviewService.deleteReview(reviewId["_id"]);
+        if (!review){
+            return res.status(404).json({ errors: ['review not found for deleted'] });
+        }
+
+    });
+
     const user = await usersService.deleteUser(req.params.id);
     if (!user) {
         return res.status(404).json({ errors: ['user not found'] });

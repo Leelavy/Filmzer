@@ -261,7 +261,7 @@ const getReviewByMovieId = async (id) => {
 
 
 const getReviewByUserId = async (id) => {
-    return await Reviews.find({'users': [id]});
+    return await Reviews.find({'users': Object(id)},{'_id': 1});
 };
 
 
