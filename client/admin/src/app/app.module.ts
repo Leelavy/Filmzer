@@ -19,7 +19,6 @@ import { AddMovieComponent } from './components/movies/add-movie/add-movie.compo
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment.prod';
-import { FilterPipe } from './filter.pipe';
 import { SmallBoxesComponent } from './components/dashboard/small-boxes/small-boxes.component';
 import { TopRatedComponent } from './components/dashboard/top-rated/top-rated.component';
 
@@ -28,6 +27,8 @@ import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
 import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
+import { SearchfilterPipe } from './components/users/searchfilter.pipe';
+
 
 
 
@@ -45,14 +46,13 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     DashboardComponent,
     AddMovieComponent,
     SearchPipe,
-    FilterPipe,
     SmallBoxesComponent,
     TopRatedComponent,
     AdduserComponent,
     EdituserComponent,
     EditmovieComponent,
-    EditreviewComponent
-   
+    EditreviewComponent,
+    SearchfilterPipe
   ],
   imports: [
     BrowserModule,

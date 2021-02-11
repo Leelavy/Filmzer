@@ -30,7 +30,7 @@
 
 
                                     <i class="ri-search-line"></i>
-                                    <input  id="s" type="text" class="text search-input"   placeholder="filter by user-name..." [(ngModel)]="searchUser" [ngModelOptions]="{standalone: true}">
+                                    <input   type="text" class="text search-input"   placeholder="filter by user-name..." >
                                     <i class="ri-search-line"></i>
                                     <input type="text" class="text search-input" placeholder="filter by first-name...">
                                     <i class="ri-search-line"></i>
@@ -49,6 +49,7 @@
                                     <table class="table movie_table" style="width:100%">
                                         <thead>
                                             <tr>
+
                                                 <th style="width: 10%;"> First-Name</th>
                                                 <th style="width: 10%;"> Last-Name</th>
                                                 <th style="width: 10%;"> User-Name</th>
@@ -61,7 +62,7 @@
                                         <tbody>
 
 
-                                            <tr *ngFor="let users of users">   
+                                            <tr *ngFor="let users of users ">   
                                                 <td>{{users.firstName}}</td>
                                                 <td>{{users.lastName}}</td>
                                                 <td>{{users.username}}</td>
