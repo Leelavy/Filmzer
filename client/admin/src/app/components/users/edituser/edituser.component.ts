@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
-import { addUser } from '../../../models/addUser';
-import { Users, Users2 } from 'src/app/models/users';
-import { Subscription } from 'rxjs';
-import { RefreshService } from 'src/app/services/refresh.service';
+import { Users } from 'src/app/models/users';
+
 
 @Component({
   selector: 'app-edituser',
@@ -13,48 +11,23 @@ import { RefreshService } from 'src/app/services/refresh.service';
 })
 
 export class EdituserComponent implements OnInit {
-  sub:Subscription;
-  user: Users2;
+ 
+  user:Users;
 
   constructor(private rout: ActivatedRoute,
-               private userService: UsersService,
-                private refreshservice: RefreshService) { }
+    private userService: UsersService) { }
 
   ngOnInit(): void {
 
-    this.sub =this.refreshservice.refreshMovie.subscribe(user =>this.user=user);
+    let id = this.rout.snapshot.params['id'];
 
-    // this.rout.paramMap.subscribe(patameterMap => {
-    //   const id = patameterMap.get('id');
-    //   console.log("this is ", id);
-    //   this.getUser(+id);
-    //   console.log("her" + this.getUser(+id));
-
-    // });
-
-  }
-  ngOnDestroy(){
-    this.sub.unsubscribe();
-  }
-
-  // onUpdate(){
-  //   this.userService.
-  // }
-
-  // private getUser(id: number) {
-
-
-  //   //  this.user = this.userService.getUserById(id);
-
-
-  // }
-  onUpdate(){
-    this.userService.updateUser(this.user).subscribe(user=>{
-      this.user=user;
-      console.log(user);
-      
+    this.userService.getUserById(id).subscribe(data=>{
+        this.user=data;
     });
+
   }
+
+
 
 }
 

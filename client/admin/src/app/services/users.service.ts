@@ -13,6 +13,7 @@ import { addUser } from '../models/addUser';
 export class UsersService {
 
   private usersUrl = environment.usersUrl;
+  private searshURL = environment.userSearch;
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,7 @@ export class UsersService {
 
   getUserById(id: number): Observable<Users> {
     const url = `${this.usersUrl}/${id}`;
-    return this.http.get<Users>(url)
+    return this.http.get<Users>(url);
   }
 
   deleteUser(_id: number): Observable<Users> {
@@ -50,6 +51,12 @@ export class UsersService {
   updateUser(user:Users2):Observable<Users2>{
     const url= `${this.usersUrl}/${user._id}`;
     return this.http.patch<Users2>(url, user);
+  }
+
+  getUserByParam(username:string, firsN:string, lastName:string , email:string):Observable<Users[]>{
+
+    const url = `${this.searshURL}/${username=firsN=lastName=email}`;
+    return this.http.get<Users[]>(url);
   }
 
 

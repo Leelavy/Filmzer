@@ -16,12 +16,12 @@ import { Users2 } from '../../models/users';
 
 export class UsersComponent implements OnInit {
 
-  searchUser: string;
   users: Users[] = [];
   user: Users;
-
-  @Input() tmp:string;
-  
+  searchU: string;
+  searchF:string;
+  searchL:string;
+  searchE:string;
  
 
   constructor(private usersService: UsersService,
@@ -54,8 +54,18 @@ export class UsersComponent implements OnInit {
     this.usersService.updateUser(user);
     console.log(user);
     
-    
   }
+
+  searchUser(username:string, firsN:string,lastName:string, email:string){
+        console.log(username);
+        
+       this.usersService.getUserByParam(username,firsN,lastName,email).subscribe(data=>{
+        this.users=data;
+    });
+
+
+  }
+
 
 
 

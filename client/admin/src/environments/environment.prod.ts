@@ -11,6 +11,7 @@ export const environment = {
   latestReviewsUrl: 'http://localhost:8080/reviews/latestReviews',
   topRatedMoviesUrl: 'http://localhost:8080/movies/topMovies',
   avgRatingByYear: 'http://localhost:8080/movies/avgRatingByYear',
-  countByGenre:'http://localhost:8080/movies/countByGenre'
+  countByGenre:'http://localhost:8080/movies/countByGenre',
+  userSearch: 'http://localhost:8080/users/getUserByParam'
 
 };
