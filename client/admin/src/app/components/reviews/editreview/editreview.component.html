@@ -30,7 +30,8 @@
                                                     </div>
                                                     <div class="form-group col-sm-4">
                                                         <label for="fname">Title:</label>
-                                                        <input inpF type="text"  class="form-control" [(ngModel)]="rev.reviewTitle" 
+                                                        <input inpF type="text"  class="form-control" 
+                                                        [(ngModel)]="rev.reviewTitle" 
                                                         [ngModelOptions]="{standalone: true}"  >
                                                     </div>
                                                     <!-- <div class="form-group col-sm-4">
@@ -41,18 +42,20 @@
 
                                                     <div class="form-group col-sm-6">
                                                         <label for="lname">Content: </label>
-                                                        <input inpL type="text" class="form-control" [(ngModel)]="rev.reviewContent" 
+                                                        <input inpL type="text" class="form-control" 
+                                                        [(ngModel)]="rev.reviewContent" 
                                                         [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     <div class="form-group col-sm-2">
                                                         <label for="uname">Rating: </label>
-                                                        <i class="lar la-star mr-2"></i> <input inpU type="text" class="form-control" [(ngModel)]="rev.rating" 
+                                                        <i class="lar la-star mr-2"></i> <input type="text" class="form-control"
+                                                         [(ngModel)]="rev.rating" 
                                                         [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     
 
                                                 </div>
-                                                <button (click)="createUser()"
+                                                <button (click)="onUpdateR()"
                                                 type="submit" class="btn btn-primary mr-2">Submit</button>  
                                                 <button routerLink="/reviews" type="reset" class="btn btn-danger">Cancel</button>
                                                 

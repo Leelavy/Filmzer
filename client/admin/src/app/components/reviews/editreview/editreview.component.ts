@@ -27,4 +27,14 @@ export class EditreviewComponent implements OnInit {
     });
   }
 
+
+    onUpdateR(){
+
+        console.log(this.rev);
+
+  }
+
+
+  
+
 }

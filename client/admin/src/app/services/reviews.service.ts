@@ -35,5 +35,10 @@ export class ReviewsService {
     return this.http.get<Reviews>(url);
   }
 
+  updateReview(rev:Reviews):Observable<Reviews>{
+    const url= `${this.reviewsUrl}/${rev._id}`;
+    return this.http.patch<Reviews>(url, rev);
+  }
+
 
 }
