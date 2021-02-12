@@ -77,6 +77,7 @@ const updateUser = async (id, body) => {
 
     await user.save();
     return user;
+
 };
 
 

@@ -48,9 +48,9 @@ export class UsersService {
     return this.http.post<addUser>(this.usersUrl, newUser);
   }
 
-  updateUser(user:Users2):Observable<Users2>{
-    const url= `${this.usersUrl}/${user._id}`;
-    return this.http.patch<Users2>(url, user);
+  updateUser( id:number ,user:addUser):Observable<addUser>{
+    const url= `${this.usersUrl}/${id}`;
+    return this.http.patch<addUser>(url, user);
   }
 
   getUserByParam(username:string, firsN:string, lastName:string , email:string):Observable<Users[]>{

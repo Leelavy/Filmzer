@@ -29,30 +29,38 @@ export class EdituserComponent implements OnInit {
 
   }
 
-  // updateUser(usernameU: string, passwordU: number, adminU: string, firstNameU: string,
-  //   lastNameU: string, emailU: string){
+  updateUser(usernameU: string, passwordU: number, adminU: string, firstNameU: string,
+    lastNameU: string, emailU: string){
 
-  //     // const userNew :addUser=({
-  //     //   username: usernameU,
-  //     //   password:passwordU,
-  //     //   admin:adminU,
-  //     //   firstName:firstNameU,
-  //     //   lastName:lastNameU,
-  //     //   email:emailU
+      let id = this.rout.snapshot.params['id'];
 
-  //     // });
+      const userNew :addUser=({
+        username: usernameU,
+        password:passwordU,
+        admin:adminU,
+        firstName:firstNameU,
+        lastName:lastNameU,
+        email:emailU
 
-  //     // this.userService.updateUser(this.user._id).subscribe();
-  //     // console.log(userNew);
+      });
 
-  // }
+      this.userService.updateUser(id,userNew).subscribe();
+      console.log(userNew);
+
+  }
 
 
   // onUpdate(){
 
-  //   this.userService.updateUser(this.user).subscribe(data=>{
-  //       this.user=data;
+  //   let id = this.rout.snapshot.params['id'];
+
+
+  //   this.userService.updateUser(id,this.userUp).subscribe(data=>{
+  //       this.userUp=data;
   //   });
+
+  //   console.log(this.userUp);
+    
   // }
 
 
