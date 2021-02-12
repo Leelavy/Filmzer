@@ -30,7 +30,7 @@
                                                 </div>
 
                                                 <div class="col-sm-6 form-group">
-                                                    <input #inpYear type="text" class="form-control" [(ngModel)]="movies.genre"
+                                                    <input #inpCat type="text" class="form-control" [(ngModel)]="movies.genre"
                                                      [ngModelOptions]="{standalone: true}">
                                                 </div>
 
@@ -69,7 +69,9 @@
                                         
 
                                         <div class="col-12 form-group ">
-                                            <button  type="submit" class="btn btn-primary">Submit</button>
+                                            <button (click)="updateMovie(inpTitle.value, inpYear.value, inpCat.value, 
+                                            inpDesc.value, inpImage.value, inpImage.value)"
+                                             type="submit" class="btn btn-primary">Submit</button>
                                             <button routerLink="/movies" type="reset" class="btn btn-danger">Cancel</button>
                                         </div>
                                     </div>

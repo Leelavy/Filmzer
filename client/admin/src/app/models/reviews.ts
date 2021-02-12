@@ -10,3 +10,11 @@ export interface Reviews{
     lastUpdated: Number
 
 }
+
+export interface editReviews{
+
+    reviewTitle: String,
+    reviewContent: String,
+    rating: Number,
+
+}

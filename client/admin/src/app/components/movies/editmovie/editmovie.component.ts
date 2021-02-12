@@ -13,8 +13,8 @@ import { AddMovie } from 'src/app/models/addMovie';
 
 
 export class EditmovieComponent implements OnInit {
-
-  movies:Movies;
+  movie: AddMovie
+  movies: Movies;
 
   constructor(private rout: ActivatedRoute,
     private movieService: MoviesService) { }
@@ -23,12 +23,34 @@ export class EditmovieComponent implements OnInit {
 
     let id = this.rout.snapshot.params['id'];
 
-    this.movieService.getMovieById(id).subscribe(data=>{
-        this.movies=data;
+    this.movieService.getMovieById(id).subscribe(data => {
+      this.movies = data;
     });
 
   }
 
-  
+  updateMovie(titleN: string, yearN: number, genreN: string,descriptionN: string, 
+    image_urlN: string, trailer_videoN: string) {
+
+    let id = this.rout.snapshot.params['id'];
+
+    const movieNew: AddMovie = ({
+     
+      title: titleN,
+      year: yearN,
+      genre: genreN,
+      description: descriptionN,
+      image_url: image_urlN,
+      trailer_video: trailer_videoN
+      
+    });
+
+    this.movieService.updateMovie(id, movieNew).subscribe();
+    console.log(movieNew);
+    
+
+  }
+
+
 }
 

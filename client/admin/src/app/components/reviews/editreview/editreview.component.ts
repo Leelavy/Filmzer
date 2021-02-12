@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewsService } from '../../../services/reviews.service';
 import { Reviews } from 'src/app/models/reviews';
+import { editReviews } from 'src/app/models/reviews';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Reviews } from 'src/app/models/reviews';
 
 export class EditreviewComponent implements OnInit {
 
+  editRev: editReviews;
   rev:Reviews;
   
   constructor(private rout: ActivatedRoute,
@@ -28,13 +30,23 @@ export class EditreviewComponent implements OnInit {
   }
 
 
-    onUpdateR(){
+  updateReview(revTitle: string, revCont: string , revRat: number) {
 
-        console.log(this.rev);
+    let id = this.rout.snapshot.params['id'];
+
+    const reviewNew: editReviews = ({
+     
+      reviewTitle: revTitle,
+      reviewContent: revCont,
+      rating: revRat
+    });
+
+    this.revService.updateReview(id, reviewNew).subscribe();
+    console.log(reviewNew);
+    
 
   }
 
 
-  
 
 }

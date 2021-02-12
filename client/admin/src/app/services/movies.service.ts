@@ -41,6 +41,12 @@ export class MoviesService {
     return this.http.get<Movies>(url);
   }
 
+  updateMovie( id:number ,movie:AddMovie):Observable<AddMovie>{
+    const url= `${this.moviesUrl}/${id}`;
+    return this.http.patch<AddMovie>(url, movie);
+  }
+
+
 
 }
 
