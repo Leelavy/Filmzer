@@ -249,7 +249,10 @@ const deleteMovie = async (req, res) => {
 
     // remove user reviews
     const user = userService.removeUserReviews(review_ids["reviews"]);
-    console.log(user);
+
+    if(user.nModified===0){
+        return res.status(404).json({ errors: ['cant find review on users table to update'] });
+    }
 
 
     res.send();

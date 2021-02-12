@@ -1,5 +1,6 @@
 const reviewsService = require('../services/reviews');
 const moviesService = require('../services/movies');
+const usersService = require('../services/users');
 
 const createReview = async (req, res) => {
     const newReview = await reviewsService.createReview(req.body);
@@ -135,7 +136,24 @@ const updateReview = async (id, body) => {
 
 
 const deleteReview = async (req, res) => {
-    const review = await reviewsService.deleteReview(req.params.id);
+
+    const reviewId = req.params.id;
+
+    const movie = await moviesService.removeMovieReviews([reviewId]);
+
+    if(movie.nModified===0){
+        return res.status(404).json({ errors: ['cant find review on movies table to update'] });
+    }
+
+
+    const user = await usersService.removeUserReviews([reviewId]);
+
+    if(user.nModified===0){
+        return res.status(404).json({ errors: ['cant find review on users table to update'] });
+    }
+
+
+    const review = await reviewsService.deleteReview(reviewId);
     if (!review) {
         return res.status(404).json({ errors: ['review not found'] });
     }

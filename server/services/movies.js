@@ -246,6 +246,12 @@ const deleteMovie = async (id) => {
 };
 
 
+const removeMovieReviews = async (review_ids) => {
+
+    return Movies.update({},{$pull:{"reviews":{$in:review_ids}}},{multi:true});
+};
+
+
 module.exports = {
     createMovie,
     getMovies,
@@ -261,5 +267,6 @@ module.exports = {
     getReviewsByMovieId,
     getMoviesByGenre,
     countByGenre,
-    avgRatingByYear
+    avgRatingByYear,
+    removeMovieReviews
     }
