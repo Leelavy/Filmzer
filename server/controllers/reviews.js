@@ -121,17 +121,20 @@ const getReviewsByTitleRatingUsername = async (req, res) => {
 };
 
 
-const updateReview = async (id, body) => {
-    const review = await getReviewById(id);
-    if (!review)
-        return null;
+const updateReview = async (req, res) => {
 
-    review.reviewTitle = body.reviewTitle;
-    review.reviewContent = body.reviewContent;
-    review.rating = body.rating;
+    if (!req.body) {
+        res.status(400).json({
+            message: "reviews param are required",
+        });
+    }
 
-    await review.save();
-    return review;
+    const reviews = await reviewsService.updateReview(req.params.id, req.body);
+    if (!reviews) {
+        return res.status(404).json({ errors: ['reviews not found'] });
+    }
+
+    res.json(reviews);
 };
 
 
