@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users2 } from '../models/users';
 import { Users } from '../models/users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
@@ -20,13 +19,6 @@ export class UsersService {
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>(this.usersUrl);
   }
-
-  // updateUser(user:Users): Observable<Users[]>{
-  //   const url=`${this.usersUrl}/${user.username.index}`;
-  //   return this.http.patch<Users[]>(url,{user: user.username});
-
-
-  // }
 
   getUserById(id: number): Observable<Users> {
     const url = `${this.usersUrl}/${id}`;
@@ -53,11 +45,12 @@ export class UsersService {
     return this.http.patch<addUser>(url, user);
   }
 
-  getUserByParam(username:string, firsN:string, lastName:string , email:string):Observable<Users[]>{
-
-    const url = `${this.searshURL}/${username=firsN=lastName=email}`;
+  getUserByParam(st:string):Observable<Users[]>{
+    const url = `${this.searshURL}/${st}`;
     return this.http.get<Users[]>(url);
   }
+
+
 
 
 }

@@ -11,10 +11,14 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 export class ReviewsComponent implements OnInit {
 
   reviews: Reviews[] = [];
-  review:Reviews;
+  review: Reviews;
+  tmp = "";
+  searchU = "";
+  searchT = "";
+  searchR = "";
 
   constructor(private reviewsService: ReviewsService,
-    private rout:Router) { }
+    private rout: Router) { }
 
   ngOnInit(): void {
     this.load();
@@ -27,18 +31,26 @@ export class ReviewsComponent implements OnInit {
 
   }
 
-  onDelete(_id:number) {
-      this.reviewsService.deleteReview(_id).subscribe(()=>{
-        this.review=null;
-        this.load();
-      });
+  onDelete(_id: number) {
+    this.reviewsService.deleteReview(_id).subscribe(() => {
+      this.review = null;
+      this.load();
+    });
   }
 
-  editRe(id:number){
-    this.rout.navigate(['/reviews', id]); 
-    
+  editRe(id: number) {
+    this.rout.navigate(['/reviews', id]);
   }
 
-  
+  searchReview() {
+    this.tmp = this.searchT + "=" + this.searchR + "=" + this.searchU;
+    console.log(this.tmp);
+
+    this.reviewsService.getMovieByParam(this.tmp).subscribe(data => {
+      this.reviews = data;
+    });
+  }
+
+
 
 }

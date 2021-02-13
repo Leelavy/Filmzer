@@ -15,11 +15,13 @@ export class ReviewsService {
 
   private latestReviewUrl = environment.latestReviewsUrl;
   private reviewsUrl = environment.reviewsUrl;
+  private reviewSearchUrl= environment.reviewSearch;
+  private review2Url= environment.reviewUrl2;
 
   constructor(private http: HttpClient) { }
 
   getReviews(): Observable<Reviews[]> {
-    return this.http.get<Reviews[]>(this.reviewsUrl);
+    return this.http.get<Reviews[]>(this.review2Url);
   }
   topReviewsByDate(): Observable<Reviews[]> {
     return this.http.get<Reviews[]>(this.latestReviewUrl)
@@ -39,6 +41,13 @@ export class ReviewsService {
   updateReview( id:number ,rev:editReviews):Observable<editReviews>{
     const url= `${this.reviewsUrl}/${id}`;
     return this.http.patch<editReviews>(url, rev);
+  }
+
+  getMovieByParam(st:string):Observable<Reviews[]>{
+    const url = `${this.reviewSearchUrl}/${st}`;
+    console.log(url);
+    
+    return this.http.get<Reviews[]>(url);
   }
 
 

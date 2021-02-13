@@ -4,6 +4,7 @@
 export interface Reviews{
 
     _id:number,
+    users:string,
     reviewTitle: String,
     reviewContent: String,
     rating: Number,

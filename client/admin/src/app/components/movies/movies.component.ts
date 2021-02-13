@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddMovie } from 'src/app/models/addMovie';
 import { Movies } from 'src/app/models/movies';
 import { MoviesService } from 'src/app/services/movies.service';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -14,9 +14,13 @@ export class MoviesComponent implements OnInit {
 
   movies: Movies[] = [];
   movie: Movies;
+  tmp = "";
+  movieM = "";
+  movieC = "";
+  movieY = "";
 
   constructor(private moviesService: MoviesService,
-              private rout:Router) {
+    private rout: Router) {
     // console.log(moviesService.getMovies);
   }
 
@@ -28,7 +32,6 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getMovies().subscribe(data => {
       this.movies = data;
     });
-
   }
 
   onDelete(_id: number) {
@@ -36,17 +39,21 @@ export class MoviesComponent implements OnInit {
       this.movie = null;
       this.load();
     });
-
   }
 
-  editMov(id:number){
+  editMov(id: number) {
     this.rout.navigate(['/movies', id]);
     console.log(this.rout.navigate(['/movies', id]));
-
-    
-    
   }
-  
+
+  searchMovie() {
+    this.tmp = this.movieM + "=" + this.movieC + "=" + this.movieY;
+
+    this.moviesService.getMovieByParam(this.tmp).subscribe(data => {
+      this.movies = data;
+    });
+  }
+
 
 
 

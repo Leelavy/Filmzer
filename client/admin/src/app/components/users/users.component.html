@@ -29,13 +29,17 @@
                                 <form  class="searchbox">
 
                                     <i class="ri-search-line"></i>
-                                    <input   type="text" class="text search-input"   placeholder="filter by user-name..." >
+                                    <input [(ngModel)]="searchU" [ngModelOptions]="{standalone: true}"  (input)="searchUser()"
+                                     type="text" class="text search-input" placeholder="filter by user-name..." >
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by first-name...">
+                                    <input [(ngModel)]="searchF" [ngModelOptions]="{standalone: true}" (input)="searchUser()"
+                                    type="text" class="text search-input" placeholder="filter by first-name...">
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by last-name...">
+                                    <input [(ngModel)]="searchL" [ngModelOptions]="{standalone: true}" (input)="searchUser()"
+                                    type="text" class="text search-input" placeholder="filter by last-name...">
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by email...">
+                                    <input [(ngModel)]="searchE" [ngModelOptions]="{standalone: true}" (input)="searchUser()"
+                                    type="text" class="text search-input" placeholder="filter by email...">
                                 
                                 </form>
                             </div>

@@ -4,7 +4,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import {RefreshService} from '../../services/refresh.service';
 import { addUser } from 'src/app/models/addUser';
-import { Users2 } from '../../models/users';
+
 
 
 
@@ -18,11 +18,13 @@ export class UsersComponent implements OnInit {
 
   users: Users[] = [];
   user: Users;
-  searchU: string;
-  searchF:string;
-  searchL:string;
-  searchE:string;
- 
+  searchU="";
+  searchF="";
+  searchL="";
+  searchE="";
+  tmp="";
+  
+  
 
   constructor(private usersService: UsersService,
               private rout:Router,
@@ -38,6 +40,7 @@ export class UsersComponent implements OnInit {
       this.users = data;
     });
   }
+ 
 
   
   onDelete(_id:number) {
@@ -53,18 +56,13 @@ export class UsersComponent implements OnInit {
     
   }
 
-  searchUser(username:string, firsN:string,lastName:string, email:string){
-        console.log(username);
+  searchUser(){
+      this.tmp=this.searchU+"="+this.searchF+"="+this.searchL+"="+this.searchE;
         
-       this.usersService.getUserByParam(username,firsN,lastName,email).subscribe(data=>{
+       this.usersService.getUserByParam(this.tmp).subscribe(data=>{
         this.users=data;
     });
-
-
   }
-
-
-
 
 
 }

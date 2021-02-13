@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { StatisticService } from '../../services/statistic.service';
+import { Chart } from 'chart.js';
+import { map } from 'rxjs/operators';
+import {Statistics} from '../../models/statistics';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+
+
 
 
 @Component({
@@ -8,12 +15,42 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class StatisticsComponent implements OnInit {
+    doughnutC:Statistics[];
+    doughnutL:Statistics[];
+    gen:string;
+    chart:any;
 
-  constructor() { }
+    aa:Statistics[];
 
-  public doughnutChartLabels = ['Science Fiction', 'Thriller', 'Crime', 'Action','Comedy'];
-  public doughnutChartData = [120, 150, 180, 90,10];
-  public doughnutChartType = 'doughnut';
+  constructor(private stat: StatisticService) { }
+
+  ngOnInit(): void {
+      this.load();
+
+  }
+
+    load(){
+      this.stat.getSta().subscribe(res=>{
+          console.log(res);
+          this.doughnutL= res;        
+        });
+
+        // this.stat.getAvg().subscribe(res=>{
+        //   this.doughnutC=res;
+        //   console.log(this.doughnutC);
+          
+        // });
+  
+    }
+   
+    
+    
+   
+  // public doughnutChartLabels = ['Science Fiction', 'Thriller', 'Crime', 'Action', 'Comedy'];
+  // public doughnutChartData = [120, 150, 180, 90, 10];
+   public doughnutChartType = 'doughnut';
+
+
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -24,12 +61,11 @@ export class StatisticsComponent implements OnInit {
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series A' }
   ];
 
 
-  ngOnInit(): void {
-  }
+
 
 }

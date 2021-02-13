@@ -22,11 +22,16 @@
                                 <form  class="searchbox">
 
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by user...">
+                                    <input [(ngModel)]="searchU" [ngModelOptions]="{standalone: true}"  (input)="searchReview()"
+                                     type="text" class="text search-input" placeholder="filter by user...">
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by title...">
+                                    <input [(ngModel)]="searchT" [ngModelOptions]="{standalone: true}"  (input)="searchReview()"
+                                     type="text" class="text search-input" placeholder="filter by title...">
                                     <i class="ri-search-line"></i>
-                                    <input type="text" class="text search-input" placeholder="filter by rating...">
+                                    <input [(ngModel)]="searchR" [ngModelOptions]="{standalone: true}"  (input)="searchReview()"
+                                    type="text" class="text search-input" placeholder="filter by rating...">
+                                    
+                                  
                                 
                                 </form>
                             </div>
@@ -39,6 +44,7 @@
                                         <thead>
 
                                             <tr>
+                                                <th style="width: 10%;">User-Name</th>
                                                 <th style="width: 10%;">Title</th>
                                                 <th style="width: 30%;">Content</th>
                                                 <th style="width: 10%;">Rating</th>
@@ -51,6 +57,7 @@
 
                                             <tr *ngFor="let reviews of reviews">
 
+                                                <td>  {{ reviews.user.username }} </td>
                                                 <td>  {{ reviews.reviewTitle }} </td>
                                                 <td>  {{ reviews.reviewContent }} </td>
                                                 <td> <i class="lar la-star mr-2"></i> {{ reviews.rating }} </td>

@@ -25,11 +25,14 @@
                             <form  class="searchbox">
 
                                 <i class="ri-search-line"></i>
-                                <input  type="text" class="text search-input" placeholder="filter by movie...">
+                                <input [(ngModel)]="movieM" [ngModelOptions]="{standalone: true}"  (input)="searchMovie()"
+                                 type="text" class="text search-input" placeholder="filter by movie...">
                                 <i class="ri-search-line"></i>
-                                <input type="text" class="text search-input" placeholder="filter by category...">
+                                <input [(ngModel)]="movieC" [ngModelOptions]="{standalone: true}"  (input)="searchMovie()"
+                                 type="text" class="text search-input" placeholder="filter by category...">
                                 <i class="ri-search-line"></i>
-                                <input type="text" class="text search-input" placeholder="filter by year...">
+                                <input [(ngModel)]="movieY" [ngModelOptions]="{standalone: true}"  (input)="searchMovie()"
+                                 type="text" class="text search-input" placeholder="filter by year...">
                             
                             </form>
                         </div>
