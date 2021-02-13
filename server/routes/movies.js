@@ -3,6 +3,14 @@ const movieController = require('../controllers/movies');
 var router = express.Router();
 
 
+
+router.route('/search/:title')
+    .get(movieController.searchMovies);
+
+router.route('/movie/:imdbID')
+    .get(movieController.getMovie);
+
+
 /**
  * Find movies by movie title, movie genre, and movie year
  * param - title=genre=year

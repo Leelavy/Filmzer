@@ -4,6 +4,7 @@ const _ = require("lodash");
 const moviesService = require('../services/movies');
 const reviewsService = require('../services/reviews');
 const userService = require('../services/users');
+const scrapeService = require('../services/scraper');
 
 
 const createMovie = async (req, res) => {
@@ -259,6 +260,22 @@ const deleteMovie = async (req, res) => {
 };
 
 
+const searchMovies = async (req, res) => {
+
+    const movies = await scrapeService.searchMovies(req.params.title);
+    res.json(movies);
+};
+
+
+const getMovie = async (req, res) => {
+
+    const movie = await scrapeService.getMovie(req.params.imdbID);
+    const trailer = await scrapeService.getTrailer(movie['title'], movie['year']);
+    movie["trailer_video"] = trailer[0];
+    res.json(movie);
+};
+
+
 module.exports = {
     createMovie,
     getMovies,
@@ -273,5 +290,7 @@ module.exports = {
     topMoviesByRating,
     getMoviesByGenre,
     countByGenre,
-    avgRatingByYear
+    avgRatingByYear,
+    searchMovies,
+    getMovie
 }
