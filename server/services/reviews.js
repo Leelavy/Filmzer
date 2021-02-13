@@ -97,7 +97,7 @@ const getReviewsMoviesUsers = async (movieTitle=null, rating=NaN, userName=null)
     return Reviews.aggregate(query)};
 
 
-const searchReview = async (title=null, rating=NaN, user=null, date=null) => {
+const searchReview = async (title=null, rating=NaN, user=null) => {
 
     var match = {};
 
@@ -111,10 +111,6 @@ const searchReview = async (title=null, rating=NaN, user=null, date=null) => {
 
     if(user!==null){
         match["user.username"] = new RegExp(user, 'i')
-    }
-
-    if(date!==null){
-        match["lastUpdated"] = new Date(date)
     }
 
     var query = [

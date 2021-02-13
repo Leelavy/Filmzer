@@ -35,7 +35,7 @@ const getReviewsMoviesUsers = async (req, res) => {
 
 const searchReview = async (req, res) => {
 
-    var [title, rating, user, date] = req.params.param.split('=');
+    var [title, rating, user] = req.params.param.split('=');
 
     if(title === ''){
         title =  null
@@ -49,11 +49,7 @@ const searchReview = async (req, res) => {
         rating =  NaN
     }
 
-    if(date === ''){
-        date =  null
-    }
-
-    const reviews = await reviewsService.searchReview(title, rating, user, date);
+    const reviews = await reviewsService.searchReview(title, rating, user);
 
     if (!reviews){
         return res.status(404).json({errors: ['reviews not found']});
