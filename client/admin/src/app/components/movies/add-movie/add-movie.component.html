@@ -11,7 +11,11 @@
                         <div class="iq-card">
                             <div class="iq-card-header d-flex justify-content-between">
                                 <div class="iq-header-title">
-                                    <h4 class="card-title">Add Movie</h4>
+                                    <h4 class="card-title">Add Movie  &nbsp;&nbsp;
+                                        <button routerLink="/movies" type="button" style="color: aliceblue;  right: 0%;" class="close" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </h4>
                                 </div>
                             </div>
                             <div class="iq-card-body">
@@ -57,7 +61,8 @@
                                         
 
                                         <div class="col-12 form-group ">
-                                            <button (click)="createMovie(inpTitle.value, inpYear.value, inpCat.value, 
+                                            <button 
+                                             (click)="createMovie(inpTitle.value, inpYear.value, inpCat.value, 
                                             inpDesc.value, inpImage.value , inpVid.value )" type="submit" class="btn btn-primary">Submit</button>
                                             <button  routerLink="/movies" type="reset" class="btn btn-danger">cancel</button>
                                         </div>

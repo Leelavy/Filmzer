@@ -43,10 +43,8 @@ export class EditreviewComponent implements OnInit {
 
     this.revService.updateReview(id, reviewNew).subscribe();
     console.log(reviewNew);
-    
 
   }
-
 
 
 }

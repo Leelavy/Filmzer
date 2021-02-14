@@ -50,7 +50,9 @@ export class EditmovieComponent implements OnInit {
     
 
   }
-
+  alert(){
+    alert("Success");
+  }
 
 }
 

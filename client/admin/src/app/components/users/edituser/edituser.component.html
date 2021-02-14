@@ -16,7 +16,12 @@
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Personal Information</h4>
+                                                <h4 class="card-title">Personal Information&nbsp;&nbsp;
+                                                    <button routerLink="/users" type="button" style="color: aliceblue;  right: 0%;"
+                                                        class="close" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
@@ -25,28 +30,33 @@
                                                 <div class=" row align-items-center">
                                                     <div class="form-group col-sm-6">
                                                         <label for="fname">First Name:</label>
-                                                        <input #inpF type="text"  class="form-control"
-                                                         [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}"  >
+                                                        <input #inpF type="text" class="form-control"
+                                                            [(ngModel)]="user.firstName"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="lname">Last Name: </label>
-                                                        <input #inpL type="text" class="form-control" 
-                                                        [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}">
+                                                        <input #inpL type="text" class="form-control"
+                                                            [(ngModel)]="user.lastName"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="uname">User Name: </label>
                                                         <input #inpU type="text" class="form-control"
-                                                         [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">
+                                                            [(ngModel)]="user.username"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="npass"> Password:</label>
-                                                        <input #inpP type="text" class="form-control" 
-                                                        [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" >
+                                                        <input #inpP type="text" class="form-control"
+                                                            [(ngModel)]="user.password"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="email">Email Id:</label>
-                                                        <input #inpE type="email" class="form-control" 
-                                                        [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+                                                        <input #inpE type="email" class="form-control"
+                                                            [(ngModel)]="user.email"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
 
 
@@ -55,15 +65,19 @@
                                                         <label class="d-block">Admin: </label>
 
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input #inpA type="radio" id="customRadio6" name="customRadio1"
-                                                                class="custom-control-input" value="true" [(ngModel)]="user.admin" [ngModelOptions]="{standalone: true}">
+                                                            <input #inpA type="radio" id="customRadio6"
+                                                                name="customRadio1" class="custom-control-input"
+                                                                value="true" [(ngModel)]="user.admin"
+                                                                [ngModelOptions]="{standalone: true}">
                                                             <label class="custom-control-label" for="customRadio6"> true
                                                             </label>
                                                         </div>
-                                                        
+
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input #inpA type="radio" id="customRadio7" name="customRadio1"
-                                                                class="custom-control-input" value="false" [(ngModel)]="user.admin" [ngModelOptions]="{standalone: true}">
+                                                            <input #inpA type="radio" id="customRadio7"
+                                                                name="customRadio1" class="custom-control-input"
+                                                                value="false" [(ngModel)]="user.admin"
+                                                                [ngModelOptions]="{standalone: true}">
                                                             <label class="custom-control-label" for="customRadio7">
                                                                 false </label>
                                                         </div>
@@ -71,11 +85,12 @@
 
 
                                                 </div>
-                                                <button  (click)="updateUser(inpU.value,inpP.value, inpA.value, inpF.value, inpL.value,  inpE.value)"
+                                                <button (click)="alert()"
+                                                    (click)="updateUser(inpU.value,inpP.value, inpA.value, inpF.value, inpL.value,  inpE.value)"
+                                                    type="submit" class="btn btn-primary mr-2">Submit</button>
+                                                <button routerLink="/users" type="reset"
+                                                    class="btn btn-danger">Cancel</button>
 
-                                                type="submit" class="btn btn-primary mr-2">Submit</button>  
-                                                <button routerLink="/users" type="reset" class="btn btn-danger">Cancel</button>
-                                                
                                             </form>
                                         </div>
                                     </div>

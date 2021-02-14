@@ -17,6 +17,7 @@ export const environment = {
   movieSearch: 'http://localhost:8080/movies/getMovieByParams',
   reviewSearch: 'http://localhost:8080/reviews/searchReview',
   countStatics: 'http://localhost:8080/movies/countByGenre',
-  avgStatics: 'http://localhost:8080/movies/avgRatingByYear'
+  avgStatics: 'http://localhost:8080/movies/avgRatingByYear',
+  loginUrl: 'http://localhost:8080/users/getUserByEmail'
 
 };

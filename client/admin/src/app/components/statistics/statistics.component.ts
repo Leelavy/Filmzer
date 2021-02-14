@@ -32,7 +32,7 @@ export class StatisticsComponent implements OnInit {
     load(){
       this.stat.getSta().subscribe(res=>{
           console.log(res);
-          this.doughnutL= res;        
+          this.doughnutL= res['list'];        
         });
 
         // this.stat.getAvg().subscribe(res=>{

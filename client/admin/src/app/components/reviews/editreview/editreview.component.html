@@ -16,7 +16,12 @@
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Edit Review</h4>
+                                                <h4 class="card-title">Edit Review &nbsp;&nbsp;
+                                                    <button routerLink="/reviews" type="button" style="color: aliceblue;  right: 0%;" class="close" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </h4>
+                                               
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
@@ -60,7 +65,7 @@
                                                     
                                                 </div>
 
-                                                <button (click)="updateReview(revT.value, revC.value, revR.value)"
+                                                <button  (click)="updateReview(revT.value, revC.value, revR.value)"
                                                 type="submit" class="btn btn-primary mr-2">Submit</button>  
                                                 <button routerLink="/reviews" type="reset" class="btn btn-danger">Cancel</button>
                                                 

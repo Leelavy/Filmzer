@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { stringify } from '@angular/compiler/src/util';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { addUser } from 'src/app/models/addUser';
+import { Users } from 'src/app/models/users';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +12,34 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private rout: Router) { }
+  user: addUser;
+  isTrue=true;
+
+  constructor(private rout: Router,
+              private loginservice: LoginService) { }
 
   ngOnInit(): void {
   }
 
-  // loginAdmin(email:string, password:number) {
-    
-  //   console.log(email,password);
+  loginAdmin(email: string, password: number) {
     
     
-  //   this.rout.navigate(['/dashboard']);
-  // }
+
+    console.log(email, password);
+
+    this.loginservice.getUserByEmail(email).subscribe(data=>{
+      this.user=data;
+      
+      if(password===this.user[0].password && this.user[0].admin===true){  
+        this.rout.navigate(['/dashboard']);
+      }
+
+    });
+    
+    
+    // this.rout.navigate(['/dashboard']);
+  }
+  ;
+  
 
 }
