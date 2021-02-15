@@ -85,6 +85,18 @@ const countByGenre = async () => {
 };
 
 
+const moviesByGenre = async () => {
+    return Movies.aggregate([
+        {
+            $group: {
+                _id: "$genre",
+                movies: { $push: "$title" }
+            }
+        }
+    ]);
+};
+
+
 const topMoviesByRating = async (topNumber) => {
 
     var query = [
@@ -268,5 +280,6 @@ module.exports = {
     getMoviesByGenre,
     countByGenre,
     avgRatingByYear,
-    removeMovieReviews
+    removeMovieReviews,
+    moviesByGenre
     }

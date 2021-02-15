@@ -119,6 +119,17 @@ const countByGenre = async (req, res) => {
 };
 
 
+const moviesByGenre = async (req, res) => {
+    const moviesByGenre = await moviesService.moviesByGenre();
+    
+    var newGenresCount = []
+    Object.keys(moviesByGenre).forEach(function(key) {
+        newGenresCount.push({'genre': moviesByGenre[key]['_id'], 'movies': moviesByGenre[key]['movies']})
+    });
+    res.json(newGenresCount);
+};
+
+
 const getMovieByTitle = async (req, res) => {
     const movie = await moviesService.getMovieByTitle(req.params.movieTitle);
 
@@ -292,5 +303,6 @@ module.exports = {
     countByGenre,
     avgRatingByYear,
     searchMovies,
-    getMovie
+    getMovie,
+    moviesByGenre
 }

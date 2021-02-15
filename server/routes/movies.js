@@ -75,6 +75,14 @@ router.route('/title/:movieTitle')
 router.route('/countByGenre')
     .get(movieController.countByGenre);
 
+/**
+ * Get movies by genre
+ * http://localhost:8080/movies/moviesByGenre
+ */
+router.route('/moviesByGenre')
+    .get(movieController.moviesByGenre);
+
+
 
 /**
  * map reduce - average on number of movies by year
