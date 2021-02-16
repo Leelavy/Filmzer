@@ -1,0 +1,19 @@
+#container {
+    width: 100%;
+    margin: 5em auto;
+    padding: 0;
+    background:#fff;
+}
+
+.items {
+    max-width:50px;
+    height:60px;
+    background:#ECECEC;
+}
+
+#left, #right { 
+    margin: 30px;
+}
+body {
+    background: #ECECEC;
+}

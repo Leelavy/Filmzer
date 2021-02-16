@@ -28,7 +28,10 @@ import { EdituserComponent } from './components/users/edituser/edituser.componen
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
 import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
 import { SearchfilterPipe } from './components/users/searchfilter.pipe';
+import { GroupbyComponent } from './components/movies/groupby/groupby.component';
 
+import {Ng2CarouselamosModule} from 'ng2-carouselamos';
+import {StatisticService} from './services/statistic.service';
 
 
 
@@ -52,7 +55,8 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     EdituserComponent,
     EditmovieComponent,
     EditreviewComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    GroupbyComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,10 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     AppRoutingModule,
     ChartsModule,
     IvyCarouselModule,
+    Ng2CarouselamosModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [StatisticService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

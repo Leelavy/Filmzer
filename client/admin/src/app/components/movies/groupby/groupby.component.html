@@ -1,0 +1,33 @@
+<router-outlet></router-outlet>
+
+<!doctype html>
+<html lang="en">
+
+
+<div class="wrapper">
+    <div id="content-page" class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="iq-card">
+
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h2 class="card-title">Group by Category</h2>
+                            </div>
+                        </div>
+                        <ul *ngFor="let movies of movies">
+                           <h4>Group by: {{movies.genre}}</h4> 
+                            <li >
+                                movie: {{ movies.title }}
+                            </li>
+                        </ul>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

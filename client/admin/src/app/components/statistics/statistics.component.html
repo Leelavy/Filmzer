@@ -13,7 +13,10 @@
                                 <ul class="iq-edit-profile d-flex nav nav-pills">
                                     <li class="col-md-3 p-0">
                                         <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                                           Category
+                                            Category
+                                            <script>
+                                                console.log(gen);
+                                            </script>
                                         </a>
                                     </li>
                                     <li class="col-md-3 p-0">
@@ -34,13 +37,16 @@
                             <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
                                 <div class="iq-card">
                                     <div class="iq-card-body">
-                                        <form *ngFor="let doughnutL of doughnutL">
+
+                                        <form>
+
                                             <div style="display: block">
-                                                <canvas baseChart [data]="doughnutL.genre"
-                                                    [labels]="doughnutL.count"
-                                                    [chartType]="doughnutChartType"></canvas>
+                                                <canvas baseChart [data]="doughnutChartData"
+                                                    [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                                                </canvas>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -60,9 +66,9 @@
                                         </form>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticService } from '../../services/statistic.service';
 import { Chart } from 'chart.js';
 import { map } from 'rxjs/operators';
-import {Statistics} from '../../models/statistics';
+import { Statistics } from '../../models/statistics';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 
@@ -15,57 +15,56 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 })
 
 export class StatisticsComponent implements OnInit {
-    doughnutC:Statistics[];
-    doughnutL:Statistics[];
-    gen:string;
-    chart:any;
 
-    aa:Statistics[];
+  gen: string;
+
+  public doughnutChartLabels = [];
+  public doughnutChartData = [];
+  public doughnutChartType = 'doughnut';
+
+  public barChartLabels = [];
+  public barChartType = 'bar';
+  public barChartData = [];
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+    
+  };
+  
+  public barChartLegend = true;
+
+
+
 
   constructor(private stat: StatisticService) { }
 
   ngOnInit(): void {
-      this.load();
+    this.load();
 
   }
 
-    load(){
-      this.stat.getSta().subscribe(res=>{
-          console.log(res);
-          this.doughnutL= res['list'];        
-        });
+  load() {
+    this.stat.getSta().subscribe(res => {
 
-        // this.stat.getAvg().subscribe(res=>{
-        //   this.doughnutC=res;
-        //   console.log(this.doughnutC);
-          
-        // });
-  
-    }
-   
-    
-    
-   
-  // public doughnutChartLabels = ['Science Fiction', 'Thriller', 'Crime', 'Action', 'Comedy'];
-  // public doughnutChartData = [120, 150, 180, 90, 10];
-   public doughnutChartType = 'doughnut';
+      var count = res.map(o => o.count);
+      var gen = res.map(o => o.genre);
+      this.doughnutChartLabels = gen;
+      this.doughnutChartData =count
+      this.doughnutChartType = 'doughnut';
 
 
+    });
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
+    this.stat.getAvg().subscribe(res => {
 
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData = [
+      var year = res.map(o => o.year);
+      var countAvg = res.map(o => o.avg_count);
+      this.barChartLabels = year;
+      this.barChartData = [{ data: countAvg, label: 'Avg' }]
 
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series A' }
-  ];
+    });
 
-
+  }
 
 
 }

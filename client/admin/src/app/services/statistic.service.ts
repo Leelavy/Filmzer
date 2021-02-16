@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Statistics } from '../models/statistics';
+import { Statistics, Statistics2 } from '../models/statistics';
 import { environment } from 'src/environments/environment.prod';
 import 'rxjs/add/operator/map'
 import { map } from 'rxjs/operators';
@@ -26,8 +26,8 @@ export class StatisticService {
   getSta(): Observable<Statistics[]> {
     return this.http.get<Statistics[]>(this.statCountUrl);
   }
-  getAvg(): Observable<Statistics[]>{
-    return this.http.get<Statistics[]>(this.statAvgUrl);
+  getAvg(): Observable<Statistics2[]>{
+    return this.http.get<Statistics2[]>(this.statAvgUrl);
   }
 
 }

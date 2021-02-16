@@ -11,14 +11,17 @@ import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
 import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
+import { GroupbyComponent } from './components/movies/groupby/groupby.component';
 
 
 
 const routes: Routes = [
-
+  
   { path: 'movies', component: MoviesComponent},
   { path: "movies/:id", component: EditmovieComponent },
   { path: "addMovie", component: AddMovieComponent },
+  { path: "groupByMovie", component: GroupbyComponent },
+
 
   { path: 'reviews', component: ReviewsComponent },
   { path: "reviews/:id", component: EditreviewComponent },

@@ -6,3 +6,10 @@ export interface Statistics {
     count: number
 
 }
+
+export interface Statistics2 {
+    
+    year:string,
+    avg_count: number
+
+}

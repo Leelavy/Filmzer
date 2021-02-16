@@ -16,6 +16,7 @@ export class MoviesService {
   private topRaUrl = environment.topRatedMoviesUrl;
   private moviesUrl = environment.moviesUrl;
   private movieSearchUrl=environment.movieSearch;
+  private movieByGenreUrl= environment.movieByGenre;
 
   constructor(private http: HttpClient) { }
 
@@ -51,6 +52,14 @@ export class MoviesService {
     const url = `${this.movieSearchUrl}/${st}`;
     return this.http.get<Movies[]>(url);
   }
+
+  getMoviesByGenre(st:string):Observable<AddMovie>{
+    const url = `${this.movieByGenreUrl}/${st}`;
+    console.log(url);
+    
+    return this.http.get<AddMovie>(url);
+  }
+
 
 
 
