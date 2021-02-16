@@ -12,29 +12,30 @@ import { EdituserComponent } from './components/users/edituser/edituser.componen
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
 import { EditreviewComponent } from './components/reviews/editreview/editreview.component';
 import { GroupbyComponent } from './components/movies/groupby/groupby.component';
+import { AuthGuard } from './auth.guard';
 
 
 
 const routes: Routes = [
-  
-  { path: 'movies', component: MoviesComponent},
-  { path: "movies/:id", component: EditmovieComponent },
-  { path: "addMovie", component: AddMovieComponent },
-  { path: "groupByMovie", component: GroupbyComponent },
 
 
-  { path: 'reviews', component: ReviewsComponent },
-  { path: "reviews/:id", component: EditreviewComponent },
+  { path: 'movies', component: MoviesComponent,canActivate:[AuthGuard] },
+  { path: "movies/:id", component: EditmovieComponent,canActivate:[AuthGuard] },
+  { path: "addMovie", component: AddMovieComponent ,canActivate:[AuthGuard]},
+  { path: "groupByMovie", component: GroupbyComponent ,canActivate:[AuthGuard]},
 
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id', component: EdituserComponent },
-  { path: "addUser", component: AdduserComponent },
 
-  { path: 'statistics', component: StatisticsComponent },
-  { path: 'statistics', component: StatisticsComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'reviews', component: ReviewsComponent,canActivate:[AuthGuard] },
+  { path: "reviews/:id", component: EditreviewComponent ,canActivate:[AuthGuard]},
+
+  { path: 'users', component: UsersComponent ,canActivate:[AuthGuard]},
+  { path: 'users/:id', component: EdituserComponent,canActivate:[AuthGuard] },
+  { path: "addUser", component: AdduserComponent ,canActivate:[AuthGuard]},
+
+  { path: 'statistics', component: StatisticsComponent,canActivate:[AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: "/dashboard", pathMatch: 'full' }
+  { path: '', redirectTo: "/login", pathMatch: 'full' }
 ];
 
 @NgModule({

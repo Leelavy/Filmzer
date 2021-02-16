@@ -16,13 +16,12 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
 
-import { SearchPipe } from './search.pipe';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment.prod';
 import { SmallBoxesComponent } from './components/dashboard/small-boxes/small-boxes.component';
 import { TopRatedComponent } from './components/dashboard/top-rated/top-rated.component';
 
-import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { EditmovieComponent } from './components/movies/editmovie/editmovie.component';
@@ -30,8 +29,9 @@ import { EditreviewComponent } from './components/reviews/editreview/editreview.
 import { SearchfilterPipe } from './components/users/searchfilter.pipe';
 import { GroupbyComponent } from './components/movies/groupby/groupby.component';
 
-import {Ng2CarouselamosModule} from 'ng2-carouselamos';
-import {StatisticService} from './services/statistic.service';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { StatisticService } from './services/statistic.service';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -48,7 +48,6 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     LoginComponent,
     DashboardComponent,
     AddMovieComponent,
-    SearchPipe,
     SmallBoxesComponent,
     TopRatedComponent,
     AdduserComponent,
@@ -68,7 +67,7 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     Ng2CarouselamosModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [StatisticService],
+  providers: [StatisticService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

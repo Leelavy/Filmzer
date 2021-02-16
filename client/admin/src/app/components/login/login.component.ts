@@ -1,8 +1,6 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { addUser } from 'src/app/models/addUser';
-import { Users } from 'src/app/models/users';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -23,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   loginAdmin(email: string, password: number) {
     
-    
 
     console.log(email, password);
 
@@ -31,6 +28,8 @@ export class LoginComponent implements OnInit {
       this.user=data;
       
       if(password===this.user[0].password && this.user[0].admin===true){  
+        
+        localStorage.setItem('isLoggedin', 'true') ;
         this.rout.navigate(['/dashboard']);
       }
 
@@ -39,7 +38,8 @@ export class LoginComponent implements OnInit {
     
     // this.rout.navigate(['/dashboard']);
   }
-  ;
   
+
+
 
 }

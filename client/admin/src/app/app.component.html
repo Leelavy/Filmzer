@@ -81,15 +81,6 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto navbar-list">
 
-              <!-- <li class="nav-item nav-icon search-content">
-                <a class="search-toggle iq-waves-effect text-gray rounded">
-                  <i class="ri-search-line"></i>
-                </a>
-                <form action="#" class="search-box p-0">
-                  <input type="text" class="text search-input" placeholder="Type here to search...">
-                  <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                </form>
-              </li> -->
               
               <!-- admin login and more.. -->
               <li class="line-height pt-3">
@@ -106,7 +97,7 @@
   
                       <div class="d-inline-block w-100 text-center p-3">
                         <nav>
-                          <a class="bg-primary iq-sign-btn" routerLink="/login" role="button">Sign out<i
+                          <a (click)="onLoggedout()" type="button" class="bg-primary iq-sign-btn"  role="button">Sign out<i
                               class="ri-login-box-line ml-2"></i></a>
                         </nav>
   
