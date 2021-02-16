@@ -47,8 +47,28 @@
                                                     <input #inpP type="text" class="form-control"
                                                         placeholder="Password">
                                                 </div>
-                                                <div class="col-6 form-group">
-                                                    <input #inpA type="text" class="form-control" placeholder="Admin">
+
+
+                                                <div class="form-group col-sm-6">
+                                                    <label class="d-block">Admin: </label>
+
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input #inpA type="radio" id="customRadio6"
+                                                            name="customRadio1" class="custom-control-input"
+                                                            value="true" [(ngModel)]="inpA.value"
+                                                            [ngModelOptions]="{standalone: true}">
+                                                        <label class="custom-control-label" for="customRadio6"> true
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input #inpA type="radio" id="customRadio7"
+                                                            name="customRadio1" class="custom-control-input"
+                                                            value="false" [(ngModel)]="inpA.value"
+                                                            [ngModelOptions]="{standalone: true}">
+                                                        <label class="custom-control-label" for="customRadio7">
+                                                            false </label>
+                                                    </div>
                                                 </div>
 
 
@@ -60,6 +80,8 @@
                                                         class="btn btn-danger">Cancel</button>
 
                                                 </div>
+
+                                                
 
                                             </div>
                                         </div>
