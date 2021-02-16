@@ -62,7 +62,7 @@
                                             <td> {{ movies.title }} </td>
                                             <td> {{ movies.genre }} </td>
                                             <td> {{ movies.year }} </td>
-                                            <td> {{ movies.description }} </td>
+                                            <td> {{ movies.description | slice:0:120 }}... </td>
                                             
                                             <td>
                                                 <div class="flex align-items-center list-user-action">

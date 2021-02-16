@@ -16,7 +16,6 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 
 export class StatisticsComponent implements OnInit {
 
-  gen: string;
 
   public doughnutChartLabels = [];
   public doughnutChartData = [];
@@ -28,13 +27,9 @@ export class StatisticsComponent implements OnInit {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
-    
+
   };
-  
   public barChartLegend = true;
-
-
-
 
   constructor(private stat: StatisticService) { }
 
@@ -49,7 +44,7 @@ export class StatisticsComponent implements OnInit {
       var count = res.map(o => o.count);
       var gen = res.map(o => o.genre);
       this.doughnutChartLabels = gen;
-      this.doughnutChartData =count
+      this.doughnutChartData = count
       this.doughnutChartType = 'doughnut';
 
 
@@ -66,5 +61,16 @@ export class StatisticsComponent implements OnInit {
 
   }
 
+
+
+  public colors: any = [{
+    borderColor: 'black',
+    backgroundColor: ["#f9f990",
+      "#90f997",
+      "#9790f9",
+      "#99e5e5",
+      "#f7bd83"
+    ]
+  }];
 
 }
