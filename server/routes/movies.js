@@ -4,8 +4,8 @@ var router = express.Router();
 
 
 
-router.route('/search/:title')
-    .get(movieController.searchMovies);
+router.route('/search/scrapeMovies')
+    .get(movieController.scrapeMovies);
 
 router.route('/movie/:imdbID')
     .get(movieController.getMovie);

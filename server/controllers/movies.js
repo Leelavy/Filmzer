@@ -5,7 +5,9 @@ const moviesService = require('../services/movies');
 const reviewsService = require('../services/reviews');
 const userService = require('../services/users');
 const scrapeService = require('../services/scraper');
-
+const fs = require('fs');
+const Papa = require('papaparse');
+const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/moviesIds.csv');
 
 const createMovie = async (req, res) => {
     const newMovie = await moviesService.createMovie(req.body);
@@ -278,16 +280,32 @@ const searchMovies = async (req, res) => {
 };
 
 
-// const scrapeMovies = (files => {
-//
-// };
+const scrapeMovies = (req, res) => {
 
-
-const getMovie = async (req, res) => {
-    const movie = await scrapeService.getMovie(req.params.imdbID);
-    const newMovie = await moviesService.createMovie(movie);
-    res.json(newMovie);
+    var count = 0; // cache the running count
+    Papa.parse(file, {
+        step:function(result) {
+            result.data.forEach(async function (imdbID) {
+                var movie = await getMovie(imdbID);
+                console.log(movie);
+                // const newMovie = await moviesService.createMovie(movie);
+                // res.json(newMovie);
+            });
+        },
+        complete: function(results, file) {
+            console.log('parsing complete read', count, 'records.');
+        }
+    });
 };
+
+
+async function getMovie (imdbID)  {
+
+    return new Promise((resolve,reject)=>{
+        scrapeService.getMovie(imdbID)
+            .then( response => resolve(response));
+    });
+}
 
 
 module.exports = {
@@ -307,5 +325,6 @@ module.exports = {
     avgRatingByYear,
     searchMovies,
     getMovie,
-    moviesByGenre
+    moviesByGenre,
+    scrapeMovies
 }
