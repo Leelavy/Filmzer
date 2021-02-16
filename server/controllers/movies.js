@@ -278,12 +278,15 @@ const searchMovies = async (req, res) => {
 };
 
 
-const getMovie = async (req, res) => {
+// const scrapeMovies = (files => {
+//
+// };
 
+
+const getMovie = async (req, res) => {
     const movie = await scrapeService.getMovie(req.params.imdbID);
-    const trailer = await scrapeService.getTrailer(movie['title'], movie['year']);
-    movie["trailer_video"] = trailer[0];
-    res.json(movie);
+    const newMovie = await moviesService.createMovie(movie);
+    res.json(newMovie);
 };
 
 
