@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movies } from '../models/movies';
-import { AddMovie } from '../models/addMovie'
+import { AddMovie,groupMovie } from '../models/addMovie'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root'
@@ -53,13 +54,12 @@ export class MoviesService {
     return this.http.get<Movies[]>(url);
   }
 
-  getMoviesByGenre(st:string):Observable<AddMovie>{
-    const url = `${this.movieByGenreUrl}/${st}`;
+  getMoviesByGenre():Observable<groupMovie>{
+    const url = `${this.movieByGenreUrl}`;
     console.log(url);
     
-    return this.http.get<AddMovie>(url);
+    return this.http.get<groupMovie>(url);
   }
-
 
 
 

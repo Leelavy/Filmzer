@@ -19,9 +19,6 @@ export class StatisticService {
 
   constructor(private http: HttpClient) { }
 
-  // dailyForecast(){
-  //   return this.http.get("").map(data=>data);
-  // }
   
   getSta(): Observable<Statistics[]> {
     return this.http.get<Statistics[]>(this.statCountUrl);

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AddMovie } from 'src/app/models/addMovie';
-import { Movies } from 'src/app/models/movies';
+import { AddMovie,groupMovie } from 'src/app/models/addMovie';
 import { MoviesService} from '../../../services/movies.service';
 
 
@@ -10,8 +9,8 @@ import { MoviesService} from '../../../services/movies.service';
   styleUrls: ['./groupby.component.css']
 })
 export class GroupbyComponent implements OnInit {
-
-  movies:AddMovie;
+  mov:groupMovie;
+  movies:groupMovie;
   movie: any[]=[
 
   ]
@@ -25,10 +24,15 @@ export class GroupbyComponent implements OnInit {
 //'Science Fiction', 'Thriller', 'Crime', 'Action', 'Comedy']
   load(){
 
-    this.movieservice.getMoviesByGenre("fiction").subscribe(data=>{
+    this.movieservice.getMoviesByGenre().subscribe(data=>{
       this.movies=data;
-      console.log(this.movies);
-      console.log(this.movies.genre);
+
+      var movie= data['movies'].map(a=>this.mov=movie);
+     
+      
+      
+      // console.log(this.movies);
+      // console.log(this.movies.movies);
       
     });
 

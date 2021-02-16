@@ -17,16 +17,20 @@
                             </div>
                         </div>
                         <ul *ngFor="let movies of movies">
-                           <h4>Group by: {{movies.genre}}</h4> 
-                            <li >
-                                movie: {{ movies.title }}
-                            </li>
+                           <h4>- {{movies.genre}}</h4> 
+                            <div >
+                              Movies: {{ movies.movies }}
+                            </div>
                         </ul>
 
-
-
+                        
                     </div>
+                    
                 </div>
+                
+            </div>
+            <div class="col-12 form-group ">
+                <button routerLink="/movies" type="" class="btn btn-primary">Back</button>
             </div>
         </div>
     </div>
