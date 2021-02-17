@@ -45,6 +45,8 @@ export class EditreviewComponent implements OnInit {
     console.log(reviewNew);
 
   }
-
+  alert(){
+    alert("Success");
+  }
 
 }

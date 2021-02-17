@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { addUser } from '../../../models/addUser';
 import { UsersService } from '../../../services/users.service';
 
@@ -12,7 +13,9 @@ import { UsersService } from '../../../services/users.service';
 
 export class AdduserComponent implements OnInit {
 
-  constructor(private usersservice: UsersService) { }
+
+  constructor(private usersservice: UsersService,
+              private rout:Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +35,8 @@ export class AdduserComponent implements OnInit {
         });
 
         this.usersservice.createUser(userNew).subscribe();
-        console.log(userNew);
+        //console.log(userNew);
+        this.rout.navigate(['/users']);
 
     }
 

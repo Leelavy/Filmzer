@@ -23,7 +23,11 @@ app.use('/reviews', reviews);
 
 const server=http.createServer(app);
 const io = socketIo(server, {
-   
+   cors:{
+       origins: ["http://localhost:4200","http://localhost:3000"],
+       methods: ["GET", "POST"],
+       credentials: false
+   }
 });
 
 var count = 0;

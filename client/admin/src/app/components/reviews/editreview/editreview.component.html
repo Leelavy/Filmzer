@@ -65,10 +65,10 @@
                                                     
                                                 </div>
 
-                                                <button  (click)="updateReview(revT.value, revC.value, revR.value)"
+                                                <button  (click)="alert()" (click)="updateReview(revT.value, revC.value, revR.value)"
                                                 type="submit" class="btn btn-primary mr-2">Submit</button>  
-                                                <button routerLink="/reviews" type="reset" class="btn btn-danger">Cancel</button>
-                                                
+                                                <button type="reset" class="btn btn-danger">Cancel</button>
+                                                <button routerLink="/reviews" style="margin:5px;" type="submit" class="btn btn-primary">Back</button>
                                             </form>
                                         </div>
                                     </div>

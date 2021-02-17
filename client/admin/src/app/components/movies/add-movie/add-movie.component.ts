@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
 import { AddMovie } from '../../../models/addMovie';
 
@@ -14,7 +15,8 @@ export class AddMovieComponent implements OnInit {
   
   @Output() upDate = new EventEmitter<string>();
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService,
+              private rout:Router) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +37,7 @@ export class AddMovieComponent implements OnInit {
 
     this.moviesService.createMovie(movieNew).subscribe();
     console.log(movieNew);
+    this.rout.navigate(['/movies']);
     
   }
   

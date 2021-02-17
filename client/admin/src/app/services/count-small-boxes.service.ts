@@ -16,7 +16,7 @@ export class CountSmallBoxesService {
   private countUUrl=environment.countUsersUrl;
   private countRUrl=environment.countReviewsUrl;
   private countmUrl=environment.countMoviesUrl;
-  currentCounter = this.socket.fromEvent<Number>('count')
+  currentCounter = this.socket.fromEvent<Number>('count');
  
 
   constructor(private socket: Socket, private http: HttpClient) { }
