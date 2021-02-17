@@ -10,6 +10,8 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { motion } from 'framer-motion';
 //MUI components
 import { Button } from "@material-ui/core";
+//Utils
+import { fixedRating } from '../utils/utils';
 
 const options = {
   type: 'loop',
@@ -45,7 +47,7 @@ const MainVideoSlider = ({ topMovies }) => {
                     {movie.genre}
                   </StyledGrayDiv>
                   <StyledGrayDiv>
-                    {`${movie.rating_avg}/10`}
+                    {`${fixedRating(movie.rating_avg)}/10`}
                   </StyledGrayDiv>
                 </StyledBlockDiv>
                 <StyledDescription>

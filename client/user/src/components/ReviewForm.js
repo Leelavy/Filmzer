@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews, setAvrgRating }) => {
+const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews }) => {
 
   const classes = useStyles();
   const [titleInput, setTitleInput] = useState("");

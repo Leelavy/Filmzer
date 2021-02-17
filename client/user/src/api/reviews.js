@@ -26,4 +26,4 @@ export const reviewsWithMoviesAndUsersURL = () => `${base_url}/getReviewsMoviesU
 // get - Get review by id
 // delete - Delete review by id
 // patch - Update review by id
-export const reviewsByIdURL = () => `${base_url}/:id`;
+export const reviewsByIdURL = (id) => `${base_url}/${id}`;
