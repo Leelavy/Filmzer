@@ -23,4 +23,16 @@ body {
     overflow: auto;
     width: 100%;
     display: flex;
+    margin-right: 0;
+}
+.carousel-container {
+    cursor: grab;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    display: flex;
+    margin-right: 0;
+}
+.carousel-item {
+    margin-right: 0;
 }

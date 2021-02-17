@@ -8,8 +8,8 @@
 
 
     <carousel >
-        <div class="carousel-cell"  *ngFor="let movies of movies">
-            <img src={{movies.image_url}}>
+        <div  uib-slide class="carousel-cell"  *ngFor="let movies of movies">
+            <img style="margin:auto;" src={{movies.image_url}}>
         </div>     
     </carousel>
 

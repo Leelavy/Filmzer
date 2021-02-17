@@ -33,21 +33,21 @@
                                                     [ngModelOptions]="{standalone: true}">
                                                 </div>
 
-                                                <div class="col-sm-6 form-group">
+                                                <!-- <div class="col-sm-6 form-group">
                                                     <input #inpCat type="text" class="form-control" [(ngModel)]="movies.genre"
                                                      [ngModelOptions]="{standalone: true}">
-                                                </div>
+                                                </div> -->
 
 
-                                                <!-- <div class="col-md-6 form-group">
-                                                    <select #inpCat class="form-control" id="exampleFormControlSelect1" [(ngModel)]="movies.genre" [ngModelOptions]="{standalone: true}">                                          
+                                                <div class="col-md-6 form-group">
+                                                    <select #inpCat class="form-control" id="exampleFormControlSelect1" [(ngModel)]="inpCat.value" [ngModelOptions]="{standalone: true}">                                          
                                                         <option>Comedy</option>
                                                         <option>Crime</option>
                                                         <option>Drama</option>
                                                         <option>Horror</option>
                                                         <option>Romance</option>
                                                     </select>
-                                                </div> -->
+                                                </div>
                                         
                                                 <div class="col-12 form-group">
                                                     <textarea #inpMovie type="text" rows="3" class="form-control" 
@@ -73,10 +73,10 @@
                                         
 
                                         <div class="col-12 form-group ">
-                                            <button (click)="updateMovie(inpTitle.value, inpYear.value, inpCat.value, 
+                                            <button style="margin:5px;" (click)="updateMovie(inpTitle.value, inpYear.value, inpCat.value, 
                                             inpDesc.value, inpImage.value, inpMovie.value)"
                                              type="submit" class="btn btn-primary">Submit</button>
-                                            <button routerLink="/movies" type="reset" class="btn btn-danger">Cancel</button>
+                                            <button style="margin:5px;" routerLink="/movies" type="reset" class="btn btn-danger">Cancel</button>
                                         </div>
                                     </div>
                                 </form>

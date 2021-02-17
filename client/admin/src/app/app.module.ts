@@ -32,6 +32,7 @@ import { GroupbyComponent } from './components/movies/groupby/groupby.component'
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { StatisticService } from './services/statistic.service';
 import { AuthGuard } from './auth.guard';
+import { HighlightDirective } from './components/statistics/highlight.directive';
 
 
 
@@ -55,7 +56,8 @@ const config: SocketIoConfig = { url: environment.filmzerUrl, options: {} };
     EditmovieComponent,
     EditreviewComponent,
     SearchfilterPipe,
-    GroupbyComponent
+    GroupbyComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
