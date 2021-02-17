@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //Axios
 import axios from 'axios';
-import { reviewsByMovieIdURL } from '../api/reviews';
+import { reviewsByMovieIdURL, reviewsByIdURL } from '../api/reviews';
 //Routing 
 import { Link } from 'react-router-dom';
 //Redux
@@ -22,6 +22,8 @@ import { motion } from 'framer-motion';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
+//Utils
+import { fixedRating } from '../utils/utils';
 
 //Star rendering method
 const getStarsRating = (avrgRating) => {
@@ -39,7 +41,6 @@ const getStarsRating = (avrgRating) => {
   for (let i = 0; i < emptyStars; i++) {
     starsToRenderArr.push(<StarBorderIcon color="primary" />)
   }
-
   return starsToRenderArr;
 }
 
@@ -66,6 +67,20 @@ const MovieDetails = () => {
       })
       .then((data) => setCurrentMovieReviews(data))
   }, [allMovies, movieId]);
+
+  const handleDeleteClick = (id) => {
+    axios.delete(reviewsByIdURL(id))
+      .then(
+        (response) => {
+          return response.data;
+        })
+      .then(
+        axios.get(reviewsByMovieIdURL(movieId._id))
+          .then((response) => {
+            return response.data;
+          }))
+      .then((data) => setCurrentMovieReviews(data))
+  }
 
   return (
     <>
@@ -102,7 +117,7 @@ const MovieDetails = () => {
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>AVERAGE RATING</motion.h4>
-                  <motion.h2>{`${currentMovie.rating_avg}/10`}</motion.h2>
+                  <motion.h2>{`${fixedRating(currentMovie.rating_avg)}/10`}</motion.h2>
                 </StyledGrayDiv>
               </StyledDataDiv>
             </StyledMovieHeaderDiv>
@@ -120,7 +135,9 @@ const MovieDetails = () => {
             }
             {currentMovieReviews && (
               currentMovieReviews.map((review) => (
-                <ReviewFeedItem review={review} />
+                <ReviewFeedItem review={review}
+                  onDeleteClick={handleDeleteClick}
+                />
               )))}
           </>
         }
