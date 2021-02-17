@@ -117,6 +117,18 @@ const searchReview = async (title=null, rating=NaN, user=null) => {
         {
             $lookup:
                 {
+                    from: "movies",
+                    localField: "movies",
+                    foreignField: "_id",
+                    as: "movie"
+                }
+        },
+        {
+            $unwind:"$movie"
+        },
+        {
+            $lookup:
+                {
                     from: "users",
                     localField: "users",
                     foreignField: "_id",
@@ -134,7 +146,8 @@ const searchReview = async (title=null, rating=NaN, user=null) => {
                     "reviewContent": 3,
                     "rating": 4,
                     "lastUpdated":5,
-                    "user.username": 6
+                    "user.username": 6,
+                    "movie.title":7
                 }
         },
         {
