@@ -172,11 +172,6 @@ const getReviewsByMovieId = async (id) => {
 };
 
 
-const getMovieByImdbTitleId = async (title_id) => {
-    return await Movies.find({'imdb_title_id': title_id});
-};
-
-
 const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
 
     var match = {};
@@ -269,7 +264,6 @@ module.exports = {
     getMovies,
     getMovieByTitle,
     getMovieById,
-    getMovieByImdbTitleId,
     updateMovie,
     updateReviewOfMovie,
     deleteMovie,

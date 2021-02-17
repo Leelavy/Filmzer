@@ -106,14 +106,5 @@ router.route('/:movieId')
     .delete(movieController.deleteMovie);
 
 
-// //http://localhost:8080/movies/titleId/:imdbTitleId
-// router.route('/titleId/:imdbTitleId')
-//     .get(movieController.getMovieByImdbTitleId);
-//
-//
-// //http://localhost:8080/movies/image/:imdbTitleId
-// router.route('/image/:imdbTitleId')
-//     .get(movieController.getImageByTitleId)
-
 
 module.exports = router;

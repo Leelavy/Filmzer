@@ -101,7 +101,7 @@ const avgRatingMapReduce = async (obj, keyMap) => {
         var avg_value = average = data[key].reduce(function (avg, value, _, { length }) {
             return avg + value / length;
         }, 0);
-        reduce.push({'year':key, 'avg_count': avg_value})
+        reduce.push({'year':key, 'avg_count': roundToTwo(avg_value)})
     });
 
     return reduce
@@ -195,39 +195,6 @@ const getMovieByTitleGenreYear = async (req, res) => {
 };
 
 
-const getMovieByImdbTitleId = async (req, res) => {
-    const movie = await moviesService.getMovieById(req.params.imdbTitleId);
-
-    if (!movie){
-        return res.status(404).json({errors: ['Movie not found']});
-    }
-
-    res.json(movie);
-};
-
-
-const getImageByTitleId = (req, res) => {
-
-    var reqApi = unirest("GET", "https://imdb8.p.rapidapi.com/title/get-meta-data");
-
-    reqApi.query({
-        "ids": req.params.imdbTitleId
-    });
-
-    reqApi.headers({
-        "x-rapidapi-key": "c70cdcce54mshf2099e49559503cp11be87jsna6dcf3ca1c09",
-        "x-rapidapi-host": "imdb8.p.rapidapi.com",
-        "useQueryString": true
-    });
-
-    reqApi.end(function (resApi) {
-        if (resApi.error) throw new Error(resApi.error);
-
-        return res.json(resApi.body[req.params.imdbTitleId]['title']['image']['url'])
-    });
-
-};
-
 const updateMovies = async (req, res) => {
     if (!req.body) {
         res.status(400).json({
@@ -277,13 +244,6 @@ const deleteMovie = async (req, res) => {
 };
 
 
-const searchMovies = async (req, res) => {
-
-    const movies = await scrapeService.searchMovies(req.params.title);
-    res.json(movies);
-};
-
-
 const scrapeMovies = (req, res) => {
     const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/one_movie.csv');
     var count = 0; // cache the running count
@@ -318,8 +278,6 @@ module.exports = {
     getMovies,
     getMovieByTitle,
     getMovieById,
-    getMovieByImdbTitleId,
-    getImageByTitleId,
     updateMovies,
     deleteMovie,
     getMovieByTitleGenreYear,
@@ -328,7 +286,6 @@ module.exports = {
     getMoviesByGenre,
     countByGenre,
     avgRatingByYear,
-    searchMovies,
     getMovie,
     moviesByGenre,
     scrapeMovies
