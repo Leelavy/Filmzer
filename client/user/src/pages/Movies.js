@@ -97,9 +97,12 @@ const Movies = () => {
 }
 
 const MoviesGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-column-gap: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  grid-column-gap: 4rem;
   grid-row-gap: 4rem;
 `;
 

@@ -64,7 +64,7 @@ const Reviews = () => {
         <StyledSearchDiv>
           <SearchInput placeholder="Title..." onChange={handleTitleInput} />
           <SearchInput placeholder="Rating..." onChange={handleRatingInput} />
-          <SearchInput placeholder="Year..." onChange={handleUsernameInput} />
+          <SearchInput placeholder="Author..." onChange={handleUsernameInput} />
         </StyledSearchDiv>
         <ReviewsGrid>
           {searchedReviews.length > 0 ?
@@ -87,8 +87,11 @@ const Reviews = () => {
 }
 
 const ReviewsGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 1rem;
   grid-column-gap: 3rem;
   grid-row-gap: 4rem;
 `;

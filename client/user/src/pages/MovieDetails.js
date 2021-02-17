@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 //Axios
 import axios from 'axios';
 import { reviewsByMovieIdURL } from '../api/reviews';
+//Routing 
+import { Link } from 'react-router-dom';
 //Redux
 import { useSelector } from 'react-redux';
 //Styled
@@ -16,6 +18,30 @@ import ReviewForm from '../components/ReviewForm';
 //Animation
 import { pageAnimationFromBottom } from '../styles/animation';
 import { motion } from 'framer-motion';
+//MUI Icons
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
+
+//Star rendering method
+const getStarsRating = (avrgRating) => {
+  const starsRating = Math.floor(avrgRating / 2);
+  const halfStar = ((avrgRating / 2) % 1 ? 1 : 0);
+  const emptyStars = (5 - starsRating - halfStar);
+  const starsToRenderArr = [];
+
+  for (let i = 0; i < starsRating; i++) {
+    starsToRenderArr.push(<StarIcon color="primary" />)
+  }
+  for (let i = 0; i < halfStar; i++) {
+    starsToRenderArr.push(<StarHalfIcon color="primary" />)
+  }
+  for (let i = 0; i < emptyStars; i++) {
+    starsToRenderArr.push(<StarBorderIcon color="primary" />)
+  }
+
+  return starsToRenderArr;
+}
 
 const MovieDetails = () => {
 
@@ -41,8 +67,6 @@ const MovieDetails = () => {
       .then((data) => setCurrentMovieReviews(data))
   }, [allMovies, movieId]);
 
-  console.log(currentMovieReviews);
-
   return (
     <>
       <Loader />
@@ -56,7 +80,7 @@ const MovieDetails = () => {
           <>
             <StyledMovieHeaderDiv>
               <StyledStarDiv>
-                <motion.h4>Rating in stars</motion.h4>
+                {getStarsRating(currentMovie.rating_avg)}
               </StyledStarDiv>
               <StyledMovieImg src={currentMovie.image_url} alt="" />
               <StyledDataDiv>
@@ -78,7 +102,7 @@ const MovieDetails = () => {
                 </StyledGrayDiv>
                 <StyledGrayDiv>
                   <motion.h4>AVERAGE RATING</motion.h4>
-                  <motion.h2>{currentMovie.rating_avg}</motion.h2>
+                  <motion.h2>{`${currentMovie.rating_avg}/10`}</motion.h2>
                 </StyledGrayDiv>
               </StyledDataDiv>
             </StyledMovieHeaderDiv>
@@ -92,7 +116,7 @@ const MovieDetails = () => {
                 setCurrentMovieReviews={setCurrentMovieReviews}
               />)
               :
-              (<Styledh1>* <span>SIGN IN</span> TO POST A REVIEW *</Styledh1>)
+              (<Styledh1>* <StyledLink to="/signin">SIGN IN</StyledLink> TO POST A REVIEW *</Styledh1>)
             }
             {currentMovieReviews && (
               currentMovieReviews.map((review) => (
@@ -117,7 +141,6 @@ const StyledStarDiv = styled(motion.div)`
   position: absolute;
   top: 82%;
   left: 2%;
-  width: 10%;
   padding: 1rem 0.7rem;
   background-color: #141414;
   border-radius: 5px;
@@ -168,9 +191,11 @@ const StyledDescriptionDiv = styled(motion.div)`
 
 const Styledh1 = styled.h1`
   letter-spacing: 0.5rem;
-  span {
-    color: red;
-  }
+`;
+
+const StyledLink = styled(Link)`
+  color: red;
+  text-decoration: none;
 `;
 
 export default MovieDetails;

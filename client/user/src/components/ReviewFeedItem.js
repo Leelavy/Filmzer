@@ -53,7 +53,7 @@ const StyledReviewHeader = styled(motion.div)`
     display: flex;
   }
   h5 {
-    color: #ececec;
+    color: red;
     font-weight: lighter;
     letter-spacing: 0.1rem;
   }

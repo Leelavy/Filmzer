@@ -15,7 +15,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxwidth: '300px',
+    minWidth: 300,
+    maxWidth: 320,
     borderRadius: '0',
     transition: 'transform .2s',
     border: '0.5px solid transparent',
