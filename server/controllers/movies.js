@@ -285,15 +285,16 @@ const searchMovies = async (req, res) => {
 
 
 const scrapeMovies = (req, res) => {
-    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/moviesIds.csv');
+    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/one_movie.csv');
     var count = 0; // cache the running count
     Papa.parse(file, {
         step:function(result) {
             result.data.forEach(async function (imdbID) {
                 var movie = await getMovie(imdbID);
-                console.log(movie);
-                // await moviesService.createMovie(movie);
-                // res.json(newMovie);
+                if(movie){
+                    console.log(movie);
+                    // await moviesService.createMovie(movie);
+                }
             });
         },
         complete: function(results, file) {

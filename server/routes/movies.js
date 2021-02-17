@@ -3,12 +3,14 @@ const movieController = require('../controllers/movies');
 var router = express.Router();
 
 
-
+/**
+ * Scrape movies from imdb website, google and trailer from API
+ * Using imdbID for getting movie title, genre and year from imdb website,
+ * Using movie title from getting image from google and trailer.
+ * http://localhost:8080/movies/search/scrapeMovies
+ */
 router.route('/search/scrapeMovies')
     .get(movieController.scrapeMovies);
-
-router.route('/movie/:imdbID')
-    .get(movieController.getMovie);
 
 
 /**
