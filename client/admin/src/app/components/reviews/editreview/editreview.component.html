@@ -17,11 +17,13 @@
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
                                                 <h4 class="card-title">Edit Review &nbsp;&nbsp;
-                                                    <button routerLink="/reviews" type="button" style="color: aliceblue;  right: 0%;" class="close" aria-label="Close">
+                                                    <button routerLink="/reviews" type="button"
+                                                        style="color: aliceblue;  right: 0%;" class="close"
+                                                        aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </h4>
-                                               
+
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
@@ -31,16 +33,16 @@
 
                                                     <div class="col-6 form-group">
                                                         <label for="fname">Title:</label>
-                                                        <input #revT type="text"  class="form-control" 
-                                                        [(ngModel)]="rev.reviewTitle" 
-                                                        [ngModelOptions]="{standalone: true}"  >
+                                                        <input #revT type="text" class="form-control"
+                                                            [(ngModel)]="rev.reviewTitle"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
 
                                                     <div class="col-2 form-group">
                                                         <label for="uname">Rating: </label>
-                                                        <i class="lar la-star mr-2"></i> <input #revR type="text" class="form-control"
-                                                         [(ngModel)]="rev.rating" 
-                                                        [ngModelOptions]="{standalone: true}">
+                                                        <i class="lar la-star mr-2"></i> <input #revR type="text"
+                                                            class="form-control" [(ngModel)]="rev.rating"
+                                                            [ngModelOptions]="{standalone: true}">
                                                     </div>
 
                                                     <!-- <div class="col-6 form-group">
@@ -51,24 +53,35 @@
 
                                                     <div class="col-6 form-group">
                                                         <label for="lname">Content: </label>
-                                                        <input  #revC type="text" class="form-control" 
-                                                        [(ngModel)]="rev.reviewContent" 
-                                                        [ngModelOptions]="{standalone: true}">
-                                                    
+                                                        <input #revC type="text" class="form-control"
+                                                            [(ngModel)]="rev.reviewContent"
+                                                            [ngModelOptions]="{standalone: true}">
+
                                                     </div>
                                                     <!-- <div class="form-group col-sm-4">
                                                         <label for="npass"> Last-updated:</label>
                                                         <input #revT type="text" class="form-control" [(ngModel)]="rev.lastUpdated" 
                                                         [ngModelOptions]="{standalone: true}" >
                                                     </div> -->
-                                                   
-                                                    
+
+
                                                 </div>
 
-                                                <button  (click)="alert()" (click)="updateReview(revT.value, revC.value, revR.value)"
-                                                type="submit" class="btn btn-primary mr-2">Submit</button>  
-                                                <button type="reset" class="btn btn-danger">Cancel</button>
-                                                <button routerLink="/reviews" style="margin:5px;" type="submit" class="btn btn-primary">Back</button>
+                                                <div style="display: flex; justify-content: space-between;">
+                                                    <div>
+                                                        <button (click)="alert()"
+                                                            (click)="updateReview(revT.value, revC.value, revR.value)"
+                                                            type="submit" class="btn btn-primary mr-2">Submit</button>
+                                                        <button type="reset" class="btn btn-danger">Cancel</button>
+
+                                                    </div>
+
+                                                    <div>
+                                                        <button routerLink="/reviews" style="margin:5px;" type="submit"
+                                                            class="btn btn-primary">Back</button>
+                                                    </div>
+
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

@@ -86,12 +86,20 @@
 
 
                                                 </div>
-                                                <button style="margin:5px;" (click)="alert()"
-                                                    (click)="updateUser(inpU.value,inpP.value, inpA.value, inpF.value, inpL.value,  inpE.value)"
-                                                    type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn btn-danger">Cancel</button>
-                                                <button routerLink="/users" style="margin:5px;" type="submit"
-                                                    class="btn btn-primary">Back</button>
+                                                <div style="display: flex; justify-content: space-between;">
+
+                                                    <div>
+                                                        <button style="margin:5px;" (click)="alert()"
+                                                            (click)="updateUser(inpU.value,inpP.value, inpA.value, inpF.value, inpL.value,  inpE.value)"
+                                                            type="submit" class="btn btn-primary mr-2">Submit</button>
+                                                        <button type="reset" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                    <div>
+                                                        <button routerLink="/users" style="margin:5px;" type="submit"
+                                                            class="btn btn-primary">Back</button>
+                                                    </div>
+
+                                                </div>
 
                                             </form>
                                         </div>

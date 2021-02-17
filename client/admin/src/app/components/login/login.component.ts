@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   loginAdmin(email: string, password: number) {
     
 
-    console.log(email, password);
+    //console.log(email, password);
 
     this.loginservice.getUserByEmail(email).subscribe(data=>{
       this.user=data;
