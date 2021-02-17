@@ -11,6 +11,11 @@ const userReducer = (state = initState, action) => {
         isLogged: action.payload.isLogged,
         user: action.payload.user,
       };
+    case "ERROR_SIGN_IN":
+      return {
+        isLogged: false,
+        user: {},
+      };
     case "SIGN_OUT":
       return {
         isLogged: action.payload.isLogged,

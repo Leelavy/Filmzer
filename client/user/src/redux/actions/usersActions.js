@@ -13,8 +13,7 @@ import {
 
 export const signIn = (email, password) => async (dispatch) => {
   const user = await axios.get(userByEmailURL(email));
-  const pass = user.data[0].password;
-  if (pass === password) {
+  if (user.data.length && password === user.data[0].password) {
     dispatch({
       type: "SIGN_IN",
       payload: {
@@ -22,6 +21,11 @@ export const signIn = (email, password) => async (dispatch) => {
         user: user.data[0],
       },
     });
+  }
+  else {
+    dispatch({
+      type: "ERROR_SIGN_IN",
+    })
   }
 };
 
@@ -45,7 +49,6 @@ export const signUp = (firstName, lastName, username, email, password) => async 
       },
     });
   }
-  console.log(response);
 };
 
 export const signOut = () => async (dispatch) => {

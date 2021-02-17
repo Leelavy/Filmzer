@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../redux/actions/usersActions';
 //Routing
 import { Link } from 'react-router-dom';
@@ -53,6 +53,8 @@ const SignIn = () => {
   const classes = useStyles();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+
+  const isLogged = useSelector(state => state.user.isLogged);
 
   const history = useHistory();
   const dispatch = useDispatch();

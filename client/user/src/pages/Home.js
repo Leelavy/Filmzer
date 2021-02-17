@@ -23,7 +23,6 @@ const Home = () => {
   const topMovies = useSelector(state => state.movies.topMovies);
   const topLatestReviews = useSelector(state => state.reviews.topLatestReviews);
 
-  console.log(topMovies);
   return (
     <>
       <Loader />
