@@ -34,7 +34,7 @@ const topMoviesByRating = async (req, res) => {
         delete movieItem["rating_review"];
 
         if(movieItem["rating_avg"].length){
-            movieItem["rating_avg"] = movieItem["rating_avg"][0]["rating"]
+            movieItem["rating_avg"] = roundToTwo(movieItem["rating_avg"][0]["rating"])
         }
         else{
             movieItem["rating_avg"] = 0
@@ -43,6 +43,11 @@ const topMoviesByRating = async (req, res) => {
 
     res.json(movies);
 };
+
+
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
 
 
 const getMovies = async (req, res) => {
@@ -60,7 +65,7 @@ const getMovies = async (req, res) => {
         movieItem["rating_avg"] = newArray
 
         movieItem["rating_avg"] = average = movieItem["rating_avg"].reduce(function (avg, value, _, { length }) {
-            return avg + value / length;
+            return roundToTwo(avg + value / length);
         }, 0);
     });
 
@@ -287,7 +292,7 @@ const scrapeMovies = (req, res) => {
             result.data.forEach(async function (imdbID) {
                 var movie = await getMovie(imdbID);
                 console.log(movie);
-                // const newMovie = await moviesService.createMovie(movie);
+                // await moviesService.createMovie(movie);
                 // res.json(newMovie);
             });
         },
