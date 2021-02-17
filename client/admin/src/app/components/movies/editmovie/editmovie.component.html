@@ -11,12 +11,7 @@
                         <div class="iq-card">
                             <div class="iq-card-header d-flex justify-content-between">
                                 <div class="iq-header-title">
-                                    <h4 class="card-title">Edit Movie &nbsp;&nbsp;
-                                        <button routerLink="/movies" type="button" style="color: aliceblue;  right: 0%;"
-                                            class="close" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </h4>
+                                    <h4 class="card-title">Edit Movie </h4>
                                 </div>
                             </div>
                             <div class="iq-card-body">
@@ -34,12 +29,6 @@
                                                     <input #inpYear type="text" class="form-control"
                                                         [(ngModel)]="movies.year" [ngModelOptions]="{standalone: true}">
                                                 </div>
-
-                                                <!-- <div class="col-sm-6 form-group">
-                                                    <input #inpCat type="text" class="form-control" [(ngModel)]="movies.genre"
-                                                     [ngModelOptions]="{standalone: true}">
-                                                </div> -->
-
 
                                                 <div class="col-md-6 form-group">
                                                     <select #inpCat class="form-control" id="exampleFormControlSelect1"
@@ -78,7 +67,7 @@
                                     </div>
 
                                     <div style="display: flex; justify-content: space-between;">
-                                       
+
                                         <div>
                                             <button style="margin:5px;" (click)="updateMovie(inpTitle.value, inpYear.value, inpCat.value, 
                                             inpDesc.value, inpImage.value, inpMovie.value)" (click)="alert()"
