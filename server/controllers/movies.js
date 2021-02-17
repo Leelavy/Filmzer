@@ -1,5 +1,5 @@
 
-const unirest = require("unirest");
+
 const _ = require("lodash");
 const moviesService = require('../services/movies');
 const reviewsService = require('../services/reviews');
@@ -245,15 +245,15 @@ const deleteMovie = async (req, res) => {
 
 
 const scrapeMovies = (req, res) => {
-    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/one_movie.csv');
+    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/tenMovies.csv');
     var count = 0; // cache the running count
     Papa.parse(file, {
         step:function(result) {
             result.data.forEach(async function (imdbID) {
                 var movie = await getMovie(imdbID);
                 if(movie){
-                    console.log(movie);
-                    // await moviesService.createMovie(movie);
+                    var newMovies = await moviesService.createMovie(movie);
+                    console.log(newMovies);
                 }
             });
         },
