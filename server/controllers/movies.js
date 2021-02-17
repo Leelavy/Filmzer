@@ -7,7 +7,6 @@ const userService = require('../services/users');
 const scrapeService = require('../services/scraper');
 const fs = require('fs');
 const Papa = require('papaparse');
-const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/moviesIds.csv');
 
 const createMovie = async (req, res) => {
     const newMovie = await moviesService.createMovie(req.body);
@@ -281,7 +280,7 @@ const searchMovies = async (req, res) => {
 
 
 const scrapeMovies = (req, res) => {
-
+    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/moviesIds.csv');
     var count = 0; // cache the running count
     Papa.parse(file, {
         step:function(result) {
