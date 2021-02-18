@@ -19,6 +19,7 @@ import MovieIcon from '@material-ui/icons/Movie';
 import StarsIcon from '@material-ui/icons/Stars';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
+import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Backdrop from '@material-ui/core/Backdrop';
 
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
+const DrawerMenu = ({ openDrawer, setOpenDrawer, setOpen }) => {
   const classes = useStyles();
   const isLogged = useSelector(state => state.user.isLogged);
   const [toggleSignIn, setToggleSignIn] = useState(true);
@@ -88,6 +89,11 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
   useEffect(() => {
     setToggleSignIn(!isLogged);
   }, [isLogged])
+
+  const handleOpenChat = () => {
+    setOpen(true);
+    handleDrawerClose();
+  }
 
   const handleSignOut = () => {
     if (isLogged) {
@@ -169,15 +175,25 @@ const DrawerMenu = ({ openDrawer, setOpenDrawer }) => {
             )
             :
             (
-              <StyledListItem
-                button key={'Sign Out'}
-                component={Link}
-                to={'/'}
-                onClick={handleSignOut}
-              >
-                <StyledAccountCircleIcon />
-                <ListItemText primary={'Sign Out'} />
-              </StyledListItem>
+              <>
+                <StyledListItem
+                  button key={'Chat With Us'}
+                  onClick={handleOpenChat}
+                >
+                  <StyledChatIcon />
+                  <ListItemText primary={'Chat With Us'} />
+                </StyledListItem>
+                <StyledListItem
+                  button key={'Sign Out'}
+                  component={Link}
+                  to={'/'}
+                  onClick={handleSignOut}
+                >
+                  <StyledAccountCircleIcon />
+                  <ListItemText primary={'Sign Out'} />
+                </StyledListItem>
+              </>
+
             )}
         </List>
       </Drawer>
@@ -199,6 +215,11 @@ const StyledMovieIcon = styled(MovieIcon)`
 `;
 
 const StyledStarIcon = styled(StarsIcon)`
+  color: white;
+  margin-right: 2rem;
+`;
+
+const StyledChatIcon = styled(ChatIcon)`
   color: white;
   margin-right: 2rem;
 `;

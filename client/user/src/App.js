@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loadAllMovies } from './redux/actions/moviesActions';
 import { loadAllReviewsWithData } from './redux/actions/reviewsActions';
 //Components
+import ChatModal from './components/ChatModal';
 import Navbar from './components/Navbar';
 import DrawerMenu from './components/DrawerMenu';
 import Footer from './components/Footer';
@@ -45,12 +46,20 @@ const App = () => {
     dispatch(loadAllReviewsWithData());
   }, [dispatch]) //useEffect runs only when dispatch happens
 
+  //Modal
+  const [open, setOpen] = useState(false);
+
   return (
     <MuiThemeProvider theme={theme}>
       <BrowserRouter>
         <GlobalStyles />
         <StyledContainer>
-          <DrawerMenu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+          <ChatModal open={open} setOpen={setOpen} />
+          <DrawerMenu
+            openDrawer={openDrawer}
+            setOpenDrawer={setOpenDrawer}
+            setOpen={setOpen}
+          />
           <Navbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
           <BackToTopButton />
           <StyledContentContainer>
