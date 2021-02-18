@@ -12,8 +12,8 @@ const reviews = require('./routes/reviews');
 const connectionString = "mongodb+srv://daniel:daniel11@cluster0.hyprf.mongodb.net/Filmzer?retryWrites=true&w=majority";
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
-var app=express();
-app.use(cors());  
+var app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
@@ -21,56 +21,44 @@ app.use('/movies', movies);
 app.use('/users', users);
 app.use('/reviews', reviews);
 
-const server=http.createServer(app);
+const server = http.createServer(app);
 const io = socketIo(server, {
-   cors:{
-       origins: ["http://localhost:4200","http://localhost:3000"],
-       methods: ["GET", "POST"],
-       credentials: false
-   }
+  cors: {
+    origins: ["http://localhost:4200", "http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: false
+  }
 });
 
 var count = 0;
-io.on('connection', (socket) => {        
-    if (socket.handshake.headers.origin === "http://localhost:3000") {
-        count++;        
-        socket.broadcast.emit('count', count); 
+io.on('connection', (socket) => {
+  if (socket.handshake.headers.origin === "http://localhost:3000") {
+    count++;
+    socket.broadcast.emit('count', count);
 
-        socket.on('disconnect', () => {
-            count--;                   
-            socket.broadcast.emit('count', count);    
-                
-        });
-    }   
+    socket.on('disconnect', () => {
+      count--;
+      socket.broadcast.emit('count', count);
 
-    console.log('me are loggggggggg');
-    socket.on('join',function(data){
-
-        socket.join(data.room);
-
-        socket.broadcast.to(data.room).emit('new user joined',{user:data.user,message:'has join this room'});
-        console.log(data.room, data.user);
     });
+  }
 
-    socket.on('leave',function(data){
+  console.log("Connected client to server");
+  socket.on('join', function (data) {
+    socket.join(data.room);
+    socket.broadcast.to(data.room).emit('new user joined', { user: data.user, message: 'has join this room' });
+    console.log(data.room, data.user);
+  });
 
-        socket.join(data.room);
+  socket.on('leave', function (data) {
+    socket.join(data.room);
+    socket.broadcast.to(data.room).emit('left room', { user: data.user, message: 'has left this room' });
+  });
 
-        socket.broadcast.to(data.room).emit('left room',{user:data.user,message:'has left this room'});
-    });
+  socket.on('message', function (data) {
+    io.in(data.room).emit('new message', { user: data.user, message: data.message });
+  });
 
-    socket.on('message',function(data){
-        io.in(data.room).emit('new message',{user:data.user,message:data.message});
-        console.log("sdadas"+data.message);
-        console.log(data.user);
-    });
-
-
-
-
-}); 
-
-
-
+});
 
 server.listen(8080);
