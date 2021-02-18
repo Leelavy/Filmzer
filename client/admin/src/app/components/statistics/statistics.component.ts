@@ -69,7 +69,12 @@ export class StatisticsComponent implements OnInit {
       "#90f997",
       "#9790f9",
       "#99e5e5",
-      "#f7bd83"
+      "#f7bd83",
+      "#ffbb33",
+      "#004d66",
+      "#339966",
+      "#ffbb33",
+      "#ffbb35"
     ]
   }];
 
