@@ -80,6 +80,9 @@ const countByGenre = async () => {
         },
         {
             $sort: {count:-1}
+        },
+        {
+            $limit:6
         }
     ]);
 };
