@@ -42,7 +42,35 @@ io.on('connection', (socket) => {
                 
         });
     }   
+
+    console.log('me are loggggggggg');
+    socket.on('join',function(data){
+
+        socket.join(data.room);
+
+        socket.broadcast.to(data.room).emit('new user joined',{user:data.user,message:'has join this room'});
+        console.log(data.room, data.user);
+    });
+
+    socket.on('leave',function(data){
+
+        socket.join(data.room);
+
+        socket.broadcast.to(data.room).emit('left room',{user:data.user,message:'has left this room'});
+    });
+
+    socket.on('message',function(data){
+        io.in(data.room).emit('new message',{user:data.user,message:data.message});
+        console.log("sdadas"+data.message);
+        console.log(data.user);
+    });
+
+
+
+
 }); 
+
+
 
 
 server.listen(8080);
