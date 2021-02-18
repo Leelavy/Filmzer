@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
-const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false, onChange }) => {
+const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false, onChange, value }) => {
 
   return (
     <StyledTextField
@@ -18,6 +18,7 @@ const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = f
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       onChange={onChange}
+      value={value}
     />
   );
 }
@@ -29,7 +30,6 @@ const StyledTextField = styled(TextField)`
 
     &.Mui-focused {
       color: white !important;
-;
     }
   }
 
