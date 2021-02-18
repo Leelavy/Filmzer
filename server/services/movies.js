@@ -188,8 +188,18 @@ const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
         match["genre"] = new RegExp(genre, 'i')
     }
 
-    var query = [{
-        $project:
+    var query = [
+        {
+            $lookup:
+                {
+                    from:"reviews",
+                    localField:"reviews",
+                    foreignField: "_id",
+                    as: "rating_review"
+                }
+        },
+        {
+            $project:
             {
                 "_id": 1,
                 "title": 2,
@@ -198,8 +208,23 @@ const getMovieByTitleGenreYear = async (title=null, genre=null, year=NaN) => {
                 "description": 5,
                 "image_url": 6,
                 "trailer_video": 7,
+                "rating_review.rating": {$avg: "$rating_review.rating"}
             }
-    },
+        },
+        {
+            $project:
+                {
+                    "_id": 1,
+                    "title": 2,
+                    "year": 3,
+                    "genre": 4,
+                    "description": 5,
+                    "image_url":6,
+                    "trailer_video":7,
+                    "rating_review": { $slice: [ "$rating_review", 1 ] }
+
+                }
+        },
         {
             $match:match
         }
