@@ -25,8 +25,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //MUI
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //Socket
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:8080");
+import { initiateSocket, disconnectSocket } from './socket';
 
 const theme = createMuiTheme({
   palette: {
@@ -39,6 +38,14 @@ const theme = createMuiTheme({
 const App = () => {
 
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  useEffect(() => {
+    initiateSocket('');
+    return () => {
+      disconnectSocket();
+    }
+
+  }, [])
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,7 +61,10 @@ const App = () => {
       <BrowserRouter>
         <GlobalStyles />
         <StyledContainer>
-          <ChatModal open={open} setOpen={setOpen} />
+          <ChatModal
+            open={open}
+            setOpen={setOpen}
+          />
           <DrawerMenu
             openDrawer={openDrawer}
             setOpenDrawer={setOpenDrawer}

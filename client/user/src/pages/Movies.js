@@ -77,7 +77,6 @@ const Movies = () => {
           <SearchInput placeholder="Year..." onChange={handleYearInput} />
         </StyledSearchDiv>
         <MoviesGrid>
-          {console.log(allMovies)}
           {searchedMovies.length > 0 ?
             (Object.values(searchedMovies).map((movie) => (
               <StyledLink to={`/movies/${movie._id}`}>

@@ -43,19 +43,20 @@ io.on('connection', (socket) => {
     });
   }
 
-  console.log("Connected client to server");
   socket.on('join', function (data) {
+    console.log(data);
     socket.join(data.room);
-    socket.broadcast.to(data.room).emit('new user joined', { user: data.user, message: 'has join this room' });
-    console.log(data.room, data.user);
+    socket.broadcast.to(data.room).emit('new user joined', { user: data.user, message: 'has joined this room' });
   });
 
   socket.on('leave', function (data) {
+    console.log(data);
     socket.join(data.room);
     socket.broadcast.to(data.room).emit('left room', { user: data.user, message: 'has left this room' });
   });
 
   socket.on('message', function (data) {
+    console.log(data);
     io.in(data.room).emit('new message', { user: data.user, message: data.message });
   });
 

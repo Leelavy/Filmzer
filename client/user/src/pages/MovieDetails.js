@@ -70,16 +70,9 @@ const MovieDetails = () => {
 
   const handleDeleteClick = (id) => {
     axios.delete(reviewsByIdURL(id))
-      .then(
-        (response) => {
-          return response.data;
-        })
-      .then(
-        axios.get(reviewsByMovieIdURL(movieId._id))
-          .then((response) => {
-            return response.data;
-          }))
-      .then((data) => setCurrentMovieReviews(data))
+      .then(() => {
+        setCurrentMovieReviews(currentMovieReviews.filter((movie) => movie._id != id));
+      })
   }
 
   return (

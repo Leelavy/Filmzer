@@ -4,55 +4,48 @@ import { useSelector } from 'react-redux';
 //Styles
 import styled from 'styled-components';
 //MUI Components
-import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from './ui-elements/CustomTextField';
 import { Button } from "@material-ui/core";
 //Socket
-import * as io from 'socket.io-client';
+import { subscribeToChat, sendMessage } from '../socket';
 
-const socket = io.connect("http://localhost:8080");
 
 const Chat = () => {
-
-  socket.on('join', "lobby");
 
   const userName = useSelector(state => state.user.user.username);
   const [messageInput, setMessageInput] = useState('');
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    socket.on('message', ({ user, message }) => {
-      setChat([...chat, { user, message }])
-    })
-  })
+    subscribeToChat((err, data) => {
+      if (err) return;
+      setChat(oldChats => [data, ...oldChats])
+    });
+
+  }, [])
 
   const handleMessageInputChange = (e) => {
     setMessageInput(e.target.value);
   }
 
   const handleSendClick = () => {
-    console.log(messageInput)
     if (messageInput.length) {
-      console.log({ user: userName, message: messageInput });
-      socket.emit('message', { user: userName, message: messageInput });
+      sendMessage(userName, messageInput);
       setMessageInput('');
     }
-  }
-
-  const renderChat = () => {
-    return chat.map(({ name, message }, index) => {
-      <div key={index}>
-        <h3>
-          {name} : <span>{message}</span>
-        </h3>
-      </div>
-    })
   }
 
   return (
     <StyledChatContainer>
       <ChatSpace>
-        {renderChat()}
+        {chat.map((item) => (
+          <div>
+            <h3>
+              {item.user} : <span>{item.message}</span>
+            </h3>
+          </div>
+        ))
+        }
       </ChatSpace>
       <MessageBar>
         <StyledTextContainer>
