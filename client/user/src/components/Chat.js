@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 //Redux
 import { useSelector } from 'react-redux';
 //Styles
@@ -8,7 +8,8 @@ import CustomTextField from './ui-elements/CustomTextField';
 import { Button } from "@material-ui/core";
 //Socket
 import { subscribeToChat, sendMessage } from '../socket';
-
+//Components
+import ChatMessage from './ChatMessage';
 
 const Chat = () => {
 
@@ -19,10 +20,20 @@ const Chat = () => {
   useEffect(() => {
     subscribeToChat((err, data) => {
       if (err) return;
-      setChat(oldChats => [data, ...oldChats])
+      setChat(oldChats => [...oldChats, data])
     });
 
   }, [])
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [chat]);
+
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   const handleMessageInputChange = (e) => {
     setMessageInput(e.target.value);
@@ -39,13 +50,9 @@ const Chat = () => {
     <StyledChatContainer>
       <ChatSpace>
         {chat.map((item) => (
-          <div>
-            <h3>
-              {item.user} : <span>{item.message}</span>
-            </h3>
-          </div>
-        ))
-        }
+          <ChatMessage userName={item.user} message={item.message} />
+        ))}
+        <div ref={messagesEndRef} />
       </ChatSpace>
       <MessageBar>
         <StyledTextContainer>
@@ -90,10 +97,22 @@ const StyledChatContainer = styled.div`
 `;
 
 const ChatSpace = styled.div`
+  overflow-y: auto;
+  display: block;
   padding: 2rem;
   width: 100%;
   height: 100%;
   background: #252525;
+
+  &::-webkit-scrollbar{
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: #4e4e4e;
+    }
+    &::-webkit-scrollbar-track{
+      background-color: #302e2e;
+    }
 `;
 
 const MessageBar = styled.div`

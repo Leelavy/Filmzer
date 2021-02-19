@@ -43,9 +43,6 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    console.log(titleInput);
-    console.log(ratingInput);
-    console.log(usernameInput);
     dispatch(loadSearchedReviews(titleInput, ratingInput, usernameInput));
   }, [titleInput, ratingInput, usernameInput])
 
