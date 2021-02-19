@@ -18,6 +18,7 @@ export class MoviesService {
   private moviesUrl = environment.moviesUrl;
   private movieSearchUrl=environment.movieSearch;
   private movieByGenreUrl= environment.movieByGenre;
+  private scrapeUrl= environment.scrapMovie;
 
   constructor(private http: HttpClient) { }
 
@@ -56,11 +57,18 @@ export class MoviesService {
 
   getMoviesByGenre():Observable<groupMovie>{
     const url = `${this.movieByGenreUrl}`;
-    console.log(url);
+    //console.log(url);
     
     return this.http.get<groupMovie>(url);
   }
 
+  scrapeMovies(ur:string){
+    const url = `${this.scrapeUrl}${ur}`;
+    console.log(url);
+    
+    return this.http.get(url);
+   
+  }
 
 
 }

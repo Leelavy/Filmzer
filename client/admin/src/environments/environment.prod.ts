@@ -19,6 +19,7 @@ export const environment = {
   countStatics: 'http://localhost:8080/movies/countByGenre',
   avgStatics: 'http://localhost:8080/movies/avgRatingByYear',
   loginUrl: 'http://localhost:8080/users/getUserByEmail',
-  movieByGenre: 'http://localhost:8080/movies/moviesByGenre'
+  movieByGenre: 'http://localhost:8080/movies/moviesByGenre',
+  scrapMovie: 'http://localhost:8080/movies/scrapeMovies/file='
 
 };

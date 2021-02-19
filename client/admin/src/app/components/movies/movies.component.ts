@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   movieM = "";
   movieC = "";
   movieY = "";
+  scrape:string;
 
   constructor(private moviesService: MoviesService,
     private rout: Router) {
@@ -51,6 +52,12 @@ export class MoviesComponent implements OnInit {
     this.moviesService.getMovieByParam(this.tmp).subscribe(data => {
       this.movies = data;
     });
+  }
+
+  scrapeMovie(){
+    this.moviesService.scrapeMovies(this.scrape);
+    console.log(this.scrape);
+    
   }
 
 

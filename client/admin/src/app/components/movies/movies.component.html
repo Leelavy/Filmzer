@@ -15,8 +15,10 @@
                                 <h4 class="card-title">Movie Lists</h4>
                             </div>
                             <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <input [(ngModel)]="scrape"  [ngModelOptions]="{standalone: true}"  
+                                 type="text" class="text search-input" placeholder="Scrape...">
                                 <nav>
-                                    <a style="margin:5px;" routerLink="/addMovie" class="btn btn-primary">Scrape</a>
+                                    <a style="margin:5px;" (click)="scrapeMovie()" class="btn btn-primary">Scrape</a>
                                 </nav>
                                 <nav>
                                     <a style="margin:5px;" routerLink="/groupByMovie" class="btn btn-primary">Group-by</a>
