@@ -26,22 +26,8 @@ const topMoviesByRating = async (req, res) => {
     }
 
     const movies = await moviesService.topMoviesByRating(topNumber);
-
-    movies.forEach(function (movieItem) {
-
-        Object.defineProperty(movieItem, "rating_avg",
-            Object.getOwnPropertyDescriptor(movieItem, "rating_review"));
-        delete movieItem["rating_review"];
-
-        if(movieItem["rating_avg"].length){
-            movieItem["rating_avg"] = roundToTwo(movieItem["rating_avg"][0]["rating"])
-        }
-        else{
-            movieItem["rating_avg"] = 0
-        }
-    });
-
-    res.json(movies);
+    
+    res.json(calcRatingAvg(movies));
 };
 
 
@@ -71,6 +57,25 @@ const getMovies = async (req, res) => {
 
     res.json(movies);
 };
+
+
+const calcRatingAvg = (rating) => {
+    rating.forEach(function (item) {
+
+        Object.defineProperty(item, "rating_avg",
+            Object.getOwnPropertyDescriptor(item, "rating_review"));
+        delete item["rating_review"];
+
+        if(item["rating_avg"].length){
+            item["rating_avg"] = roundToTwo(item["rating_avg"][0]["rating"])
+        }
+        else{
+            item["rating_avg"] = 0
+        }
+    });
+    return rating;
+};
+
 
 
 const avgRatingByYear = async (req, res) => {
@@ -190,8 +195,9 @@ const getMovieByTitleGenreYear = async (req, res) => {
     if (!movies) {
         return res.status(404).json({errors: ['Movies are not found']});
     }
-
-    res.json(movies);
+    else{
+        res.json(calcRatingAvg(movies));
+    }
 };
 
 

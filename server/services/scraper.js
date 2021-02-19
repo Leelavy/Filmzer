@@ -84,7 +84,10 @@ function getMovie(imdbID) {
                 }
             }
 
-            const genre = dataJson.genre[0];
+            let genre = dataJson.genre[0];
+            if(typeof dataJson.genre === "string"){
+                genre = dataJson.genre;
+            }
             const year = parseInt(dataJson.datePublished.split('-')[0]);
             const description = dataJson.description;
             const trailer = await getTrailer(title, year);
