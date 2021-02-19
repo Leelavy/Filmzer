@@ -9,7 +9,7 @@ import { CountSmallBoxesService } from '../../../services/count-small-boxes.serv
 })
 export class SmallBoxesComponent implements OnInit {
 
-  usersView: Number;
+  usersView: Number = 0;
   countM: String;
   countU: String;
   countR: String;
