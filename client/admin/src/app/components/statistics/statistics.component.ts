@@ -26,7 +26,15 @@ export class StatisticsComponent implements OnInit {
   public barChartData = [];
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales:{
+      yAxes:[{
+        ticks:{
+          beginAtZero: true
+        }
+      }]
+    }
+   
 
   };
   public barChartLegend = true;
