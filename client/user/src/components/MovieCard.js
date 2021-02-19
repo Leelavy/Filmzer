@@ -71,7 +71,7 @@ const MovieCard = ({ movie, onWatchClick }) => {
             {rating_avg ? (<div>{`${rating_avg}/10`}</div>) : (<div style={{ background: '#141414' }}>No Reviews</div>)}
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
-            {`${description.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
+            {`${description.replace(/^(.{90}[^\s]*).*/, "$1")}...`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -89,8 +89,8 @@ const MovieCard = ({ movie, onWatchClick }) => {
 
 const StyledHeaderCardDiv = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 
   div {
     padding: 0.3rem 0.5rem 0.3rem 0.5rem;
