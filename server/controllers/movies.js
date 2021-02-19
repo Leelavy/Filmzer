@@ -250,7 +250,8 @@ const deleteMovie = async (req, res) => {
 };
 
 
-const scrapeMovies = (req, res) => {
+const scrapeMovies = async (req, res) => {
+    console.log(req.params)
     console.log("file from client = ",req.params[0].split("=")[1]);
     const file = fs.createReadStream(req.params[0].split("=")[1]);
     var count = 0; // cache the running count
@@ -260,7 +261,7 @@ const scrapeMovies = (req, res) => {
                 var movie = await getMovie(imdbID);
                 if(movie){
                     var newMovies = await moviesService.createMovie(movie);
-                    console.log(newMovies);
+                    return await newMovies;
                 }
             });
         },
