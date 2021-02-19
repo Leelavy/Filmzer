@@ -251,7 +251,7 @@ const deleteMovie = async (req, res) => {
 
 
 const scrapeMovies = (req, res) => {
-    const file = fs.createReadStream(req.params[0].split(":")[1]);
+    const file = fs.createReadStream(req.params[0].split("=")[1]);
     var count = 0; // cache the running count
     Papa.parse(file, {
         step:function(result) {
