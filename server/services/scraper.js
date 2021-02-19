@@ -16,10 +16,11 @@ const getGoggleImage = async (title) => {
         },
     });
 
-    const googleResults = await google.scrape(title + " movie 16:9", 15);
+    const googleResults = await google.scrape(title + " movie 16:9", 40);
     for (const image of googleResults) {
         let imageMetadata = await probe(image.url);
-        if(imageMetadata.width > 1799 && imageMetadata.height > 999){
+        if(imageMetadata.width > 1799 && imageMetadata.width < 1999 && imageMetadata.height > 999 && imageMetadata.height < 1100){
+            console.log(imageMetadata);
             return image.url
         }
     }

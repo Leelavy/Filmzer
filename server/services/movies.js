@@ -246,7 +246,7 @@ const updateMovie = async (id, body) => {
     movie.year = body.year;
     movie.genre = body.genre;
     movie.description = body.description;
-    movie.imageURL = body.image_url;
+    movie.image_url = body.image_url;
     movie.trailer_video = body.trailer_video;
     await movie.save();
     return movie;

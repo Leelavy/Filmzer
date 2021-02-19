@@ -251,7 +251,7 @@ const deleteMovie = async (req, res) => {
 
 
 const scrapeMovies = (req, res) => {
-    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/tenMovies.csv');
+    const file = fs.createReadStream('/Users/danielgutman/Desktop/movie_csv/24.csv');
     var count = 0; // cache the running count
     Papa.parse(file, {
         step:function(result) {
