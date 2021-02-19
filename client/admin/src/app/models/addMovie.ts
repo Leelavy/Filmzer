@@ -14,3 +14,7 @@ export interface groupMovie{
     genre: string,  // delimiter ','
     movies:[]
 }
+export interface scrapeM{
+ 
+    url:string
+}

@@ -55,9 +55,8 @@ export class MoviesComponent implements OnInit {
   }
 
   scrapeMovie(){
-    this.moviesService.scrapeMovies(this.scrape);
+    this.moviesService.scrapeMovies(this.scrape).subscribe();
     console.log(this.scrape);
-    
   }
 
 

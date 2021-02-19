@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movies } from '../models/movies';
-import { AddMovie,groupMovie } from '../models/addMovie'
+import { AddMovie,groupMovie,scrapeM } from '../models/addMovie'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 
@@ -62,7 +62,7 @@ export class MoviesService {
     return this.http.get<groupMovie>(url);
   }
 
-  scrapeMovies(ur:string){
+  scrapeMovies(ur:string): Observable<any>{
     const url = `${this.scrapeUrl}${ur}`;
     console.log(url);
     
