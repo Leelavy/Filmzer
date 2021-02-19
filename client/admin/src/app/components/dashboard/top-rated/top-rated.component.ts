@@ -43,14 +43,12 @@ export class TopRatedComponent implements OnInit {
 
   join(){
     this.chatservise.joinRoom({user:this.user, room:this.room});
-    console.log('logggg');
   }
   leave(){
     this.chatservise.leaveRoom({user:this.user, room:this.room});
   }
   sendMessage(){
     this.chatservise.sendMessage({user:this.user, room:this.room, message:this.messageText});
-    console.log('hereeee');
     
   }
  

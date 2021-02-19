@@ -46,7 +46,6 @@ export class EditmovieComponent implements OnInit {
     });
 
     this.movieService.updateMovie(id, movieNew).subscribe();
-    console.log(movieNew);
     
 
   }

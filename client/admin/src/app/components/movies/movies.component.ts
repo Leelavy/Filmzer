@@ -21,7 +21,6 @@ export class MoviesComponent implements OnInit {
 
   constructor(private moviesService: MoviesService,
     private rout: Router) {
-    // console.log(moviesService.getMovies);
   }
 
   ngOnInit(): void {
@@ -43,7 +42,7 @@ export class MoviesComponent implements OnInit {
 
   editMov(id: number) {
     this.rout.navigate(['/movies', id]);
-    console.log(this.rout.navigate(['/movies', id]));
+    //console.log(this.rout.navigate(['/movies', id]));
   }
 
   searchMovie() {

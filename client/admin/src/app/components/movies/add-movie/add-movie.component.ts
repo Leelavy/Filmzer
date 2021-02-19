@@ -36,7 +36,6 @@ export class AddMovieComponent implements OnInit {
     });
 
     this.moviesService.createMovie(movieNew).subscribe();
-    console.log(movieNew);
     this.rout.navigate(['/movies']);
     
   }

@@ -52,18 +52,6 @@ export class EdituserComponent implements OnInit {
   alert(){
     alert("Success");
   }
-  // onUpdate(){
-
-  //   let id = this.rout.snapshot.params['id'];
-
-
-  //   this.userService.updateUser(id,this.userUp).subscribe(data=>{
-  //       this.userUp=data;
-  //   });
-
-  //   console.log(this.userUp);
-    
-  // }
 
 
 }

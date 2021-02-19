@@ -44,7 +44,6 @@ export class ReviewsComponent implements OnInit {
 
   searchReview() {
     this.tmp = this.searchT + "=" + this.searchR + "=" + this.searchU;
-    console.log(this.tmp);
 
     this.reviewsService.getMovieByParam(this.tmp).subscribe(data => {
       this.reviews = data;
