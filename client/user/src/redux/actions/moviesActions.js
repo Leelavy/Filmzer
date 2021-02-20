@@ -5,11 +5,12 @@ import { moviesURL, movieByIdURL, topMoviesURL, moviesByTitleURL, searchedMovies
 
 export const loadAllMovies = () => async (dispatch) => {
   //FETCH AXIOS
-  const allMoviesData = await axios.get(moviesURL());
+  const response = await axios.get(moviesURL());
+  const allMoviesData = [...response.data].reverse();
   dispatch({
     type: "FETCH_MOVIES",
     payload: {
-      allMovies: allMoviesData.data,
+      allMovies: allMoviesData,
     },
   });
 };
@@ -26,11 +27,12 @@ export const loadTopMovies = (numWanted) => async (dispatch) => {
 };
 
 export const loadSearchedMovies = (title, genre, year) => async (dispatch) => {
-  const searchedMoviesData = await axios.get(searchedMoviesURL(title, genre, year));
+  const response = await axios.get(searchedMoviesURL(title, genre, year));
+  const searchedMoviesData = [...response.data].reverse();
   dispatch({
     type: "FETCH_SEARCHED_MOVIES",
     payload: {
-      searchedMovies: searchedMoviesData.data,
+      searchedMovies: searchedMoviesData,
     },
   });
 };

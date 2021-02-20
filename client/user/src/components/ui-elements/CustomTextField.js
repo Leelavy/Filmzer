@@ -3,13 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
-const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false, onChange, value }) => {
+const CustomTextField = ({ id, label, type = "text", autoComplete, autoFocus = false, onChange, value, required = false }) => {
 
   return (
     <StyledTextField
       variant="outlined"
       margin="normal"
-      required
+      required={required}
       fullWidth
       id={id}
       label={label}

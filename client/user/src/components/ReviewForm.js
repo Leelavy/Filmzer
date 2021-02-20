@@ -79,6 +79,9 @@ const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews }) =>
         data["user"] = userLogged;
         setCurrentMovieReviews([data].concat(currentMovieReviews))
       })
+    setTitleInput("");
+    setRatingInput("");
+    setContentInput("");
   }
 
   return (
@@ -100,6 +103,7 @@ const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews }) =>
                   id="title"
                   label="Review Title"
                   onChange={handleTitleInput}
+                  value={titleInput}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -107,6 +111,7 @@ const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews }) =>
                   id="rating"
                   label="Rating"
                   onChange={handleRatingInput}
+                  value={ratingInput}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -114,6 +119,7 @@ const ReviewForm = ({ movieId, currentMovieReviews, setCurrentMovieReviews }) =>
                   id="reviewContent"
                   label="Write a Review..."
                   onChange={handleContentInput}
+                  value={contentInput}
                 />
               </Grid>
             </Grid>

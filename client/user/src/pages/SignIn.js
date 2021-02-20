@@ -101,6 +101,7 @@ const SignIn = () => {
                 label="Email Address"
                 autoComplete="email"
                 autoFocus={true}
+                required={true}
                 onChange={handleEmailInput}
               />
               <CustomTextField
@@ -108,6 +109,7 @@ const SignIn = () => {
                 label="Password"
                 autoComplete="current-password"
                 type="password"
+                required={true}
                 onChange={handlePasswordInput}
               />
               <Button

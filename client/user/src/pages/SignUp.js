@@ -120,6 +120,7 @@ const SignUp = () => {
                     id="firstName"
                     label="First Name"
                     autoComplete="fname"
+                    required={true}
                     onChange={handleFirstNameInput}
                   />
                 </Grid>
@@ -128,6 +129,7 @@ const SignUp = () => {
                     id="lastName"
                     label="Last Name"
                     autoComplete="lname"
+                    required={true}
                     onChange={handleLastNameInput}
                   />
                 </Grid>
@@ -136,6 +138,7 @@ const SignUp = () => {
                     id="email"
                     label="Email Address"
                     autoComplete="email"
+                    required={true}
                     onChange={handleEmailInput}
                   />
                 </Grid>
@@ -144,6 +147,7 @@ const SignUp = () => {
                     id="username"
                     label="Username"
                     autoComplete="username"
+                    required={true}
                     onChange={handleUsernameInput}
                   />
                 </Grid>
@@ -153,6 +157,7 @@ const SignUp = () => {
                     label="Password"
                     autoComplete="current-password"
                     type="password"
+                    required={true}
                     onChange={handlePasswordInput}
                   />
                 </Grid>

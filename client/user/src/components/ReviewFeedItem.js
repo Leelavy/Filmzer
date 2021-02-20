@@ -81,11 +81,13 @@ const StyledReviewHeader = styled(motion.div)`
     color: red;
     font-weight: lighter;
     letter-spacing: 0.1rem;
+    margin-top: 0.5rem;
   }
 `;
 
 const StyledReviewContent = styled(motion.div)`
   display: flex;
+  text-align: left;
   p {
     font-size: 1rem;
   }

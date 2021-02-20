@@ -26,7 +26,6 @@ const Movies = () => {
   const [genreInput, setGenreInput] = useState("");
   const [yearInput, setYearInput] = useState("");
 
-  const allMovies = useSelector(state => state.movies.allMovies);
   const searchedMovies = useSelector(state => state.movies.searchedMovies);
 
   const handleWatchClick = (movie) => {
@@ -77,19 +76,11 @@ const Movies = () => {
           <SearchInput placeholder="Year..." onChange={handleYearInput} />
         </StyledSearchDiv>
         <MoviesGrid>
-          {searchedMovies.length > 0 ?
-            (Object.values(searchedMovies).map((movie) => (
-              <StyledLink to={`/movies/${movie._id}`}>
-                <MovieCard movie={movie} onWatchClick={handleWatchClick} key={movie._id} />
-              </StyledLink>
-            )))
-            :
-            (allMovies && (Object.values(allMovies).map((movie) => (
-              <StyledLink to={`/movies/${movie._id}`}>
-                <MovieCard movie={movie} onWatchClick={handleWatchClick} key={movie._id} />
-              </StyledLink>
-            ))))
-          }
+          {Object.values(searchedMovies).map((movie) => (
+            <StyledLink to={`/movies/${movie._id}`}>
+              <MovieCard movie={movie} onWatchClick={handleWatchClick} key={movie._id} />
+            </StyledLink>
+          ))}
         </MoviesGrid>
       </StyledMotionDiv>
     </>

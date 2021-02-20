@@ -24,7 +24,7 @@ const Reviews = () => {
     dispatch(loadAllMovies());
   }, [dispatch]);
 
-  const allReviewsWithData = useSelector(state => state.reviews.allReviewsWithData);
+  const searchedReviews = useSelector(state => state.reviews.searchedReviews);
 
   const [titleInput, setTitleInput] = useState("");
   const [ratingInput, setRatingInput] = useState("");
@@ -46,9 +46,6 @@ const Reviews = () => {
     dispatch(loadSearchedReviews(titleInput, ratingInput, usernameInput));
   }, [titleInput, ratingInput, usernameInput])
 
-  const searchedReviews = useSelector(state => state.reviews.searchedReviews);
-
-
   return (
     <>
       <Loader />
@@ -64,19 +61,11 @@ const Reviews = () => {
           <SearchInput placeholder="Author..." onChange={handleUsernameInput} />
         </StyledSearchDiv>
         <ReviewsGrid>
-          {searchedReviews.length > 0 ?
-            (searchedReviews.map((review) => (
-              <StyledLink to={`/movies/${review.movie._id}`}>
-                <ReviewCard review={review} key={review._id} />
-              </StyledLink>
-            )))
-            :
-            (allReviewsWithData && (allReviewsWithData.map((review) => (
-              <StyledLink to={`/movies/${review.movie._id}`}>
-                <ReviewCard review={review} key={review._id} />
-              </StyledLink>
-            ))))
-          }
+          {searchedReviews.map((review) => (
+            <StyledLink to={`/movies/${review.movie._id}`}>
+              <ReviewCard review={review} key={review._id} />
+            </StyledLink>
+          ))}
         </ReviewsGrid>
       </StyledMotionDiv>
     </>

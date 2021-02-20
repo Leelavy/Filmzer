@@ -65,7 +65,7 @@ const ReviewCard = ({ review }) => {
             <div>{`${rating}/10`}</div>
           </StyledHeaderCardDiv>
           <Typography variant="body2" component="p" align="left">
-            {`${reviewContent.replace(/^(.{120}[^\s]*).*/, "$1")}...`}
+            {`${reviewContent.replace(/^(.{80}[^\s]*).*/, "$1")}...`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -80,7 +80,7 @@ const ReviewCard = ({ review }) => {
 
 const StyledHeaderCardDiv = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   div {

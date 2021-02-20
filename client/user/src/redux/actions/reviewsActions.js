@@ -14,21 +14,23 @@ import {
 
 export const loadAllReviews = () => async (dispatch) => {
   //FETCH AXIOS
-  const allReviewsData = await axios.get(reviewsURL());
+  const response = await axios.get(reviewsURL());
+  const allReviewsData = [...response.data].reverse();
   dispatch({
     type: "FETCH_REVIEWS",
     payload: {
-      allReviews: allReviewsData.data,
+      allReviews: allReviewsData,
     },
   });
 };
 
 export const loadAllReviewsWithData = () => async (dispatch) => {
-  const allReviewsWithData = await axios.get(reviewsWithMoviesAndUsersURL());
+  const response = await axios.get(reviewsWithMoviesAndUsersURL());
+  const allReviewsWithData = [...response.data].reverse();
   dispatch({
     type: "FETCH_REVIEWS_WITH_DATA",
     payload: {
-      allReviewsWithData: allReviewsWithData.data,
+      allReviewsWithData: allReviewsWithData,
     },
   });
 };
@@ -44,11 +46,12 @@ export const loadTopLatestReviews = (numWanted) => async (dispatch) => {
 };
 
 export const loadSearchedReviews = (title, rating, username) => async (dispatch) => {
-  const searchedReviewsData = await axios.get(searchedReviewsURL(title, rating, username));
+  const response = await axios.get(searchedReviewsURL(title, rating, username));
+  const searchedReviewsData = [...response.data].reverse();
   dispatch({
     type: "FETCH_SEARCHED_REVIEWS",
     payload: {
-      searchedReviews: searchedReviewsData.data,
+      searchedReviews: searchedReviewsData,
     },
   });
 };
